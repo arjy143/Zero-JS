@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arjun Parmar - Portfolio (Dark)</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'IBM Plex Mono', 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ffffff;
+    background-color: #000000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* ============================================
+   LAYOUT COMPONENTS
+   ============================================ */
+
+.ew-app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.ew-app-body {
+    display: flex;
+    flex: 1;
+}
+
+.ew-main {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.ew-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+/* ============================================
+   NAVBAR - Angular
+   ============================================ */
+
+.ew-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px;
+    background: #000000;
+    border-bottom: 2px solid #303030;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.ew-navbar-brand {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ew-navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+}
+
+.ew-navbar-item {
+    padding: 6px 12px;
+    color: #b0b0b0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid transparent;
+    transition: all 0.1s ease;
+}
+
+.ew-navbar-item:hover {
+    color: #ffffff;
+    background: #161616;
+}
+
+.ew-navbar-item-active {
+    color: #40a9ff;
+    border-bottom-color: #40a9ff;
+}
+
+.ew-navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ============================================
+   SIDEBAR - Angular
+   ============================================ */
+
+.ew-sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: #0c0c0c;
+    border-right: 2px solid #303030;
+    padding: 12px 0;
+    overflow-y: auto;
+    height: calc(100vh - 49px);
+    position: sticky;
+    top: 49px;
+}
+
+.ew-sidebar-section {
+    margin-bottom: 16px;
+}
+
+.ew-sidebar-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #707070;
+    padding: 6px 12px;
+    margin-bottom: 4px;
+    border-left: 3px solid transparent;
+}
+
+.ew-sidebar-nav {
+    list-style: none;
+}
+
+.ew-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    color: #b0b0b0;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13px;
+    border-left: 3px solid transparent;
+    transition: all 0.1s ease;
+}
+
+.ew-sidebar-item:hover {
+    color: #ffffff;
+    background: #161616;
+    border-left-color: #303030;
+}
+
+.ew-sidebar-item-active {
+    color: #40a9ff;
+    background: #161616;
+    border-left-color: #40a9ff;
+    font-weight: 600;
+}
+
+/* ============================================
+   CARDS - Angular, Boxy
+   ============================================ */
+
+.ew-card {
+    background: #0c0c0c;
+    border: 2px solid #303030;
+    padding: 12px;
+    margin-bottom: 6px;
+    transition: all 0.1s ease;
+}
+
+.ew-card:hover {
+    border-color: #40a9ff;
+}
+
+.ew-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #303030;
+}
+
+.ew-card-compact {
+    padding: 12px;
+}
+
+.ew-card-accent {
+    border-left: 4px solid #40a9ff;
+}
+
+/* ============================================
+   BOX & CONTAINERS
+   ============================================ */
+
+.ew-box {
+    padding: 12px;
+}
+
+.ew-box-bordered {
+    border: 2px solid #303030;
+}
+
+/* ============================================
+   TYPOGRAPHY - Angular
+   ============================================ */
+
+.ew-text {
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.ew-text-secondary {
+    color: #b0b0b0;
+}
+
+.ew-text-muted {
+    color: #707070;
+}
+
+.ew-text-accent {
+    color: #40a9ff;
+}
+
+.ew-text-success {
+    color: #4ec968;
+}
+
+.ew-text-warning {
+    color: #f0b400;
+}
+
+.ew-text-error {
+    color: #f85149;
+}
+
+.ew-heading-1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.ew-heading-2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.ew-heading-3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+/* ============================================
+   BUTTONS - Angular, Sharp
+   ============================================ */
+
+.ew-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    text-decoration: none;
+}
+
+.ew-button:active {
+    transform: translateY(1px);
+}
+
+.ew-button-primary {
+    background-color: #0078d4;
+    color: #ffffff;
+    border-color: #0078d4;
+}
+
+.ew-button-primary:hover {
+    background-color: #1e8ae6;
+    border-color: #1e8ae6;
+}
+
+.ew-button-secondary {
+    background-color: #252525;
+    color: #ffffff;
+    border-color: #303030;
+}
+
+.ew-button-secondary:hover {
+    background-color: #333333;
+    border-color: #40a9ff;
+}
+
+.ew-button-outline {
+    background-color: transparent;
+    color: #40a9ff;
+    border-color: #40a9ff;
+}
+
+.ew-button-outline:hover {
+    background-color: #40a9ff;
+    color: #000000;
+}
+
+.ew-button-ghost {
+    background-color: transparent;
+    color: #b0b0b0;
+    border-color: transparent;
+}
+
+.ew-button-ghost:hover {
+    background-color: #161616;
+    color: #ffffff;
+    border-color: #303030;
+}
+
+.ew-button-sm {
+    padding: 6px 12px;
+    font-size: 11px;
+}
+
+.ew-button-lg {
+    padding: 14px 28px;
+    font-size: 14px;
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+
+.ew-row {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.ew-row-wrap {
+    flex-wrap: wrap;
+}
+
+.ew-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ew-grid {
+    display: grid;
+    gap: 6px;
+}
+
+.ew-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.ew-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.ew-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ============================================
+   FORM ELEMENTS - Angular
+   ============================================ */
+
+.ew-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    border: 2px solid #303030;
+    background: #0c0c0c;
+    color: #ffffff;
+    transition: all 0.1s ease;
+}
+
+.ew-input:focus {
+    outline: none;
+    border-color: #0078d4;
+}
+
+.ew-input::placeholder {
+    color: #707070;
+}
+
+.ew-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+    color: #b0b0b0;
+}
+
+.ew-form-group {
+    margin-bottom: 12px;
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+.ew-divider {
+    border: none;
+    border-top: 2px solid #303030;
+    margin: 16px 0;
+}
+
+.ew-spacer { height: 12px; }
+.ew-spacer-sm { height: 6px; }
+.ew-spacer-lg { height: 16px; }
+.ew-spacer-xl { height: 24px; }
+
+.ew-link {
+    color: #40a9ff;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+}
+
+.ew-link:hover {
+    border-bottom-color: #40a9ff;
+}
+
+.ew-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.ew-center { text-align: center; }
+.ew-right { text-align: right; }
+.ew-flex-grow { flex-grow: 1; }
+.ew-flex-shrink-0 { flex-shrink: 0; }
+
+.ew-center-content { justify-content: center; }
+
+.ew-gap-sm { gap: 6px; }
+.ew-gap-lg { gap: 16px; }
+.ew-gap-xl { gap: 24px; }
+
+/* ============================================
+   BADGE - Angular
+   ============================================ */
+
+.ew-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 2px solid #40a9ff;
+    background: transparent;
+    color: #40a9ff;
+}
+
+.ew-badge-success {
+    border-color: #4ec968;
+    color: #4ec968;
+}
+
+.ew-badge-warning {
+    border-color: #f0b400;
+    color: #f0b400;
+}
+
+.ew-badge-error {
+    border-color: #f85149;
+    color: #f85149;
+}
+
+/* ============================================
+   STAT CARD - Angular
+   ============================================ */
+
+.ew-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.ew-stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #707070;
+    margin-bottom: 4px;
+}
+
+.ew-stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.ew-stat-change {
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+.ew-stat-change-up {
+    color: #4ec968;
+}
+
+.ew-stat-change-down {
+    color: #f85149;
+}
+
+/* ============================================
+   CODE BLOCK (for cream/technical theme)
+   ============================================ */
+
+.ew-code {
+    font-family: 'IBM Plex Mono', monospace;
+    background: #161616;
+    padding: 2px 6px;
+    border: 1px solid #303030;
+    font-size: 13px;
+}
+
+.ew-code-block {
+    font-family: 'IBM Plex Mono', monospace;
+    background: #161616;
+    padding: 12px;
+    border: 2px solid #303030;
+    font-size: 13px;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .ew-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .ew-grid-2, .ew-grid-3, .ew-grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .ew-row {
+        flex-direction: column;
+    }
+
+    .ew-navbar {
+        padding: 6px 12px;
+    }
+
+    .ew-navbar-nav {
+        display: none;
+    }
+}
+    </style>
+    <script>
+
+    var htmx=function(){"use strict";var Q={onLoad:t,process:Kt,on:le,off:ue,trigger:ie,ajax:Mr,find:C,findAll:R,closest:g,values:function(e,t){var r=Zt(e,t||"post");return r.values},remove:B,addClass:j,removeClass:V,toggleClass:U,takeClass:_,defineExtension:Cr,removeExtension:Rr,logAll:z,logNone:K,logger:null,config:{historyEnabled:!0,historyCacheSize:10,refreshOnHistoryMiss:!1,defaultSwapStyle:"innerHTML",defaultSwapDelay:0,defaultSettleDelay:20,includeIndicatorStyles:!0,indicatorClass:"htmx-indicator",requestClass:"htmx-request",addedClass:"htmx-added",settlingClass:"htmx-settling",swappingClass:"htmx-swapping",allowEval:!0,allowScriptTags:!0,inlineScriptNonce:"",attributesToSettle:["class","style","width","height"],withCredentials:!1,timeout:0,wsReconnectDelay:"full-jitter",wsBinaryType:"blob",disableSelector:"[hx-disable], [data-hx-disable]",useTemplateFragments:!1,scrollBehavior:"smooth",defaultFocusScroll:!1,getCacheBusterParam:!1,globalViewTransitions:!1,methodsThatUseUrlParams:["get"]},parseInterval:d,_:e,createEventSource:function(e){return new EventSource(e,{withCredentials:!0})},createWebSocket:function(e){var t=new WebSocket(e,[]);return t.binaryType=Q.config.wsBinaryType,t},version:"1.9.10"},r={addTriggerHandler:Lt,bodyContains:oe,canAccessLocalStorage:D,findThisElement:xe,filterValues:Qt,hasAttribute:s,getAttributeValue:te,getClosestAttributeValue:re,getClosestMatch:x,getExpressionVars:Hr,getHeaders:Yt,getInputValues:Zt,getInternalData:ee,getSwapSpecification:Tr,getTriggerSpecs:jt,getTarget:be,makeFragment:I,mergeObjects:ae,makeSettleInfo:T,oobSwap:Ce,querySelectorExt:fe,selectAndSwap:Or,settleImmediately:Wt,shouldCancel:At,triggerEvent:ie,triggerErrorEvent:ne,withExtensions:Sr};function d(e){if(void 0!==e)return"ms"==e.slice(-2)?parseFloat(e.slice(0,-2))||void 0:"s"==e.slice(-1)?1e3*parseFloat(e.slice(0,-1))||void 0:"m"==e.slice(-1)?6e4*parseFloat(e.slice(0,-1))||void 0:parseFloat(e)||void 0}function f(e,t){return e.getAttribute&&e.getAttribute(t)}function s(e,t){return e.hasAttribute&&(e.hasAttribute(t)||e.hasAttribute("data-"+t))}function te(e,t){return f(e,t)||f(e,"data-"+t)}function u(e){return e.parentElement}function re(e,t){var r=null;for(;r=e||null,(e=u(e))&&"findThisElement"!==t;){if(s(e,t))return r?te(e,t):te(e,t)}}function x(e,t){for(;e&&!t(e);)e=u(e);return e||null}function p(e,t,r){var n=te(t,r),o=te(t,"hx-disinherit");if(e!==t&&o&&("*"===o||o.split(" ").indexOf(r)>=0))return"unset";return n}function re(t,r){var n=null;return x(t,function(e){return!!(n=p(t,e,r))}),n!=="unset"?n:null}function m(e,t){var r=e.matches||e.matchesSelector||e.msMatchesSelector||e.mozMatchesSelector||e.webkitMatchesSelector||e.oMatchesSelector;return!!r&&r.call(e,t)}function h(e){var t=/<([a-z][^\/\0>\x20\t\r\n\f]*)/i.exec(e);return t?t[1].toLowerCase():""}function v(e,t){for(var r=new DOMParser,n=r.parseFromString(e,"text/html"),o=n.body;t>0;)t--,o=o.firstChild;return null==o&&(o=Y().createDocumentFragment()),o}function I(e,t){if(t){var r,n=["thead","tbody","tfoot","colgroup","caption"].indexOf(t)>-1?"table":t,o=v("<"+n+">"+e+"</"+n+">",0);return o.querySelector(n).childNodes}if(Q.config.useTemplateFragments){if((r=Y().createElement("template")).innerHTML=e,r.content)return r.content.childNodes}return v(e,0).childNodes}function ae(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r]);return e}function y(e){try{return JSON.parse(e)}catch(e){return Ar(e),null}}function b(e){return e.indexOf("-")!==-1}function w(e){var t=re(e,"hx-ext"),r=[];return t&&q(t.split(","),function(e){e=e.replace(/ /g,""),e.slice(0,7)!="ignore:"&&r.push(e)}),r}function Sr(e,t){if("undefined"!=typeof e)if(Array.isArray(e))q(e,function(e){Sr(e,t)});else{var r=w(e);q(r,function(e){var r=Er[e];r&&t(r)})}}function Ar(e){console&&console.error&&console.error(e)}function S(e,t){return"undefined"!=typeof e?e:t}function A(e){var t=Q.config.attributesToSettle;for(var r=0;r<t.length;r++)if(e===t[r])return!0;return!1}function E(e,t){q(e.attributes,function(r){!t.hasAttribute(r.name)&&A(r.name)&&e.removeAttribute(r.name)}),q(t.attributes,function(r){A(r.name)&&e.setAttribute(r.name,r.value)})}function C(e,t){return t?e.querySelector(t):C(Y().body,e)}function R(e,t){return t?e.querySelectorAll(t):R(Y().body,e)}function O(e,t){e=x(e,function(e){return null!=te(e,t)})}function Y(){return document}function q(e,t){if(e)for(var r=0;r<e.length;r++)t(e[r])}function L(e){return e.getRootNode&&e.getRootNode() instanceof ShadowRoot?Y().body.contains(e.getRootNode().host):Y().body.contains(e)}function oe(e){return L(e)}function N(e){return e.trim().split(/\s+/)}function H(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r]);return e}function P(e){return[].filter.call(Y().querySelectorAll("[id]"),function(t){return te(t,"id")===e})[0]}function M(e,t){return t||"outerHTML"}function D(){var e="htmx:localStorageTest";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch(e){return!1}}function F(e){var t=e.length;for(var r=0;r<t;r++){var n=e[t-r-1];n.parentElement?n.parentElement.removeChild(n):null}}function X(e){return e.replace(/[\r\n\t ]+/g," ").trim()}function ee(e){var t=e.htmx_internal;return t||(t=e.htmx_internal={}),t}function T(e){var t={elt:e};return Sr(e,function(e){t=ae(t,e.getSelectors?e.getSelectors():{})}),t}function $(e){var t=ee(e);return t.timeout||(t.timeout=setTimeout(function(){t.timeout=null,ie(e,"htmx:timeout",{})},Q.config.timeout))}function z(){Q.logger=function(e,t,r){console&&console.log(t,e,r)}}function K(){Q.logger=null}function C(e,t){return t?e.querySelector(t):C(Y().body,e)}function C(e){return C(Y().body,e)}function g(e,t){return(t=x(e,function(e){return m(e,t)}))||null}function W(){return Y().body}function B(e,t){e=fe(e),t?setTimeout(function(){B(e),e=null},d(t)):e.parentElement&&e.parentElement.removeChild(e)}function j(e,t,r){e=fe(e),r?setTimeout(function(){j(e,t),e=null},d(r)):e.classList&&e.classList.add(t)}function V(e,t,r){e=fe(e),r?setTimeout(function(){V(e,t),e=null},d(r)):e.classList&&e.classList.remove(t)}function U(e,t){e=fe(e),e.classList.toggle(t)}function _(e,t){e=fe(e),q(e.parentElement.children,function(e){V(e,t)}),j(e,t)}function g(e,t){return m(e=fe(e),t)?e:g(u(e),t)}function J(e,t,r){return Object.prototype.toString.call(e)==="[object "+t+"]"?e:{"string":function(){return String(e)},"int":function(){return parseInt(e)},"float":function(){return parseFloat(e)}}[t?t.toLowerCase():null]?{"string":function(){return String(e)},"int":function(){return parseInt(e)},"float":function(){return parseFloat(e)}}[t.toLowerCase()](e):r}function G(e,t){for(var r=0;r<e.length;r++)if(e[r]===t)return e.splice(r,1)}function Z(e,t,r){if(r){for(var n=0;n<e.length;n++){var o=e[n].match(t);if(o){return r(o[1],o[2])}}}return null}var Er={};function Cr(e,t){t.init&&t.init(r),Er[e]=ae(Er[e]||{},t)}function Rr(e){delete Er[e]}function Or(e,t,r,n,o){var i,a,s=S(n.select,n.swapSpec.select),u=[];if(s){q(C(t).querySelectorAll(s),function(e){e&&u.push(e)}),i=u}else if(i=[t],"outerHTML"!==r&&"none"!==r){for(;null!=(a=e.firstChild);)u.push(a),a.remove();i=u}Sr(n.elt,function(e){i=e.transformResponse?e.transformResponse(i,null,n.elt):i}),s&&"outerHTML"!==n.swapSpec.swapStyle&&(i=i[0]?i[0].children:i);var c,l=e;for(s&&(e.innerHTML="",l=e,c=n.swapSpec.swapStyle),c=c||r,Rt(l,i,c,n,o);(a=e.firstChild)!==null;)e.removeChild(a);return i}function Ce(e,t,r,n,o){var i=re(e,"hx-select-oob");if(i)for(var a=i.split(","),s=0;s<a.length;s++){var u=a[s].split(":",2),c=u[0].trim();if(0!==c.indexOf("#")&&(c="#"+c),c!==""){var l=C(c);if(l){var f=u[1]||"true",d="true"===f?re(l,"hx-swap")||Q.config.defaultSwapStyle:f;n||(n=T(t)),Rt(l,e.cloneNode(!0).querySelector(c),d,n,o)}}}q(R(e,"[hx-swap-oob], [data-hx-swap-oob]"),function(e){var t=te(e,"hx-swap-oob");if("true"===t)t=re(e,"hx-swap")||Q.config.defaultSwapStyle;else if(t.indexOf(":")>0){o=t.split(":"),t=o[0];var r=o[1];e.id=r}else e.id||((t=t||re(e,"hx-swap")||Q.config.defaultSwapStyle)==="true"&&(t=re(e,"hx-swap")||Q.config.defaultSwapStyle));var i=P(e.id);i&&(n||(n=T(i)),Or(i,e.cloneNode(!0),t,n,o));e.remove()})}function ne(e,t,r){ie(e,t,ae({error:t},r))}function ie(e,t,r,n){var o;return o=r?r:{},o.elt=e,oe(e)?n?e.dispatchEvent(new CustomEvent(t,{bubbles:!0,cancelable:!0,detail:o})):ie(e,t,o,!0):(o.target=e,o=ae(o,{bubbles:!0,cancelable:!0}),Y().dispatchEvent(new CustomEvent(t,{detail:o})),!o.defaultPrevented)}function le(e,t,r){var n=fe(e);return"htmx:"+t===r||"htmx-"+t===r?void n.addEventListener(t.slice(5),r):void n.addEventListener(t,r)}function ue(e,t,r){var n=fe(e);return void n.removeEventListener(t,r)}var ce=Y().createElement("output");function fe(e,t){return"string"==typeof e?C(t||Y().body,e):e}function de(e,t,r){return e.call(t,r)}function xe(e,t){return x(e,function(e){return te(e,"hx-target")!==null})||Y().body}function pe(e){return 0===e.indexOf("#")&&e.indexOf(" ")===-1&&e.indexOf(".")===e.lastIndexOf(".")?P(e.substring(1)):null}function be(e,t){var r=re(e,t);if(r){if("this"===r)return xe(e);if(r.indexOf("closest ")===0)return g(e,r.substr(8));if(r.indexOf("find ")===0)return C(e,r.substr(5));if(r.indexOf("next ")===0){var n=Y().querySelectorAll(r.substr(5));return Z(n,/(.+)/,function(t){return(1,e.compareDocumentPosition(C(t)))&Node.DOCUMENT_POSITION_FOLLOWING?C(t):null})}if(r.indexOf("previous ")===0){var n=Y().querySelectorAll(r.substr(9));return Z(n,/(.+)/,function(t){return(1,e.compareDocumentPosition(C(t)))&Node.DOCUMENT_POSITION_PRECEDING?C(t):null})}return pe(r)||C(Y().body,r)}}function me(e){var t=re(e,"hx-target");return t?be(e,t):xe(e)}function ye(e,t,r){var n=re(t,r);return n?n.indexOf("this")===0?xe(t):(be(t,n)||e):e}function ve(e){return S(re(e,"hx-sync"),"drop")}function Yt(e,t,r){var n={};return n["HX-Request"]="true",n["HX-Trigger"]=te(e,"id"),n["HX-Trigger-Name"]=te(e,"name"),n["HX-Target"]=te(t,"id"),n["HX-Current-URL"]=Y().location.href,r&&(n["Content-Type"]="application/x-www-form-urlencoded"),Q.config.getCacheBusterParam&&(n["HX-Cache-Buster"]="true"),Sr(e,function(e){n=ae(n,e.getHeaders?e.getHeaders():{})}),n}function Qt(e,t,r){var n={},o=new FormData,i=new URLSearchParams;function a(e,t){if(void 0!==t&&"undefined"!=typeof t){if(e in n){var r=n[e];Array.isArray(r)?r.push(t):n[e]=[r,t]}else n[e]=t;o.append(e,t),i.append(e,t)}}if(e)for(var s=0;s<e.length;s++){var u=e[s];if(!u.disabled&&""!==u.name){var c=u.name,l=u.value;if("file"===u.type)for(var f=0;f<u.files.length;f++)a(c,u.files[f]);else if("checkbox"===u.type){if(u.checked){var d=te(u,"value");a(c,d||"on")}}else"radio"===u.type?u.checked&&a(c,l):a(c,"SELECT"===u.tagName&&u.multiple?F([].filter.call(u.options,function(e){return e.selected}).map(function(e){return e.value})):l)}}return t&&!["get","delete"].includes(r.toLowerCase())&&("object"==typeof t?ae(n,t):n[t]=""),{errors:[],values:n,formData:o,urlParams:i}}function Zt(e,t){return Qt(R(e,"input, textarea, select, [contenteditable]"),t,M(e))}function Kt(e){Wt(e),ie(e,"htmx:load",{elt:e})}function Wt(e){var t=T(e);q(R(e,"[hx-get], [data-hx-get], [hx-post], [data-hx-post], [hx-put], [data-hx-put], [hx-delete], [data-hx-delete], [hx-patch], [data-hx-patch]"),function(e){Dt(e,t)})}function t(e){Q.logger=function(t,r,n){e(r,t,n)},Wt(Y().body)}function jt(e,t){var r=te(e,t),n=[];if(r)for(var o=r.split(","),i=0;i<o.length;i++){var a=o[i].trim();if(a.indexOf("[")===0){var s=a.indexOf("]");if(s>0){var u=a.substring(1,s).split(" "),c=u[0];if(c){var l=a.substring(s+1).trim(),f=Ut(l);n.push({trigger:c,sseEvent:u[1],eventFilter:null,pollInterval:f&&f.pollInterval,changed:f&&f.changed})}}}else{var l=a,f=Ut(l);n.push({trigger:f.trigger,sseEvent:f.sseEvent,eventFilter:f.eventFilter,pollInterval:f.pollInterval,changed:f.changed})}}return n.length>0?n:null}function Ut(e){for(var t={},r=e.split(" "),n=0;n<r.length;n++){var o=r[n];if(o)if(o.indexOf("sse:")===0)t.sseEvent=o.substring(4),t.trigger="sse";else if("changed"===o)t.changed=!0;else if(o.indexOf("every")===0){var i=o.split(":")[1];t.pollInterval=d(i),t.trigger="every"}else t.trigger=o}return t.trigger||(t.trigger="click"),t}function Lt(e,t,r){return void Sr(e,function(e){e.triggerHandler&&e.triggerHandler(e,t,r)})}function At(e,t,r){return r&&r.some(function(e){return e.trigger===t})?ie(e,"htmx:cancel",{}):!0}function _t(e,t){var r=te(e,"hx-encoding");return r||(t?"multipart/form-data":"application/x-www-form-urlencoded")}function Bt(e,t,r,n){var o=ee(e);if(t.length>0){for(var i=0;i<t.length;i++){var a=t[i];if(a.elt===e||x(a.elt,function(t){return t===e}))return}t.push({elt:e,xhr:r,onLoad:n}),o.queuedXhrs=t}else t.push({elt:e,xhr:r,onLoad:n}),o.queuedXhrs=t}function Gt(e){var t=ee(e);if(t.queuedXhrs){for(var r=t.queuedXhrs.shift();r;){if(r.xhr.readyState===0||r.xhr.readyState===4){r.onLoad(),ie(e,"htmx:afterProcess",{})}else{t.queuedXhrs.unshift(r);break}r=t.queuedXhrs.shift()}t.queuedXhrs.length===0&&delete t.queuedXhrs}}function Vt(e){var t=new XMLHttpRequest;return Sr(e,function(e){e.onInit&&e.onInit(t)}),t}function Dt(e){var t=re(e,"hx-swap");if(!t)return Q.config.defaultSwapStyle;var r={swapStyle:Q.config.defaultSwapStyle,swapDelay:Q.config.defaultSwapDelay,settleDelay:Q.config.defaultSettleDelay,ignoreTitle:!1,scroll:null,scrollTarget:null,show:null,showTarget:null,focusScroll:Q.config.defaultFocusScroll,select:null};for(var n=t.split(" "),o=0;o<n.length;o++){var i=n[o];if(i.indexOf("swap:")===0)r.swapDelay=d(i.substring(5));else if(i.indexOf("settle:")===0)r.settleDelay=d(i.substring(7));else if(i.indexOf("ignoreTitle")===0)r.ignoreTitle=!0;else if(i.indexOf("scroll:")===0){var a=i.substring(7);a.indexOf("#")===0?(r.scroll="top",r.scrollTarget=a.substring(1)):"top"===a||"bottom"===a?r.scroll=a:(r.scroll="top",r.scrollTarget=a)}else if(i.indexOf("show:")===0){var a=i.substring(5);a.indexOf("#")===0?(r.show="top",r.showTarget=a.substring(1)):"top"===a||"bottom"===a?r.show=a:(r.show="top",r.showTarget=a)}else if(i.indexOf("focus-scroll:")===0){var s=i.substring(13);"true"===s?r.focusScroll=!0:"false"===s&&(r.focusScroll=!1)}else r.swapStyle=i}return r}function Tr(e){return Dt(e)}function Rt(e,t,r,n,o){switch(r){case"none":return;case"outerHTML":e.parentElement.replaceChild(t.cloneNode(!0),e);break;case"afterbegin":e.insertBefore(t.cloneNode(!0),e.firstChild);break;case"beforebegin":e.parentElement.insertBefore(t.cloneNode(!0),e);break;case"beforeend":e.appendChild(t.cloneNode(!0));break;case"afterend":e.parentElement.insertBefore(t.cloneNode(!0),e.nextSibling);break;case"delete":e.parentElement&&e.parentElement.removeChild(e);break;default:e.innerHTML="",e.appendChild(t.cloneNode(!0))}}function Hr(e){return{}}function Mr(e,t,r){var n="string"==typeof e?{url:e}:e;return n.headers=n.headers||{},n.target=t||Y().body,r&&(n.handler=r),Ir(n.target,"hx-"+n.verb||"get",n.url,n)}function Ir(e,t,r,n){if(n=n||{},!1===ie(e,"htmx:confirm",{target:me(e)}))return;var o,i,a=n.verb||M(e,t),s=n.handler||function(e){var t=e.detail;Rr(t.target,t.content,t.swapSpec,t.settleInfo,t.select)};i=a==="get"?"get":"post",o=Vt(e),o.open(i.toUpperCase(),r,!0),o.overrideMimeType("text/html"),n.headers&&ae(o,n.headers);var u=Yt(e,me(e),i!=="get"),c=Zt(e,a),l=_t(e,c.formData&&c.formData.entries().next().value);u["Content-Type"]=l;var f=Dt(e);o.onload=function(){if(o.status>=200&&o.status<300){var t=o.response;ie(e,"htmx:beforeOnLoad",{xhr:o}),s({detail:{target:me(e),content:I(t),swapSpec:f,settleInfo:T(me(e)),xhr:o,select:n.select}}),ie(e,"htmx:afterOnLoad",{xhr:o}),Gt(e)}else ne(e,"htmx:responseError",{xhr:o})};o.onerror=function(){ne(e,"htmx:sendError",{xhr:o})};var d=c.urlParams.toString();if(i==="get"&&d){r+=(r.indexOf("?")>=0?"&":"?")+d,o.send()}else o.send(c.formData);ie(e,"htmx:xhr:loadstart",{xhr:o})}return Q}();
+        </script>
+</head>
+<body>
+<div class="ew-app"><nav class="ew-navbar"><a href="#" class="ew-navbar-brand">Arjun Parmar</a><div class="ew-navbar-nav"><a href="#" class="ew-navbar-item ew-navbar-item-active">Home</a><a href="#about" class="ew-navbar-item">About</a><a href="#projects" class="ew-navbar-item">Projects</a><a href="#experience" class="ew-navbar-item">Experience</a><a href="#contact" class="ew-navbar-item">Contact</a></div><div class="ew-navbar-actions"><button class="ew-button ew-button-outline ew-button-sm">Download CV</button></div></nav><div class="ew-app-body"><main class="ew-main"><div class="ew-row ew-center-content"><div class="ew-column ew-center"><div class="ew-spacer"></div><h1 class="ew-heading-1">Arjun Parmar</h1><p class="ew-text ew-text-secondary">Full-Stack Developer & UI/UX Designer</p><p class="ew-text ew-text-muted">Passionate about creating beautiful, functional web applications with modern technologies.</p><div class="ew-spacer"></div><div class="ew-row ew-gap-sm ew-center-content"><button class="ew-button ew-button-primary ew-button-lg">View My Work</button><button class="ew-button ew-button-outline ew-button-lg">Get In Touch</button></div><div class="ew-spacer-xl"></div></div></div><div class="ew-row" id="about"><div class="ew-column ew-flex-grow"><h2 class="ew-heading-2">About Me</h2><div class="ew-spacer-sm"></div><p class="ew-text">I'm a passionate full-stack developer with 5+ years of experience building web applications. I specialize in React, Node.js, and modern web technologies, with a keen eye for design and user experience.</p><div class="ew-spacer"></div><div class="ew-grid ew-grid-2"><div class="ew-card ew-card-compact"><h3 class="ew-heading-3">5+</h3><p class="ew-text ew-text-muted">Years Experience</p></div><div class="ew-card ew-card-compact"><h3 class="ew-heading-3">50+</h3><p class="ew-text ew-text-muted">Projects Completed</p></div><div class="ew-card ew-card-compact"><h3 class="ew-heading-3">30+</h3><p class="ew-text ew-text-muted">Happy Clients</p></div><div class="ew-card ew-card-compact"><h3 class="ew-heading-3">15+</h3><p class="ew-text ew-text-muted">Technologies</p></div></div></div></div><div class="ew-spacer-xl"></div><div class="ew-row"><div class="ew-column ew-flex-grow"><h2 class="ew-heading-2">Skills & Technologies</h2><div class="ew-spacer-sm"></div><div class="ew-grid ew-grid-3"><div class="ew-card"><div class="ew-card-title">Frontend</div><div class="ew-column ew-gap-sm"><div class="ew-row"><span class="ew-badge ew-badge-success">React</span><span class="ew-badge ew-badge-success">TypeScript</span></div><div class="ew-row"><span class="ew-badge ew-badge-success">Next.js</span><span class="ew-badge ew-badge-success">Tailwind CSS</span></div><div class="ew-row"><span class="ew-badge ew-badge-success">Vue.js</span><span class="ew-badge ew-badge-success">Svelte</span></div></div></div><div class="ew-card"><div class="ew-card-title">Backend</div><div class="ew-column ew-gap-sm"><div class="ew-row"><span class="ew-badge ew-badge-success">Node.js</span><span class="ew-badge ew-badge-success">Python</span></div><div class="ew-row"><span class="ew-badge ew-badge-success">PostgreSQL</span><span class="ew-badge ew-badge-success">MongoDB</span></div><div class="ew-row"><span class="ew-badge ew-badge-success">GraphQL</span><span class="ew-badge ew-badge-success">REST APIs</span></div></div></div><div class="ew-card"><div class="ew-card-title">Tools & Others</div><div class="ew-column ew-gap-sm"><div class="ew-row"><span class="ew-badge ew-badge-success">Docker</span><span class="ew-badge ew-badge-success">AWS</span></div><div class="ew-row"><span class="ew-badge ew-badge-success">Git</span><span class="ew-badge ew-badge-success">Figma</span></div><div class="ew-row"><span class="ew-badge ew-badge-success">Jest</span><span class="ew-badge ew-badge-success">Cypress</span></div></div></div></div></div></div><div class="ew-spacer-xl"></div><div class="ew-row" id="projects"><div class="ew-column ew-flex-grow"><h2 class="ew-heading-2">Featured Projects</h2><div class="ew-spacer-sm"></div><div class="ew-grid ew-grid-2"><div class="ew-card ew-card-accent"><div class="ew-card-title">E-Commerce Platform</div><p class="ew-text">A full-stack e-commerce solution built with React and Node.js, featuring payment integration, inventory management, and admin dashboard.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><span class="ew-badge ew-badge-success">React</span><span class="ew-badge ew-badge-success">Node.js</span><span class="ew-badge ew-badge-success">Stripe</span></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Live Demo</button><button class="ew-button ew-button-ghost ew-button-sm">Source Code</button></div></div><div class="ew-card"><div class="ew-card-title">Task Management App</div><p class="ew-text">A collaborative task management application with real-time updates, team management, and project tracking capabilities.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><span class="ew-badge ew-badge-success">Vue.js</span><span class="ew-badge ew-badge-success">Firebase</span><span class="ew-badge ew-badge-success">Socket.io</span></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Live Demo</button><button class="ew-button ew-button-ghost ew-button-sm">Source Code</button></div></div><div class="ew-card"><div class="ew-card-title">Weather Dashboard</div><p class="ew-text">A responsive weather application with location-based forecasts, interactive maps, and weather alerts.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><span class="ew-badge ew-badge-success">JavaScript</span><span class="ew-badge ew-badge-success">OpenWeather API</span><span class="ew-badge ew-badge-success">Chart.js</span></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Live Demo</button><button class="ew-button ew-button-ghost ew-button-sm">Source Code</button></div></div><div class="ew-card"><div class="ew-card-title">Portfolio Website</div><p class="ew-text">A modern, responsive portfolio website built with cutting-edge web technologies and beautiful animations.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><span class="ew-badge ew-badge-success">Next.js</span><span class="ew-badge ew-badge-success">Framer Motion</span><span class="ew-badge ew-badge-success">Three.js</span></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Live Demo</button><button class="ew-button ew-button-ghost ew-button-sm">Source Code</button></div></div></div></div></div><div class="ew-spacer-xl"></div><div class="ew-row" id="experience"><div class="ew-column ew-flex-grow"><h2 class="ew-heading-2">Work Experience</h2><div class="ew-spacer-sm"></div><div class="ew-card ew-card-accent"><div class="ew-card-title">Senior Full-Stack Developer</div><p class="ew-text ew-text-secondary">TechCorp Inc.</p><p class="ew-text ew-text-muted">2022 - Present</p><div class="ew-spacer-sm"></div><div class="ew-column ew-gap-sm"><p class="ew-text">• Led development of microservices architecture serving 100K+ users</p><p class="ew-text">• Implemented CI/CD pipelines reducing deployment time by 60%</p><p class="ew-text">• Mentored junior developers and conducted code reviews</p><p class="ew-text">• Collaborated with design team to improve UX metrics by 40%</p></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">Full-Stack Developer</div><p class="ew-text ew-text-secondary">StartupXYZ</p><p class="ew-text ew-text-muted">2020 - 2022</p><div class="ew-spacer-sm"></div><div class="ew-column ew-gap-sm"><p class="ew-text">• Built and maintained multiple client-facing web applications</p><p class="ew-text">• Integrated third-party APIs and payment systems</p><p class="ew-text">• Optimized database queries improving performance by 50%</p><p class="ew-text">• Participated in agile development processes</p></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">Junior Developer</div><p class="ew-text ew-text-secondary">WebSolutions Ltd.</p><p class="ew-text ew-text-muted">2019 - 2020</p><div class="ew-spacer-sm"></div><div class="ew-column ew-gap-sm"><p class="ew-text">• Developed responsive web interfaces using modern frameworks</p><p class="ew-text">• Assisted in backend API development and database design</p><p class="ew-text">• Contributed to open-source projects and technical blogs</p><p class="ew-text">• Learned and implemented best practices in software development</p></div></div></div></div><div class="ew-spacer-xl"></div><div class="ew-row"><div class="ew-column ew-flex-grow"><h2 class="ew-heading-2">What Clients Say</h2><div class="ew-spacer-sm"></div><div class="ew-grid ew-grid-2"><div class="ew-card"><p class="ew-text ew-text-secondary">"Alex delivered exceptional work on our e-commerce platform. His attention to detail and technical expertise helped us achieve our goals ahead of schedule."</p><div class="ew-spacer-sm"></div><div class="ew-row"><p class="ew-text ew-flex-grow">Sarah Johnson</p><p class="ew-text ew-text-muted">CEO, RetailCorp</p></div></div><div class="ew-card"><p class="ew-text ew-text-secondary">"Working with Alex was a pleasure. He understood our requirements perfectly and delivered a solution that exceeded our expectations."</p><div class="ew-spacer-sm"></div><div class="ew-row"><p class="ew-text ew-flex-grow">Michael Chen</p><p class="ew-text ew-text-muted">CTO, InnovateTech</p></div></div></div></div></div><div class="ew-spacer-xl"></div><div class="ew-row" id="contact"><div class="ew-column ew-flex-grow"><h2 class="ew-heading-2">Get In Touch</h2><div class="ew-spacer-sm"></div><div class="ew-grid ew-grid-2"><div class="ew-card"><div class="ew-card-title">Send a Message</div><form method="post" hx-post="/api/contact" hx-target="#contact-result"><div class="ew-form-group"><label class="ew-label" for="name">Your Name</label><input type="text" name="name" id="name" class="ew-input" placeholder="John Doe"></div><div class="ew-form-group"><label class="ew-label" for="email">Email</label><input type="email" name="email" id="email" class="ew-input" placeholder="john@example.com"></div><div class="ew-form-group"><label class="ew-label" for="subject">Subject</label><input type="text" name="subject" id="subject" class="ew-input" placeholder="Project Inquiry"></div><div class="ew-form-group"><label class="ew-label" for="message">Message</label><input type="textarea" name="message" id="message" class="ew-input" placeholder="Tell me about your project..."></div><div class="ew-spacer-sm"></div><button class="ew-button ew-button-primary">Send Message</button></form><div class="ew-box" id="contact-result"></div></div><div class="ew-column"><div class="ew-card"><div class="ew-card-title">Contact Information</div><div class="ew-column"><div class="ew-row ew-gap-sm"><p class="ew-text ew-text-accent">📧</p><p class="ew-text">alex.morgan@email.com</p></div><div class="ew-row ew-gap-sm"><p class="ew-text ew-text-accent">📱</p><p class="ew-text">+1 (555) 123-4567</p></div><div class="ew-row ew-gap-sm"><p class="ew-text ew-text-accent">📍</p><p class="ew-text">San Francisco, CA</p></div><div class="ew-row ew-gap-sm"><p class="ew-text ew-text-accent">🔗</p><p class="ew-text">linkedin.com/in/alexmorgan</p></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">Let's Connect</div><p class="ew-text">I'm always interested in new opportunities and exciting projects. Feel free to reach out if you'd like to work together!</p></div></div></div></div></div><div class="ew-spacer-xl"></div><div class="ew-row ew-center"><div class="ew-column"><p class="ew-text ew-text-muted">© 2024 Arjun Parmar. Built with ZeroJS.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-lg"><p class="ew-text">Privacy Policy</p><p class="ew-text">Terms of Service</p><p class="ew-text">Sitemap</p></div></div></div></main></div></div></body>
+</html>

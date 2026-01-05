@@ -680,6 +680,8 @@ body {
 .ew-flex-grow { flex-grow: 1; }
 .ew-flex-shrink-0 { flex-shrink: 0; }
 
+.ew-center-content { justify-content: center; }
+
 .ew-gap-sm { gap: )" + Theme::spacing_sm + R"(; }
 .ew-gap-lg { gap: )" + Theme::spacing_lg + R"(; }
 .ew-gap-xl { gap: )" + Theme::spacing_xl + R"(; }
