@@ -235,6 +235,39 @@ html {
     background-color: )" + bg_page + R"(;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
+    /* CSS Custom Properties for Components */
+    --ew-bg-page: )" + bg_page + R"(;
+    --ew-bg-card: )" + bg_card + R"(;
+    --ew-bg-card-hover: )" + bg_card_hover + R"(;
+    --ew-bg-input: )" + bg_input + R"(;
+    --ew-bg-navbar: )" + bg_navbar + R"(;
+    --ew-bg-sidebar: )" + bg_sidebar + R"(;
+    --ew-bg-button: )" + bg_button + R"(;
+    --ew-bg-button-hover: )" + bg_button_hover + R"(;
+    --ew-bg-button-secondary: )" + bg_button_secondary + R"(;
+    --ew-bg-button-secondary-hover: )" + bg_button_secondary_hover + R"(;
+    --ew-bg-accent: )" + bg_accent + R"(;
+    --ew-text: )" + text_primary + R"(;
+    --ew-text-secondary: )" + text_secondary + R"(;
+    --ew-text-muted: )" + text_muted + R"(;
+    --ew-text-button: )" + text_button + R"(;
+    --ew-text-accent: )" + text_accent + R"(;
+    --ew-text-link: )" + text_link + R"(;
+    --ew-border: )" + border + R"(;
+    --ew-border-subtle: )" + border_subtle + R"(;
+    --ew-border-focus: )" + border_focus + R"(;
+    --ew-border-accent: )" + border_accent + R"(;
+    --ew-shadow: )" + shadow + R"(;
+    --ew-shadow-lg: )" + shadow_lg + R"(;
+    --ew-success: )" + success + R"(;
+    --ew-warning: )" + warning + R"(;
+    --ew-error: )" + error + R"(;
+    --ew-info: )" + info + R"(;
+    
+    /* Chart-specific colors */
+    --ew-primary: )" + bg_button + R"(;
+    --ew-secondary: )" + success + R"(;
 }
 
 body {
@@ -575,6 +608,56 @@ body {
 .ew-button-lg {
     padding: 14px 28px;
     font-size: )" + Theme::font_size_base + R"(;
+}
+
+/* ============================================
+   CHART COMPONENTS
+   ============================================ */
+
+.ew-chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: )" + Theme::spacing_sm + R"(;
+    padding: )" + Theme::spacing_md + R"(;
+    background: var(--ew-bg-card);
+    border: 1px solid var(--ew-border);
+    border-radius: )" + Theme::radius_md + R"(;
+}
+
+.ew-chart-title {
+    font-size: )" + Theme::font_size_lg + R"(;
+    font-weight: 600;
+    color: var(--ew-text);
+    text-align: center;
+    margin-bottom: )" + Theme::spacing_sm + R"(;
+}
+
+.ew-chart {
+    width: 100%;
+    height: auto;
+    background: transparent;
+}
+
+.ew-chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: )" + Theme::spacing_md + R"(;
+    justify-content: center;
+    margin-top: )" + Theme::spacing_sm + R"(;
+}
+
+.ew-chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: )" + Theme::spacing_xs + R"(;
+    font-size: )" + Theme::font_size_sm + R"(;
+    color: var(--ew-text);
+}
+
+.ew-chart-legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
 }
 
 /* ============================================

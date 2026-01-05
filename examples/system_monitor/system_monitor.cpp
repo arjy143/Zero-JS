@@ -71,36 +71,54 @@ App create_system_monitor_content() {
 
     app.add(Spacer());
 
-    // Server Topology Visualization (simplified)
+    // Server Topology Visualization (Graph Layout)
     app.add(
         Card().title("🌐 Infrastructure Topology")
-            .add(Text("Load Balancer → Web Servers → Database Cluster → Cache Layer").secondary())
+            .add(Text("Interactive system architecture with real-time status").secondary())
             .add(Spacer().sm())
-            .add(Grid().columns(5)
-                .add(Card().compact().classes("ew-center")
-                    .add(Text("🌐").h3())
-                    .add(Text("LB-01").muted())
-                    .add(Badge("100%").success())
-                )
-                .add(Text("→").classes("ew-center"))
-                .add(Card().compact().classes("ew-center")
-                    .add(Text("🖥️").h3())
-                    .add(Text("Web-01").muted())
-                    .add(Badge("95%").success())
-                )
-                .add(Text("→").classes("ew-center"))
-                .add(Card().compact().classes("ew-center")
-                    .add(Text("🗄️").h3())
-                    .add(Text("DB-01").muted())
-                    .add(Badge("87%").warning())
-                )
-                .add(Text("→").classes("ew-center"))
-                .add(Card().compact().classes("ew-center")
-                    .add(Text("💾").h3())
-                    .add(Text("Cache").muted())
-                    .add(Badge("92%").success())
-                )
+            .add(
+                Row().classes("ew-center")
+                    // Load Balancer
+                    .add(Card().compact().classes("ew-center")
+                        .add(Text("🌐"))
+                        .add(Text("LB-01").muted())
+                        .add(Badge("100%").success())
+                    )
+                    .add(Text("⟶").classes("ew-text-secondary"))
+                    
+                    // Web Servers (stacked)
+                    .add(Column().classes("ew-center")
+                        .add(Card().compact().classes("ew-center")
+                            .add(Text("🖥️"))
+                            .add(Text("Web-01").muted())
+                            .add(Badge("95%").success())
+                        )
+                        .add(Spacer().sm())
+                        .add(Card().compact().classes("ew-center")
+                            .add(Text("🖥️"))
+                            .add(Text("Web-02").muted())
+                            .add(Badge("97%").success())
+                        )
+                    )
+                    .add(Text("⟶").classes("ew-text-secondary"))
+                    
+                    // Database
+                    .add(Card().compact().classes("ew-center")
+                        .add(Text("🗄️"))
+                        .add(Text("DB-01").muted())
+                        .add(Badge("87%").warning())
+                    )
+                    .add(Text("⟶").classes("ew-text-secondary"))
+                    
+                    // Cache
+                    .add(Card().compact().classes("ew-center")
+                        .add(Text("💾"))
+                        .add(Text("Cache").muted())
+                        .add(Badge("92%").success())
+                    )
             )
+            .add(Spacer().sm())
+            .add(Text("Load Balancer distributes traffic to Web Servers, which connect to Database and Cache layers").muted())
     );
 
     app.add(Spacer());
@@ -109,15 +127,29 @@ App create_system_monitor_content() {
     app.add(
         Grid().columns(2)
             .add(Card().title("📈 Performance Graphs (Last Hour)")
-                .add(Column().gap("sm")
-                    .add(Text("CPU Usage: ▁▂▃▄▅▆▇█▇▆▅▄▃▂▁").classes("ew-code"))
-                    .add(Text("Memory: ▁▂▃▄▅▆▇███████▇▆").classes("ew-code"))
-                    .add(Text("Network: ▂▃▄▅▆▇█▇▆▅▄▃▂▁▂▃").classes("ew-code"))
-                    .add(Spacer().sm())
-                    .add(Row().gap("sm")
-                        .add(Button("View Details").outline().classes("ew-button-sm"))
-                        .add(Button("Export Data").ghost().classes("ew-button-sm"))
-                    )
+                .add(LineChart()
+                    .width(350).height(200)
+                    .title("System Metrics")
+                    .addSeries(ChartSeries("CPU Usage", {
+                        DataPoint(0, 45), DataPoint(10, 52), DataPoint(20, 48),
+                        DataPoint(30, 61), DataPoint(40, 55), DataPoint(50, 49),
+                        DataPoint(60, 42)
+                    }, "var(--ew-primary)"))
+                    .addSeries(ChartSeries("Memory", {
+                        DataPoint(0, 67), DataPoint(10, 71), DataPoint(20, 69),
+                        DataPoint(30, 89), DataPoint(40, 85), DataPoint(50, 82),
+                        DataPoint(60, 78)
+                    }, "var(--ew-secondary)"))
+                    .addSeries(ChartSeries("Network", {
+                        DataPoint(0, 12), DataPoint(10, 28), DataPoint(20, 35),
+                        DataPoint(30, 42), DataPoint(40, 38), DataPoint(50, 31),
+                        DataPoint(60, 25)
+                    }, "#40a9ff"))
+                )
+                .add(Spacer().sm())
+                .add(Row().gap("sm")
+                    .add(Button("View Details").outline().classes("ew-button-sm"))
+                    .add(Button("Export Data").ghost().classes("ew-button-sm"))
                 )
             )
             .add(Card().title("🔍 System Search & Filter")
@@ -232,31 +264,41 @@ App create_system_monitor_content() {
 
     app.add(Spacer());
 
-    // System Health Summary
+    // System Health Summary with Bar Chart
+    BarChart healthChart;
+    healthChart.width(600);
+    healthChart.height(250);
+    healthChart.title("Service Health by Category");
+    healthChart.addSeries(ChartSeries("Health Score", {
+        DataPoint(0, 95, "Web Services"),
+        DataPoint(1, 75, "Databases"),
+        DataPoint(2, 100, "APIs"),
+        DataPoint(3, 90, "Storage")
+    }, "var(--ew-primary)"));
+    healthChart.barWidth(40);
+
     app.add(
         Card().title("🏥 System Health Overview")
-            .add(Grid().columns(4)
-                .add(Column().classes("ew-center")
-                    .add(Text("Web Services").h3())
-                    .add(Text("5/5").secondary())
-                    .add(Badge("Healthy").success())
-                )
-                .add(Column().classes("ew-center")
-                    .add(Text("Databases").h3())
-                    .add(Text("3/4").secondary())
-                    .add(Badge("Degraded").warning())
-                )
-                .add(Column().classes("ew-center")
-                    .add(Text("APIs").h3())
-                    .add(Text("8/8").secondary())
-                    .add(Badge("Healthy").success())
-                )
-                .add(Column().classes("ew-center")
-                    .add(Text("Storage").h3())
-                    .add(Text("6/6").secondary())
-                    .add(Badge("Healthy").success())
-                )
-            )
+            .add(healthChart)
+    );
+
+    app.add(Spacer());
+
+    // Resource Allocation Pie Chart
+    PieChart resourceChart;
+    resourceChart.width(300);
+    resourceChart.height(300);
+    resourceChart.title("CPU Distribution");
+    resourceChart.addSeries(ChartSeries("CPU Cores", {
+        DataPoint(0, 8, "Web Servers", "var(--ew-primary)"),
+        DataPoint(1, 4, "Databases", "var(--ew-secondary)"),
+        DataPoint(2, 2, "APIs", "#40a9ff"),
+        DataPoint(3, 2, "Background", "#f0b400")
+    }));
+
+    app.add(
+        Card().title("💰 Resource Allocation")
+            .add(resourceChart)
     );
 
     return app;

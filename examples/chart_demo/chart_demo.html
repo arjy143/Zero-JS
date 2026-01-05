@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SysMonitor Pro - Light Mode</title>
+    <title>Chart Demo - ZeroJS Framework</title>
     <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 
@@ -17,43 +17,43 @@ html {
     font-family: 'IBM Plex Mono', 'Consolas', 'Monaco', monospace;
     font-size: 14px;
     line-height: 1.5;
-    color: #000000;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #000000;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     
     /* CSS Custom Properties for Components */
-    --ew-bg-page: #ffffff;
-    --ew-bg-card: #ffffff;
-    --ew-bg-card-hover: #f5f5f5;
-    --ew-bg-input: #ffffff;
-    --ew-bg-navbar: #ffffff;
-    --ew-bg-sidebar: #fafafa;
-    --ew-bg-button: #0052cc;
-    --ew-bg-button-hover: #0065ff;
-    --ew-bg-button-secondary: #f0f0f0;
-    --ew-bg-button-secondary-hover: #e0e0e0;
-    --ew-bg-accent: #0052cc;
-    --ew-text: #000000;
-    --ew-text-secondary: #404040;
-    --ew-text-muted: #606060;
+    --ew-bg-page: #000000;
+    --ew-bg-card: #0c0c0c;
+    --ew-bg-card-hover: #161616;
+    --ew-bg-input: #0c0c0c;
+    --ew-bg-navbar: #000000;
+    --ew-bg-sidebar: #0c0c0c;
+    --ew-bg-button: #0078d4;
+    --ew-bg-button-hover: #1e8ae6;
+    --ew-bg-button-secondary: #252525;
+    --ew-bg-button-secondary-hover: #333333;
+    --ew-bg-accent: #0078d4;
+    --ew-text: #ffffff;
+    --ew-text-secondary: #b0b0b0;
+    --ew-text-muted: #707070;
     --ew-text-button: #ffffff;
-    --ew-text-accent: #0052cc;
-    --ew-text-link: #0052cc;
-    --ew-border: #000000;
-    --ew-border-subtle: #d0d0d0;
-    --ew-border-focus: #0052cc;
-    --ew-border-accent: #0052cc;
+    --ew-text-accent: #40a9ff;
+    --ew-text-link: #40a9ff;
+    --ew-border: #40a9ff;
+    --ew-border-subtle: #303030;
+    --ew-border-focus: #0078d4;
+    --ew-border-accent: #40a9ff;
     --ew-shadow: none;
-    --ew-shadow-lg: 0 0 0 2px #000000;
-    --ew-success: #1a7f37;
-    --ew-warning: #9a6700;
-    --ew-error: #cf222e;
-    --ew-info: #0052cc;
+    --ew-shadow-lg: 0 0 0 1px #40a9ff;
+    --ew-success: #4ec968;
+    --ew-warning: #f0b400;
+    --ew-error: #f85149;
+    --ew-info: #40a9ff;
     
     /* Chart-specific colors */
-    --ew-primary: #0052cc;
-    --ew-secondary: #1a7f37;
+    --ew-primary: #0078d4;
+    --ew-secondary: #4ec968;
 }
 
 body {
@@ -96,8 +96,8 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 6px 16px;
-    background: #ffffff;
-    border-bottom: 2px solid #d0d0d0;
+    background: #000000;
+    border-bottom: 2px solid #303030;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -106,7 +106,7 @@ body {
 .ew-navbar-brand {
     font-size: 16px;
     font-weight: 700;
-    color: #000000;
+    color: #ffffff;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -124,7 +124,7 @@ body {
 
 .ew-navbar-item {
     padding: 6px 12px;
-    color: #404040;
+    color: #b0b0b0;
     text-decoration: none;
     font-weight: 600;
     font-size: 13px;
@@ -135,13 +135,13 @@ body {
 }
 
 .ew-navbar-item:hover {
-    color: #000000;
-    background: #f5f5f5;
+    color: #ffffff;
+    background: #161616;
 }
 
 .ew-navbar-item-active {
-    color: #0052cc;
-    border-bottom-color: #0052cc;
+    color: #40a9ff;
+    border-bottom-color: #40a9ff;
 }
 
 .ew-navbar-actions {
@@ -157,8 +157,8 @@ body {
 .ew-sidebar {
     width: 240px;
     min-width: 240px;
-    background: #fafafa;
-    border-right: 2px solid #d0d0d0;
+    background: #0c0c0c;
+    border-right: 2px solid #303030;
     padding: 12px 0;
     overflow-y: auto;
     height: calc(100vh - 49px);
@@ -175,7 +175,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #606060;
+    color: #707070;
     padding: 6px 12px;
     margin-bottom: 4px;
     border-left: 3px solid transparent;
@@ -190,7 +190,7 @@ body {
     align-items: center;
     gap: 6px;
     padding: 6px 12px;
-    color: #404040;
+    color: #b0b0b0;
     text-decoration: none;
     font-weight: 500;
     font-size: 13px;
@@ -199,15 +199,15 @@ body {
 }
 
 .ew-sidebar-item:hover {
-    color: #000000;
-    background: #f5f5f5;
-    border-left-color: #d0d0d0;
+    color: #ffffff;
+    background: #161616;
+    border-left-color: #303030;
 }
 
 .ew-sidebar-item-active {
-    color: #0052cc;
-    background: #f5f5f5;
-    border-left-color: #0052cc;
+    color: #40a9ff;
+    background: #161616;
+    border-left-color: #40a9ff;
     font-weight: 600;
 }
 
@@ -216,26 +216,26 @@ body {
    ============================================ */
 
 .ew-card {
-    background: #ffffff;
-    border: 2px solid #d0d0d0;
+    background: #0c0c0c;
+    border: 2px solid #303030;
     padding: 12px;
     margin-bottom: 6px;
     transition: all 0.1s ease;
 }
 
 .ew-card:hover {
-    border-color: #000000;
+    border-color: #40a9ff;
 }
 
 .ew-card-title {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 12px;
-    color: #000000;
+    color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding-bottom: 6px;
-    border-bottom: 2px solid #d0d0d0;
+    border-bottom: 2px solid #303030;
 }
 
 .ew-card-compact {
@@ -243,7 +243,7 @@ body {
 }
 
 .ew-card-accent {
-    border-left: 4px solid #0052cc;
+    border-left: 4px solid #40a9ff;
 }
 
 /* ============================================
@@ -255,7 +255,7 @@ body {
 }
 
 .ew-box-bordered {
-    border: 2px solid #d0d0d0;
+    border: 2px solid #303030;
 }
 
 /* ============================================
@@ -264,31 +264,31 @@ body {
 
 .ew-text {
     margin-bottom: 6px;
-    color: #000000;
+    color: #ffffff;
 }
 
 .ew-text-secondary {
-    color: #404040;
+    color: #b0b0b0;
 }
 
 .ew-text-muted {
-    color: #606060;
+    color: #707070;
 }
 
 .ew-text-accent {
-    color: #0052cc;
+    color: #40a9ff;
 }
 
 .ew-text-success {
-    color: #1a7f37;
+    color: #4ec968;
 }
 
 .ew-text-warning {
-    color: #9a6700;
+    color: #f0b400;
 }
 
 .ew-text-error {
-    color: #cf222e;
+    color: #f85149;
 }
 
 .ew-heading-1 {
@@ -342,48 +342,48 @@ body {
 }
 
 .ew-button-primary {
-    background-color: #0052cc;
+    background-color: #0078d4;
     color: #ffffff;
-    border-color: #0052cc;
+    border-color: #0078d4;
 }
 
 .ew-button-primary:hover {
-    background-color: #0065ff;
-    border-color: #0065ff;
+    background-color: #1e8ae6;
+    border-color: #1e8ae6;
 }
 
 .ew-button-secondary {
-    background-color: #f0f0f0;
-    color: #000000;
-    border-color: #d0d0d0;
+    background-color: #252525;
+    color: #ffffff;
+    border-color: #303030;
 }
 
 .ew-button-secondary:hover {
-    background-color: #e0e0e0;
-    border-color: #000000;
+    background-color: #333333;
+    border-color: #40a9ff;
 }
 
 .ew-button-outline {
     background-color: transparent;
-    color: #0052cc;
-    border-color: #0052cc;
+    color: #40a9ff;
+    border-color: #40a9ff;
 }
 
 .ew-button-outline:hover {
-    background-color: #0052cc;
-    color: #ffffff;
+    background-color: #40a9ff;
+    color: #000000;
 }
 
 .ew-button-ghost {
     background-color: transparent;
-    color: #404040;
+    color: #b0b0b0;
     border-color: transparent;
 }
 
 .ew-button-ghost:hover {
-    background-color: #f5f5f5;
-    color: #000000;
-    border-color: #d0d0d0;
+    background-color: #161616;
+    color: #ffffff;
+    border-color: #303030;
 }
 
 .ew-button-sm {
@@ -484,19 +484,19 @@ body {
     padding: 10px 12px;
     font-size: 13px;
     font-family: inherit;
-    border: 2px solid #d0d0d0;
-    background: #ffffff;
-    color: #000000;
+    border: 2px solid #303030;
+    background: #0c0c0c;
+    color: #ffffff;
     transition: all 0.1s ease;
 }
 
 .ew-input:focus {
     outline: none;
-    border-color: #0052cc;
+    border-color: #0078d4;
 }
 
 .ew-input::placeholder {
-    color: #606060;
+    color: #707070;
 }
 
 .ew-label {
@@ -506,7 +506,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 4px;
-    color: #404040;
+    color: #b0b0b0;
 }
 
 .ew-form-group {
@@ -519,7 +519,7 @@ body {
 
 .ew-divider {
     border: none;
-    border-top: 2px solid #d0d0d0;
+    border-top: 2px solid #303030;
     margin: 16px 0;
 }
 
@@ -529,14 +529,14 @@ body {
 .ew-spacer-xl { height: 24px; }
 
 .ew-link {
-    color: #0052cc;
+    color: #40a9ff;
     text-decoration: none;
     font-weight: 600;
     border-bottom: 1px solid transparent;
 }
 
 .ew-link:hover {
-    border-bottom-color: #0052cc;
+    border-bottom-color: #40a9ff;
 }
 
 .ew-image {
@@ -567,24 +567,24 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border: 2px solid #0052cc;
+    border: 2px solid #40a9ff;
     background: transparent;
-    color: #0052cc;
+    color: #40a9ff;
 }
 
 .ew-badge-success {
-    border-color: #1a7f37;
-    color: #1a7f37;
+    border-color: #4ec968;
+    color: #4ec968;
 }
 
 .ew-badge-warning {
-    border-color: #9a6700;
-    color: #9a6700;
+    border-color: #f0b400;
+    color: #f0b400;
 }
 
 .ew-badge-error {
-    border-color: #cf222e;
-    color: #cf222e;
+    border-color: #f85149;
+    color: #f85149;
 }
 
 /* ============================================
@@ -601,14 +601,14 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #606060;
+    color: #707070;
     margin-bottom: 4px;
 }
 
 .ew-stat-value {
     font-size: 28px;
     font-weight: 700;
-    color: #000000;
+    color: #ffffff;
     line-height: 1;
     font-variant-numeric: tabular-nums;
 }
@@ -620,11 +620,11 @@ body {
 }
 
 .ew-stat-change-up {
-    color: #1a7f37;
+    color: #4ec968;
 }
 
 .ew-stat-change-down {
-    color: #cf222e;
+    color: #f85149;
 }
 
 /* ============================================
@@ -633,17 +633,17 @@ body {
 
 .ew-code {
     font-family: 'IBM Plex Mono', monospace;
-    background: #f5f5f5;
+    background: #161616;
     padding: 2px 6px;
-    border: 1px solid #d0d0d0;
+    border: 1px solid #303030;
     font-size: 13px;
 }
 
 .ew-code-block {
     font-family: 'IBM Plex Mono', monospace;
-    background: #f5f5f5;
+    background: #161616;
     padding: 12px;
-    border: 2px solid #d0d0d0;
+    border: 2px solid #303030;
     font-size: 13px;
     overflow-x: auto;
     white-space: pre;
@@ -683,5 +683,5 @@ body {
         </script>
 </head>
 <body>
-<div class="ew-app"><div class="ew-app-body"><main class="ew-main"><div class="ew-row ew-center-content"><div class="ew-column ew-center"><div class="ew-spacer-lg"></div><h1 class="ew-heading-1">🖥️ SysMonitor Pro</h1><p class="ew-text ew-text-secondary">Advanced Infrastructure Monitoring & Management Platform</p><div class="ew-spacer"></div><div class="ew-row ew-gap-sm"><span class="ew-badge ew-badge-success">24 Systems Online</span><span class="ew-badge ew-badge-warning">3 Alerts Active</span><span class="ew-badge ew-badge-success">99.97% Uptime</span></div><div class="ew-spacer-xl"></div></div></div><div class="ew-card ew-card-accent"><div class="ew-row"><p class="ew-text ew-text-secondary">System Status:</p><div class="ew-spacer"></div><span class="ew-badge ew-badge-success">All Systems Operational</span><div class="ew-spacer"></div><p class="ew-text ew-text-muted">Last Updated: 14:32:15 UTC</p><div class="ew-spacer"></div><button class="ew-button ew-button-outline ew-button-sm">🔄 Refresh</button></div></div><div class="ew-spacer"></div><div class="ew-grid ew-grid-3"><div class="ew-card"><div class="ew-card-title">🚀 Quick Actions</div><div class="ew-column ew-gap-sm"><button class="ew-button ew-button-primary ew-button-lg">Deploy Update</button><button class="ew-button ew-button-outline">Run Health Check</button><button class="ew-button ew-button-ghost">Backup Systems</button><button class="ew-button ew-button-ghost">Scale Resources</button></div></div><div class="ew-card"><div class="ew-card-title">📊 Key Metrics</div><div class="ew-grid ew-grid-2"><div class="ew-stat"><span class="ew-stat-label">CPU Load</span><span class="ew-stat-value">42%</span><span class="ew-stat-change ew-stat-change-up">+-5%</span></div><div class="ew-stat"><span class="ew-stat-label">Memory</span><span class="ew-stat-value">6.8GB</span><span class="ew-stat-change ew-stat-change-down">+200MB</span></div><div class="ew-stat"><span class="ew-stat-label">Network</span><span class="ew-stat-value">1.2Gbps</span><span class="ew-stat-change ew-stat-change-up">++0.1Gbps</span></div><div class="ew-stat"><span class="ew-stat-label">Storage</span><span class="ew-stat-value">78%</span><span class="ew-stat-change ew-stat-change-up">+-2%</span></div></div></div><div class="ew-card"><div class="ew-card-title">⚙️ Active Configuration</div><div class="ew-column ew-gap-sm"><div class="ew-row"><p class="ew-text ew-flex-grow">Auto-scaling:</p><span class="ew-badge ew-badge-success">Enabled</span></div><div class="ew-row"><p class="ew-text ew-flex-grow">Load Balancing:</p><span class="ew-badge ew-badge-success">Active</span></div><div class="ew-row"><p class="ew-text ew-flex-grow">Monitoring:</p><span class="ew-badge ew-badge-success">Prometheus</span></div><div class="ew-row"><p class="ew-text ew-flex-grow">Logging:</p><span class="ew-badge ew-badge-success">ELK Stack</span></div></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">🌐 Infrastructure Topology</div><p class="ew-text ew-text-secondary">Interactive system architecture with real-time status</p><div class="ew-spacer-sm"></div><div class="ew-row ew-center"><div class="ew-card ew-card-compact ew-center"><p class="ew-text">🌐</p><p class="ew-text ew-text-muted">LB-01</p><span class="ew-badge ew-badge-success">100%</span></div><p class="ew-text ew-text-secondary">⟶</p><div class="ew-column ew-center"><div class="ew-card ew-card-compact ew-center"><p class="ew-text">🖥️</p><p class="ew-text ew-text-muted">Web-01</p><span class="ew-badge ew-badge-success">95%</span></div><div class="ew-spacer-sm"></div><div class="ew-card ew-card-compact ew-center"><p class="ew-text">🖥️</p><p class="ew-text ew-text-muted">Web-02</p><span class="ew-badge ew-badge-success">97%</span></div></div><p class="ew-text ew-text-secondary">⟶</p><div class="ew-card ew-card-compact ew-center"><p class="ew-text">🗄️</p><p class="ew-text ew-text-muted">DB-01</p><span class="ew-badge ew-badge-warning">87%</span></div><p class="ew-text ew-text-secondary">⟶</p><div class="ew-card ew-card-compact ew-center"><p class="ew-text">💾</p><p class="ew-text ew-text-muted">Cache</p><span class="ew-badge ew-badge-success">92%</span></div></div><div class="ew-spacer-sm"></div><p class="ew-text ew-text-muted">Load Balancer distributes traffic to Web Servers, which connect to Database and Cache layers</p></div><div class="ew-spacer"></div><div class="ew-grid ew-grid-2"><div class="ew-card"><div class="ew-card-title">📈 Performance Graphs (Last Hour)</div><div class="ew-chart-container"><div class="ew-chart-title">System Metrics</div><svg width="350" height="200" viewBox="0 0 350 200" class="ew-chart"><rect width="100%" height="100%" fill="transparent" stroke="var(--ew-border)" stroke-width="1" rx="4"/><text x='50%' y='50%' text-anchor='middle' fill='var(--ew-text-muted)'>Chart implementation required</text></svg><div class="ew-chart-legend"><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-primary)"></div><span>CPU Usage</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-secondary)"></div><span>Memory</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #40a9ff"></div><span>Network</span></div></div></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">View Details</button><button class="ew-button ew-button-ghost ew-button-sm">Export Data</button></div></div><div class="ew-card"><div class="ew-card-title">🔍 System Search & Filter</div><form method="post" hx-post="/api/search" hx-target="#search-results"><div class="ew-row ew-gap-sm"><input type="text" name="query" id="query" class="ew-input ew-flex-grow" placeholder="Search servers, services, logs..."><button class="ew-button ew-button-outline">🔍 Search</button></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><div class="ew-form-group"><label class="ew-label" for="filter-status">Status</label><input type="text" name="filter-status" id="filter-status" class="ew-input ew-flex-grow" placeholder="All"></div><div class="ew-form-group"><label class="ew-label" for="filter-type">Type</label><input type="text" name="filter-type" id="filter-type" class="ew-input ew-flex-grow" placeholder="All"></div><div class="ew-form-group"><label class="ew-label" for="time-range">Time Range</label><input type="text" name="time-range" id="time-range" class="ew-input ew-flex-grow" placeholder="Last Hour"></div></div></form><div class="ew-box" id="search-results"></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">📋 Live System Logs</div><div class="ew-column ew-gap-sm"><p class="ew-text ew-code">[14:32:15] INFO: User authentication successful - user_id: 12345</p><p class="ew-text ew-code">[14:32:12] WARN: High memory usage detected on web-02 (87%)</p><p class="ew-text ew-code">[14:32:10] INFO: Database backup completed successfully</p><p class="ew-text ew-code">[14:32:08] ERROR: Connection timeout to payment-service</p><p class="ew-text ew-code">[14:32:05] INFO: Auto-scaling triggered - adding 2 web instances</p><p class="ew-text ew-code">[14:32:03] INFO: SSL certificate renewed for api.domain.com</p><p class="ew-text ew-code">[14:32:01] WARN: Disk space low on db-01 (15% remaining)</p><p class="ew-text ew-code">[14:31:58] INFO: Security scan completed - 0 vulnerabilities found</p></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Pause Stream</button><button class="ew-button ew-button-ghost ew-button-sm">Clear Logs</button><button class="ew-button ew-button-ghost ew-button-sm">Export Logs</button></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">🚨 Alert Management Console</div><div class="ew-grid ew-grid-3"><div class="ew-card" style="border-color: #f85149;"><span class="ew-badge ew-badge-error">CRITICAL</span><h3 class="ew-heading-3">Database Connection Failed</h3><p class="ew-text ew-text-secondary">DB-01 is unresponsive. Automatic failover initiated.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Acknowledge</button><button class="ew-button ew-button-primary ew-button-sm">Resolve</button></div></div><div class="ew-card" style="border-color: #f0b400;"><span class="ew-badge ew-badge-warning">WARNING</span><h3 class="ew-heading-3">High CPU Usage</h3><p class="ew-text ew-text-secondary">Web-02 CPU at 89% for 15 minutes.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Investigate</button><button class="ew-button ew-button-ghost ew-button-sm">Silence</button></div></div><div class="ew-card" style="border-color: #40a9ff;"><span class="ew-badge">INFO</span><h3 class="ew-heading-3">Backup Completed</h3><p class="ew-text ew-text-secondary">Daily backup finished successfully.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">View Report</button><button class="ew-button ew-button-ghost ew-button-sm">Dismiss</button></div></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">⚙️ Service Configuration</div><div class="ew-grid ew-grid-2"><div class="ew-card"><div class="ew-card-title">Database Settings</div><form method="post" hx-post="/api/config/db"><div class="ew-form-group"><label class="ew-label" for="db-host">Database Host</label><input type="text" name="db-host" id="db-host" class="ew-input" placeholder="db-01.internal"></div><div class="ew-form-group"><label class="ew-label" for="db-port">Port</label><input type="text" name="db-port" id="db-port" class="ew-input" placeholder="5432"></div><div class="ew-form-group"><label class="ew-label" for="db-pool-size">Connection Pool</label><input type="text" name="db-pool-size" id="db-pool-size" class="ew-input" placeholder="20"></div><div class="ew-spacer-sm"></div><button class="ew-button ew-button-outline">Update Configuration</button></form></div><div class="ew-card"><div class="ew-card-title">Monitoring Settings</div><form method="post" hx-post="/api/config/monitoring"><div class="ew-form-group"><label class="ew-label" for="alert-threshold">CPU Alert Threshold</label><input type="text" name="alert-threshold" id="alert-threshold" class="ew-input" placeholder="85%"></div><div class="ew-form-group"><label class="ew-label" for="retention-days">Log Retention</label><input type="text" name="retention-days" id="retention-days" class="ew-input" placeholder="30"></div><div class="ew-form-group"><label class="ew-label" for="notification-email">Alert Email</label><input type="text" name="notification-email" id="notification-email" class="ew-input" placeholder="admin@company.com"></div><div class="ew-spacer-sm"></div><button class="ew-button ew-button-outline">Save Settings</button></form></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">🏥 System Health Overview</div><div class="ew-chart-container"><div class="ew-chart-title">Service Health by Category</div><svg width="600" height="250" viewBox="0 0 600 250" class="ew-chart"><rect width="100%" height="100%" fill="transparent" stroke="var(--ew-border)" stroke-width="1" rx="4"/><line x1="60" y1="60" x2="540" y2="60" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="86" x2="540" y2="86" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="112" x2="540" y2="112" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="138" x2="540" y2="138" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="164" x2="540" y2="164" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="190" x2="540" y2="190" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="190" x2="540" y2="190" stroke="var(--ew-text)" stroke-width="1"/><line x1="60" y1="60" x2="60" y2="190" stroke="var(--ew-text)" stroke-width="1"/><line x1="55" y1="190" x2="60" y2="190" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="194" text-anchor="end" fill="var(--ew-text)" font-size="11">72.5</text><line x1="55" y1="164" x2="60" y2="164" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="168" text-anchor="end" fill="var(--ew-text)" font-size="11">78.5</text><line x1="55" y1="138" x2="60" y2="138" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="142" text-anchor="end" fill="var(--ew-text)" font-size="11">84.5</text><line x1="55" y1="112" x2="60" y2="112" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="116" text-anchor="end" fill="var(--ew-text)" font-size="11">90.5</text><line x1="55" y1="86" x2="60" y2="86" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="90" text-anchor="end" fill="var(--ew-text)" font-size="11">96.5</text><line x1="55" y1="60" x2="60" y2="60" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="64" text-anchor="end" fill="var(--ew-text)" font-size="11">102.5</text><rect x="205" y="92.5" width="40" height="97.5" fill="var(--ew-primary)" rx="2"/><text x="225" y="87.5" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">95.0</text><rect x="255" y="179.167" width="40" height="10.8333" fill="var(--ew-primary)" rx="2"/><text x="275" y="174.167" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">75.0</text><rect x="305" y="70.8333" width="40" height="119.167" fill="var(--ew-primary)" rx="2"/><text x="325" y="65.8333" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">100.0</text><rect x="355" y="114.167" width="40" height="75.8333" fill="var(--ew-primary)" rx="2"/><text x="375" y="109.167" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">90.0</text></svg><div class="ew-chart-legend"><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-primary)"></div><span>Health Score</span></div></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">💰 Resource Allocation</div><div class="ew-chart-container"><div class="ew-chart-title">CPU Distribution</div><svg width="300" height="300" viewBox="0 0 300 300" class="ew-chart"><rect width="100%" height="100%" fill="transparent" stroke="var(--ew-border)" stroke-width="1" rx="4"/><path d="M 150,150 L 150,40 A 110,110 0 0,1 150,260 Z" fill="var(--ew-primary)" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="227" y="150" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">50.0%</text><path d="M 150.0,150.0 L 150.0,260.0 A 110.0,110.0 0 0,1 40.0,150.0 Z" fill="var(--ew-secondary)" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="95.6" y="204.4" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">25.0%</text><path d="M 150.0,150.0 L 40.0,150.0 A 110.0,110.0 0 0,1 72.2,72.2 Z" fill="#40a9ff" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="78.9" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">12.5%</text><path d="M 150.0,150.0 L 72.2,72.2 A 110.0,110.0 0 0,1 150.0,40.0 Z" fill="#f0b400" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="120.5" y="78.9" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">12.5%</text></svg><div class="ew-chart-legend"><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-primary)"></div><span>Web Servers</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-secondary)"></div><span>Databases</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #40a9ff"></div><span>APIs</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #f0b400"></div><span>Background</span></div></div></div></div></main></div></div></body>
+<div class="ew-app"><div class="ew-app-body"><main class="ew-main"><div class="ew-row ew-center-content"><div class="ew-column ew-center"><div class="ew-spacer-lg"></div><h1 class="ew-heading-1">📊 ZeroJS Chart Components</h1><p class="ew-text ew-text-secondary">Line Charts, Bar Charts, and Pie Charts</p><div class="ew-spacer-xl"></div></div></div><div class="ew-card"><div class="ew-card-title">📈 Line Chart - Multi-Series Data</div><div class="ew-chart-container"><div class="ew-chart-title">Server Performance Over Time</div><svg width="500" height="300" viewBox="0 0 500 300" class="ew-chart"><rect width="100%" height="100%" fill="transparent" stroke="var(--ew-border)" stroke-width="1" rx="4"/><line x1="60" y1="60" x2="60" y2="240" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="136" y1="60" x2="136" y2="240" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="212" y1="60" x2="212" y2="240" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="288" y1="60" x2="288" y2="240" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="364" y1="60" x2="364" y2="240" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="440" y1="60" x2="440" y2="240" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="60" x2="440" y2="60" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="96" x2="440" y2="96" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="132" x2="440" y2="132" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="168" x2="440" y2="168" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="204" x2="440" y2="204" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="240" x2="440" y2="240" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="240" x2="440" y2="240" stroke="var(--ew-text)" stroke-width="1"/><line x1="60" y1="60" x2="60" y2="240" stroke="var(--ew-text)" stroke-width="1"/><line x1="55" y1="240" x2="60" y2="240" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="244" text-anchor="end" fill="var(--ew-text)" font-size="11">4.3</text><line x1="55" y1="204" x2="60" y2="204" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="208" text-anchor="end" fill="var(--ew-text)" font-size="11">22.8</text><line x1="55" y1="168" x2="60" y2="168" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="172" text-anchor="end" fill="var(--ew-text)" font-size="11">41.3</text><line x1="55" y1="132" x2="60" y2="132" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="136" text-anchor="end" fill="var(--ew-text)" font-size="11">59.7</text><line x1="55" y1="96" x2="60" y2="96" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="100" text-anchor="end" fill="var(--ew-text)" font-size="11">78.2</text><line x1="55" y1="60" x2="60" y2="60" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="64" text-anchor="end" fill="var(--ew-text)" font-size="11">96.7</text><line x1="60" y1="240" x2="60" y2="245" stroke="var(--ew-text)" stroke-width="1"/><text x="60" y="260" text-anchor="middle" fill="var(--ew-text)" font-size="11">-1.1</text><line x1="136" y1="240" x2="136" y2="245" stroke="var(--ew-text)" stroke-width="1"/><text x="136" y="260" text-anchor="middle" fill="var(--ew-text)" font-size="11">1.5</text><line x1="212" y1="240" x2="212" y2="245" stroke="var(--ew-text)" stroke-width="1"/><text x="212" y="260" text-anchor="middle" fill="var(--ew-text)" font-size="11">4.2</text><line x1="288" y1="240" x2="288" y2="245" stroke="var(--ew-text)" stroke-width="1"/><text x="288" y="260" text-anchor="middle" fill="var(--ew-text)" font-size="11">6.8</text><line x1="364" y1="240" x2="364" y2="245" stroke="var(--ew-text)" stroke-width="1"/><text x="364" y="260" text-anchor="middle" fill="var(--ew-text)" font-size="11">9.5</text><line x1="440" y1="240" x2="440" y2="245" stroke="var(--ew-text)" stroke-width="1"/><text x="440" y="260" text-anchor="middle" fill="var(--ew-text)" font-size="11">12.1</text><path d="M 91.6667 163.095 L 120.455 146.429 L 149.242 155.952 L 178.03 125 L 206.818 139.286 L 235.606 153.571 L 264.394 170.238 L 293.182 132.143 L 321.97 120.238 L 350.758 134.524 L 379.545 148.81 L 408.333 160.714" fill="none" stroke="var(--ew-primary)" stroke-width="2"/><circle cx="91.6667" cy="163.095" r="3" fill="var(--ew-primary)"/><circle cx="120.455" cy="146.429" r="3" fill="var(--ew-primary)"/><circle cx="149.242" cy="155.952" r="3" fill="var(--ew-primary)"/><circle cx="178.03" cy="125" r="3" fill="var(--ew-primary)"/><circle cx="206.818" cy="139.286" r="3" fill="var(--ew-primary)"/><circle cx="235.606" cy="153.571" r="3" fill="var(--ew-primary)"/><circle cx="264.394" cy="170.238" r="3" fill="var(--ew-primary)"/><circle cx="293.182" cy="132.143" r="3" fill="var(--ew-primary)"/><circle cx="321.97" cy="120.238" r="3" fill="var(--ew-primary)"/><circle cx="350.758" cy="134.524" r="3" fill="var(--ew-primary)"/><circle cx="379.545" cy="148.81" r="3" fill="var(--ew-primary)"/><circle cx="408.333" cy="160.714" r="3" fill="var(--ew-primary)"/><path d="M 91.6667 110.714 L 120.455 101.19 L 149.242 105.952 L 178.03 58.3333 L 206.818 67.8571 L 235.606 75 L 264.394 84.5238 L 293.182 70.2381 L 321.97 60.7143 L 350.758 72.619 L 379.545 82.1429 L 408.333 91.6667" fill="none" stroke="#40a9ff" stroke-width="2"/><circle cx="91.6667" cy="110.714" r="3" fill="#40a9ff"/><circle cx="120.455" cy="101.19" r="3" fill="#40a9ff"/><circle cx="149.242" cy="105.952" r="3" fill="#40a9ff"/><circle cx="178.03" cy="58.3333" r="3" fill="#40a9ff"/><circle cx="206.818" cy="67.8571" r="3" fill="#40a9ff"/><circle cx="235.606" cy="75" r="3" fill="#40a9ff"/><circle cx="264.394" cy="84.5238" r="3" fill="#40a9ff"/><circle cx="293.182" cy="70.2381" r="3" fill="#40a9ff"/><circle cx="321.97" cy="60.7143" r="3" fill="#40a9ff"/><circle cx="350.758" cy="72.619" r="3" fill="#40a9ff"/><circle cx="379.545" cy="82.1429" r="3" fill="#40a9ff"/><circle cx="408.333" cy="91.6667" r="3" fill="#40a9ff"/><path d="M 91.6667 241.667 L 120.455 203.571 L 149.242 186.905 L 178.03 170.238 L 206.818 179.762 L 235.606 196.429 L 264.394 210.714 L 293.182 163.095 L 321.97 146.429 L 350.758 155.952 L 379.545 191.667 L 408.333 201.19" fill="none" stroke="#f0b400" stroke-width="2"/><circle cx="91.6667" cy="241.667" r="3" fill="#f0b400"/><circle cx="120.455" cy="203.571" r="3" fill="#f0b400"/><circle cx="149.242" cy="186.905" r="3" fill="#f0b400"/><circle cx="178.03" cy="170.238" r="3" fill="#f0b400"/><circle cx="206.818" cy="179.762" r="3" fill="#f0b400"/><circle cx="235.606" cy="196.429" r="3" fill="#f0b400"/><circle cx="264.394" cy="210.714" r="3" fill="#f0b400"/><circle cx="293.182" cy="163.095" r="3" fill="#f0b400"/><circle cx="321.97" cy="146.429" r="3" fill="#f0b400"/><circle cx="350.758" cy="155.952" r="3" fill="#f0b400"/><circle cx="379.545" cy="191.667" r="3" fill="#f0b400"/><circle cx="408.333" cy="201.19" r="3" fill="#f0b400"/></svg><div class="ew-chart-legend"><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-primary)"></div><span>CPU Usage %</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #40a9ff"></div><span>Memory %</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #f0b400"></div><span>Disk I/O</span></div></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">📊 Bar Chart - Categorical Data</div><div class="ew-chart-container"><div class="ew-chart-title">Monthly Revenue by Department</div><svg width="500" height="300" viewBox="0 0 500 300" class="ew-chart"><rect width="100%" height="100%" fill="transparent" stroke="var(--ew-border)" stroke-width="1" rx="4"/><line x1="60" y1="60" x2="440" y2="60" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="96" x2="440" y2="96" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="132" x2="440" y2="132" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="168" x2="440" y2="168" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="204" x2="440" y2="204" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="240" x2="440" y2="240" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="240" x2="440" y2="240" stroke="var(--ew-text)" stroke-width="1"/><line x1="60" y1="60" x2="60" y2="240" stroke="var(--ew-text)" stroke-width="1"/><line x1="55" y1="240" x2="60" y2="240" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="244" text-anchor="end" fill="var(--ew-text)" font-size="11">70.2</text><line x1="55" y1="204" x2="60" y2="204" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="208" text-anchor="end" fill="var(--ew-text)" font-size="11">88.9</text><line x1="55" y1="168" x2="60" y2="168" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="172" text-anchor="end" fill="var(--ew-text)" font-size="11">107.6</text><line x1="55" y1="132" x2="60" y2="132" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="136" text-anchor="end" fill="var(--ew-text)" font-size="11">126.4</text><line x1="55" y1="96" x2="60" y2="96" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="100" text-anchor="end" fill="var(--ew-text)" font-size="11">145.1</text><line x1="55" y1="60" x2="60" y2="60" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="64" text-anchor="end" fill="var(--ew-text)" font-size="11">163.8</text><rect x="142.5" y="134.615" width="35" height="105.385" fill="var(--ew-secondary)" rx="2"/><text x="159.5" y="129.615" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">125.0</text><rect x="187.5" y="203.846" width="35" height="36.1538" fill="var(--ew-secondary)" rx="2"/><text x="204.5" y="198.846" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">89.0</text><rect x="232.5" y="75" width="35" height="165" fill="var(--ew-secondary)" rx="2"/><text x="249.5" y="70" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">156.0</text><rect x="277.5" y="225" width="35" height="15" fill="var(--ew-secondary)" rx="2"/><text x="294.5" y="220" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">78.0</text><rect x="322.5" y="117.308" width="35" height="122.692" fill="var(--ew-secondary)" rx="2"/><text x="339.5" y="112.308" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">134.0</text></svg><div class="ew-chart-legend"><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-secondary)"></div><span>Revenue ($K)</span></div></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">🥧 Pie Chart - Proportional Data</div><div class="ew-chart-container"><div class="ew-chart-title">Server Resource Allocation</div><svg width="400" height="400" viewBox="0 0 400 400" class="ew-chart"><rect width="100%" height="100%" fill="transparent" stroke="var(--ew-border)" stroke-width="1" rx="4"/><path d="M 200,200 L 200,40 A 160,160 0 0,1 294.046,329.443 Z" fill="var(--ew-primary)" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="306.518" y="165.39" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">40.0%</text><path d="M 200.0,200.0 L 294.0,329.4 A 160.0,160.0 0 0,1 70.6,294.0 Z" fill="var(--ew-secondary)" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="182.5" y="310.6" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">25.0%</text><path d="M 200.0,200.0 L 70.6,294.0 A 160.0,160.0 0 0,1 47.8,150.6 Z" fill="#40a9ff" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="89.4" y="217.5" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">15.0%</text><path d="M 200.0,200.0 L 47.8,150.6 A 160.0,160.0 0 0,1 122.9,59.8 Z" fill="#f0b400" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="113.7" y="128.6" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">12.0%</text><path d="M 200.0,200.0 L 122.9,59.8 A 160.0,160.0 0 0,1 200.0,40.0 Z" fill="#f85149" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="172.1" y="91.5" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">8.0%</text></svg><div class="ew-chart-legend"><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-primary)"></div><span>Web Servers</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-secondary)"></div><span>Databases</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #40a9ff"></div><span>APIs</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #f0b400"></div><span>Cache</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #f85149"></div><span>Background Jobs</span></div></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">✨ Chart Features</div><div class="ew-column ew-gap-sm"><p class="ew-text ew-text-secondary">• SVG-based vector graphics</p><p class="ew-text ew-text-secondary">• Theme-aware colors and styling</p><p class="ew-text ew-text-secondary">• Responsive and scalable</p><p class="ew-text ew-text-secondary">• Multiple series support</p><p class="ew-text ew-text-secondary">• Customizable legends and labels</p><p class="ew-text ew-text-secondary">• Grid lines and axes</p><p class="ew-text ew-text-secondary">• Smooth animations ready</p></div></div></main></div></div></body>
 </html>

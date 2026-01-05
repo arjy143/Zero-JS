@@ -4,6 +4,7 @@
 #include "src/htmx.hpp"
 #include "src/renderer.hpp"
 #include "src/components.hpp"
+#include "src/charts.hpp"
 
 //include this header in your project
 
