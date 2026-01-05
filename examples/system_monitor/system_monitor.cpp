@@ -73,6 +73,15 @@ App create_system_monitor_content() {
 
     // Server Topology Visualization (Graph Layout)
     app.add(
+    Diagram()
+        .node("A", "Parser")
+        .node("B", "Renderer")
+        .node("C", "HTML")
+        .edge("A", "B", "AST")
+        .edge("B", "C")
+    );
+    
+    app.add(
         Card().title("🌐 Infrastructure Topology")
             .add(Text("Interactive system architecture with real-time status").secondary())
             .add(Spacer().sm())

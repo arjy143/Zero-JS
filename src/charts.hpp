@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iomanip>
+#include <unordered_map>
 
 namespace zero_js
 {
@@ -187,6 +188,164 @@ protected:
         const int margin = 40;
         double chart_height = height_ - 2 * margin;
         return height_ - margin - (y - min_y) / (max_y - min_y) * chart_height;
+    }
+};
+// ============================================================================
+// Diagram component
+// ============================================================================
+
+struct DiagramNode {
+    std::string id;
+    std::string label;
+    double x = 0, y = 0;
+    double w = 120, h = 60;
+};
+
+struct DiagramEdge {
+    std::string from;
+    std::string to;
+    std::string label;
+};
+
+class Diagram : public Chart {
+public:
+    double node_width_  = 120;
+    double node_height_ = 60;
+    double h_spacing_   = 80;
+    double v_spacing_   = 40;
+
+    Diagram& node(const std::string& id, const std::string& label) {
+        nodes_.push_back({id, label});
+        return *this;
+    }
+
+    Diagram& edge(const std::string& from,
+                  const std::string& to,
+                  const std::string& label = "") {
+        edges_.push_back({from, to, label});
+        return *this;
+    }
+
+    std::string render() const override {
+        auto nodes = nodes_;   // mutable copy for layout
+        layout(nodes);
+
+        std::ostringstream content;
+        content << generateDefs();
+        content << generateEdges(nodes);
+        content << generateNodes(nodes);
+
+        return generateSVG(content.str());
+    }
+
+private:
+    std::vector<DiagramNode> nodes_;
+    std::vector<DiagramEdge> edges_;
+
+    void layout(std::vector<DiagramNode>& nodes) const {
+    std::unordered_map<std::string, int> depth;
+    std::unordered_map<int, int> row_for_column;
+
+    for (const auto& n : nodes)
+        depth[n.id] = 0;
+
+    // repeat to converge (cheap and safe for small graphs)
+    for (size_t i = 0; i < nodes.size(); ++i) {
+        for (const auto& e : edges_) {
+            depth[e.to] = std::max(depth[e.to], depth[e.from] + 1);
+        }
+    }
+
+    for (auto& n : nodes) {
+        int col = depth[n.id];
+        int row = row_for_column[col]++;
+
+        n.x = 60 + col * (node_width_ + h_spacing_);
+        n.y = 60 + row * (node_height_ + v_spacing_);
+        n.w = node_width_;
+        n.h = node_height_;
+    }
+}
+
+    // ---- SVG defs (arrowheads) ------------------------------------
+
+    std::string generateDefs() const {
+        return R"svg(
+<defs>
+  <marker id="ew-arrow" viewBox="0 0 10 10"
+          refX="8" refY="5"
+          markerWidth="6" markerHeight="6"
+          orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z"
+          fill="var(--ew-muted)"/>
+  </marker>
+</defs>
+)svg";
+    }
+
+    // ---- Edges ----------------------------------------------------
+
+    std::string generateEdges(const std::vector<DiagramNode>& nodes) const {
+        std::ostringstream out;
+
+        auto find = [&](const std::string& id) -> const DiagramNode* {
+            for (const auto& n : nodes)
+                if (n.id == id) return &n;
+            return nullptr;
+        };
+
+        for (const auto& e : edges_) {
+            const auto* a = find(e.from);
+            const auto* b = find(e.to);
+            if (!a || !b) continue;
+
+            double x1 = a->x + a->w;
+            double y1 = a->y + a->h / 2;
+            double x2 = b->x;
+            double y2 = b->y + b->h / 2;
+
+            out << "<line x1=\"" << x1 << "\" y1=\"" << y1
+                << "\" x2=\"" << x2 << "\" y2=\"" << y2
+                << "\" stroke=\"var(--ew-muted)\" stroke-width=\"1.5\" "
+                << "marker-end=\"url(#ew-arrow)\"/>";
+
+            if (!e.label.empty()) {
+                out << "<text x=\"" << (x1 + x2) / 2
+                    << "\" y=\"" << (y1 + y2) / 2 - 4
+                    << "\" text-anchor=\"middle\" font-size=\"11\" "
+                    << "fill=\"var(--ew-muted)\">"
+                    << e.label << "</text>";
+            }
+        }
+
+        return out.str();
+    }
+
+    // ---- Nodes ----------------------------------------------------
+
+    std::string generateNodes(const std::vector<DiagramNode>& nodes) const {
+        std::ostringstream out;
+
+        for (const auto& n : nodes) {
+            out << "<g class=\"ew-diagram-node\" "
+                << "transform=\"translate(" << n.x << "," << n.y << ")\">";
+
+            out << "<rect width=\"" << n.w << "\" height=\"" << n.h
+                << "\" rx=\"6\" ry=\"6\" "
+                << "fill=\"var(--ew-card-bg)\" "
+                << "stroke=\"var(--ew-border)\"/>";
+
+            out << "<text x=\"" << n.w / 2
+                << "\" y=\"" << n.h / 2
+                << "\" dominant-baseline=\"middle\" "
+                << "text-anchor=\"middle\" "
+                << "fill=\"var(--ew-text)\">"
+                << n.label << "</text>";
+
+            out << "</g>";
+        }
+
+        return out.str();
     }
 };
 
