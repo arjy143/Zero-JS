@@ -207,12 +207,27 @@ struct DiagramEdge {
     std::string label;
 };
 
+enum class LayoutType {
+    Hierarchical,
+    Circular,
+    Manual
+};
+
+enum class LayoutDirection {
+    LeftToRight,
+    TopToBottom,
+    RightToLeft,
+    BottomToTop
+};
+
 class Diagram : public Chart {
 public:
     double node_width_  = 120;
     double node_height_ = 60;
     double h_spacing_   = 80;
     double v_spacing_   = 40;
+    LayoutType layout_type_ = LayoutType::Hierarchical;
+    LayoutDirection layout_direction_ = LayoutDirection::LeftToRight;
 
     Diagram& node(const std::string& id, const std::string& label) {
         nodes_.push_back({id, label});
@@ -223,6 +238,28 @@ public:
                   const std::string& to,
                   const std::string& label = "") {
         edges_.push_back({from, to, label});
+        return *this;
+    }
+
+    Diagram& layoutType(LayoutType type) {
+        layout_type_ = type;
+        return *this;
+    }
+
+    Diagram& layoutDirection(LayoutDirection direction) {
+        layout_direction_ = direction;
+        return *this;
+    }
+
+    Diagram& nodePosition(const std::string& id, double x, double y) {
+        // Find and update node position
+        for (auto& node : nodes_) {
+            if (node.id == id) {
+                node.x = x;
+                node.y = y;
+                break;
+            }
+        }
         return *this;
     }
 
@@ -243,29 +280,134 @@ private:
     std::vector<DiagramEdge> edges_;
 
     void layout(std::vector<DiagramNode>& nodes) const {
-    std::unordered_map<std::string, int> depth;
-    std::unordered_map<int, int> row_for_column;
-
-    for (const auto& n : nodes)
-        depth[n.id] = 0;
-
-    // repeat to converge (cheap and safe for small graphs)
-    for (size_t i = 0; i < nodes.size(); ++i) {
-        for (const auto& e : edges_) {
-            depth[e.to] = std::max(depth[e.to], depth[e.from] + 1);
+        if (layout_type_ == LayoutType::Manual) {
+            // Manual positioning - nodes already have their positions set
+            return;
+        } else if (layout_type_ == LayoutType::Circular) {
+            layoutCircular(nodes);
+        } else {
+            // Default: Hierarchical
+            layoutHierarchical(nodes);
         }
     }
 
-    for (auto& n : nodes) {
-        int col = depth[n.id];
-        int row = row_for_column[col]++;
+    void layoutHierarchical(std::vector<DiagramNode>& nodes) const {
+        if (nodes.empty()) return;
 
-        n.x = 60 + col * (node_width_ + h_spacing_);
-        n.y = 60 + row * (node_height_ + v_spacing_);
-        n.w = node_width_;
-        n.h = node_height_;
+        std::unordered_map<std::string, int> depth;
+        std::unordered_map<int, int> row_for_column;
+
+        for (const auto& n : nodes)
+            depth[n.id] = 0;
+
+        // repeat to converge (cheap and safe for small graphs)
+        for (size_t i = 0; i < nodes.size(); ++i) {
+            for (const auto& e : edges_) {
+                depth[e.to] = std::max(depth[e.to], depth[e.from] + 1);
+            }
+        }
+
+        // Calculate layout dimensions
+        int max_col = 0;
+        int max_row = 0;
+        for (const auto& n : nodes) {
+            int col = depth[n.id];
+            max_col = std::max(max_col, col);
+            max_row = std::max(max_row, row_for_column[col]++);
+        }
+
+        // Reset row counts for actual positioning
+        row_for_column.clear();
+        for (const auto& n : nodes) {
+            int col = depth[n.id];
+            row_for_column[col]++;
+        }
+
+        // Calculate total layout dimensions
+        double total_width = (max_col + 1) * node_width_ + max_col * h_spacing_ + 120; // 120 for margins
+        double total_height = (max_row + 1) * node_height_ + max_row * v_spacing_ + 120;
+
+        // Calculate scaling factor to fit within available space
+        double scale_x = (total_width > width_) ? width_ / total_width : 1.0;
+        double scale_y = (total_height > height_) ? height_ / total_height : 1.0;
+        double scale = std::min(scale_x, scale_y);
+
+        // Apply scaling to node dimensions and spacing
+        double scaled_node_width = node_width_ * scale;
+        double scaled_node_height = node_height_ * scale;
+        double scaled_h_spacing = h_spacing_ * scale;
+        double scaled_v_spacing = v_spacing_ * scale;
+
+        // Position nodes with scaling and direction support
+        row_for_column.clear();
+        for (auto& n : nodes) {
+            int col = depth[n.id];
+            int row = row_for_column[col]++;
+
+            double base_x = 60 * scale;
+            double base_y = 60 * scale;
+
+            switch (layout_direction_) {
+                case LayoutDirection::LeftToRight:
+                    n.x = base_x + col * (scaled_node_width + scaled_h_spacing);
+                    n.y = base_y + row * (scaled_node_height + scaled_v_spacing);
+                    break;
+                case LayoutDirection::TopToBottom:
+                    n.x = base_x + row * (scaled_node_width + scaled_h_spacing);
+                    n.y = base_y + col * (scaled_node_height + scaled_v_spacing);
+                    break;
+                case LayoutDirection::RightToLeft:
+                    n.x = width_ - base_x - (col + 1) * (scaled_node_width + scaled_h_spacing);
+                    n.y = base_y + row * (scaled_node_height + scaled_v_spacing);
+                    break;
+                case LayoutDirection::BottomToTop:
+                    n.x = base_x + row * (scaled_node_width + scaled_h_spacing);
+                    n.y = height_ - base_y - (col + 1) * (scaled_node_height + scaled_v_spacing);
+                    break;
+            }
+
+            n.w = scaled_node_width;
+            n.h = scaled_node_height;
+        }
     }
-}
+
+    void layoutCircular(std::vector<DiagramNode>& nodes) const {
+        if (nodes.empty()) return;
+
+        double center_x = width_ / 2.0;
+        double center_y = height_ / 2.0;
+        size_t num_nodes = nodes.size();
+
+        // Calculate minimum radius needed to prevent overlap
+        // Each node needs space for its width along the circumference
+        double circumference_needed = num_nodes * (node_width_ + 20); // 20px minimum spacing
+        double min_radius = circumference_needed / (2 * M_PI);
+
+        // Available radius (leave margin)
+        double max_radius = std::min(width_, height_) / 2.0 - 60;
+
+        // Use the larger of min_radius and a reasonable minimum, but cap at max_radius
+        double radius = std::max(min_radius, 80.0); // minimum 80px radius
+        radius = std::min(radius, max_radius);
+
+        // If we exceed max_radius, scale down the nodes
+        double scale = 1.0;
+        if (min_radius > max_radius) {
+            scale = max_radius / min_radius;
+        }
+
+        double scaled_node_width = node_width_ * scale;
+        double scaled_node_height = node_height_ * scale;
+
+        // Position nodes around the circle
+        for (size_t i = 0; i < num_nodes; ++i) {
+            double angle = 2 * M_PI * i / num_nodes - M_PI / 2; // Start from top
+            nodes[i].x = center_x + radius * cos(angle) - scaled_node_width / 2;
+            nodes[i].y = center_y + radius * sin(angle) - scaled_node_height / 2;
+            nodes[i].w = scaled_node_width;
+            nodes[i].h = scaled_node_height;
+        }
+    }
 
     // ---- SVG defs (arrowheads) ------------------------------------
 
@@ -277,7 +419,7 @@ private:
           markerWidth="6" markerHeight="6"
           orient="auto">
     <path d="M 0 0 L 10 5 L 0 10 z"
-          fill="var(--ew-muted)"/>
+          fill="var(--ew-text-muted)"/>
   </marker>
 </defs>
 )svg";
@@ -306,14 +448,14 @@ private:
 
             out << "<line x1=\"" << x1 << "\" y1=\"" << y1
                 << "\" x2=\"" << x2 << "\" y2=\"" << y2
-                << "\" stroke=\"var(--ew-muted)\" stroke-width=\"1.5\" "
+                << "\" stroke=\"var(--ew-text-muted)\" stroke-width=\"1.5\" "
                 << "marker-end=\"url(#ew-arrow)\"/>";
 
             if (!e.label.empty()) {
                 out << "<text x=\"" << (x1 + x2) / 2
                     << "\" y=\"" << (y1 + y2) / 2 - 4
                     << "\" text-anchor=\"middle\" font-size=\"11\" "
-                    << "fill=\"var(--ew-muted)\">"
+                    << "fill=\"var(--ew-text-muted)\">"
                     << e.label << "</text>";
             }
         }
@@ -332,15 +474,31 @@ private:
 
             out << "<rect width=\"" << n.w << "\" height=\"" << n.h
                 << "\" rx=\"6\" ry=\"6\" "
-                << "fill=\"var(--ew-card-bg)\" "
+                << "fill=\"var(--ew-bg-card)\" "
                 << "stroke=\"var(--ew-border)\"/>";
 
-            out << "<text x=\"" << n.w / 2
-                << "\" y=\"" << n.h / 2
-                << "\" dominant-baseline=\"middle\" "
-                << "text-anchor=\"middle\" "
-                << "fill=\"var(--ew-text)\">"
-                << n.label << "</text>";
+            // Split label into lines and render each line
+            std::istringstream iss(n.label);
+            std::string line;
+            std::vector<std::string> lines;
+            while (std::getline(iss, line)) {
+                lines.push_back(line);
+            }
+
+            if (!lines.empty()) {
+                double line_height = 14; // Approximate line height
+                double total_text_height = lines.size() * line_height;
+                double start_y = (n.h - total_text_height) / 2 + line_height * 0.75; // Center vertically
+
+                for (size_t i = 0; i < lines.size(); ++i) {
+                    out << "<text x=\"" << n.w / 2
+                        << "\" y=\"" << start_y + i * line_height
+                        << "\" text-anchor=\"middle\" "
+                        << "font-size=\"12\" "
+                        << "fill=\"var(--ew-text)\">"
+                        << lines[i] << "</text>";
+                }
+            }
 
             out << "</g>";
         }

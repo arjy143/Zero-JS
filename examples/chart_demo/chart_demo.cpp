@@ -1,4 +1,4 @@
-#include "../zero_js.hpp"
+#include "../../zero_js.hpp"
 #include <iostream>
 
 using namespace zero_js;
@@ -9,7 +9,7 @@ int main() {
     // ========================================
     {
         Page page("Chart Demo - ZeroJS Framework");
-        page.dark_mode();
+        page.cream_mode();
 
         App app;
 
@@ -18,7 +18,7 @@ int main() {
                 .add(Column().classes("ew-center")
                     .add(Spacer().lg())
                     .add(Text("📊 ZeroJS Chart Components").h1())
-                    .add(Text("Line Charts, Bar Charts, and Pie Charts").secondary())
+                    .add(Text("Line Charts, Bar Charts, Pie Charts, and Diagrams").secondary())
                     .add(Spacer().xl())
                 )
         );
@@ -83,6 +83,79 @@ int main() {
 
         app.add(Spacer());
 
+        // Diagram Demo - Hierarchical Layout (Workflow)
+        Diagram workflowDiagram;
+        workflowDiagram.width(600).height(200);
+        workflowDiagram.layoutType(LayoutType::Hierarchical);
+        workflowDiagram
+            .node("input", "Input\nData")
+            .node("process", "Process\nData")
+            .node("validate", "Validate\nResults")
+            .node("output", "Generate\nOutput")
+            .edge("input", "process", "raw data")
+            .edge("process", "validate", "processed")
+            .edge("validate", "output", "validated");
+
+        app.add(Card().title("🔀 Diagram - Hierarchical Workflow").add(workflowDiagram));
+
+        app.add(Spacer());
+        // Diagram Demo - Top to Bottom Layout
+        Diagram verticalDiagram;
+        verticalDiagram.width(300).height(500);
+        verticalDiagram.layoutType(LayoutType::Hierarchical);
+        verticalDiagram.layoutDirection(LayoutDirection::TopToBottom);
+        verticalDiagram
+            .node("plan", "Planning\nPhase")
+            .node("design", "Design\nPhase")
+            .node("develop", "Development\nPhase")
+            .node("test", "Testing\nPhase")
+            .node("deploy", "Deploy\nPhase")
+            .edge("plan", "design")
+            .edge("design", "develop")
+            .edge("develop", "test")
+            .edge("test", "deploy");
+
+        app.add(Card().title("📈 Diagram - Top-to-Bottom Workflow").add(verticalDiagram));
+
+        app.add(Spacer());
+
+        // Responsive Grid Demo
+        app.add(
+            Card().title("🔄 Responsive Grid Layout")
+                .add(Text("This grid automatically adapts to screen size").secondary())
+                .add(Spacer().sm())
+                .add(
+                    Grid().responsive()
+                        .add(Card().compact().title("Card 1").add(Text("Responsive content")))
+                        .add(Card().compact().title("Card 2").add(Text("Adapts to screen")))
+                        .add(Card().compact().title("Card 3").add(Text("Mobile-friendly")))
+                        .add(Card().compact().title("Card 4").add(Text("Flexible layout")))
+                        .add(Card().compact().title("Card 5").add(Text("Auto-fitting")))
+                        .add(Card().compact().title("Card 6").add(Text("Grid system")))
+                )
+        );
+
+        app.add(Spacer());
+        // Diagram Demo - Circular Layout (Network)
+        Diagram networkDiagram;
+        networkDiagram.width(400).height(400);
+        networkDiagram.layoutType(LayoutType::Circular);
+        networkDiagram
+            .node("web", "Web\nServer")
+            .node("api", "API\nGateway")
+            .node("db", "Database")
+            .node("cache", "Cache")
+            .node("auth", "Auth\nService")
+            .edge("web", "api")
+            .edge("api", "db")
+            .edge("api", "cache")
+            .edge("api", "auth")
+            .edge("auth", "db");
+
+        app.add(Card().title("🌐 Diagram - Circular Network Topology").add(networkDiagram));
+
+        app.add(Spacer());
+
         // Features showcase
         app.add(
             Card().title("✨ Chart Features")
@@ -94,6 +167,13 @@ int main() {
                     .add(Text("• Customizable legends and labels").secondary())
                     .add(Text("• Grid lines and axes").secondary())
                     .add(Text("• Smooth animations ready").secondary())
+                    .add(Text("• Interactive diagrams with multiple layouts").secondary())
+                    .add(Text("• Hierarchical, circular, and manual positioning").secondary())
+                    .add(Text("• Left-to-right, top-to-bottom, and other flow directions").secondary())
+                    .add(Text("• Labeled edges and nodes").secondary())
+                    .add(Text("• Fully responsive design for mobile and desktop").secondary())
+                    .add(Text("• Touch-friendly buttons and interactions").secondary())
+                    .add(Text("• Adaptive grids and layouts").secondary())
                 )
         );
 

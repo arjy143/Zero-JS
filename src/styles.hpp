@@ -864,30 +864,282 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE DESIGN SYSTEM
+   ============================================ */
+
+/* Mobile-first responsive utilities */
+.ew-hidden-mobile { display: none; }
+.ew-hidden-tablet { display: initial; }
+.ew-hidden-desktop { display: initial; }
+
+@media (min-width: 576px) {
+    .ew-hidden-mobile { display: initial; }
+    .ew-hidden-tablet { display: none; }
+}
+
+@media (min-width: 1024px) {
+    .ew-hidden-tablet { display: initial; }
+    .ew-hidden-desktop { display: none; }
+}
+
+@media (min-width: 1200px) {
+    .ew-hidden-desktop { display: initial; }
+}
+
+/* Responsive spacing utilities */
+.ew-p-sm { padding: )" + Theme::spacing_sm + R"(; }
+.ew-p-md { padding: )" + Theme::spacing_md + R"(; }
+.ew-p-lg { padding: )" + Theme::spacing_lg + R"(; }
+.ew-p-xl { padding: )" + Theme::spacing_xl + R"(; }
+
+.ew-m-sm { margin: )" + Theme::spacing_sm + R"(; }
+.ew-m-md { margin: )" + Theme::spacing_md + R"(; }
+.ew-m-lg { margin: )" + Theme::spacing_lg + R"(; }
+.ew-m-xl { margin: )" + Theme::spacing_xl + R"(; }
+
+.ew-mb-sm { margin-bottom: )" + Theme::spacing_sm + R"(; }
+.ew-mb-md { margin-bottom: )" + Theme::spacing_md + R"(; }
+.ew-mb-lg { margin-bottom: )" + Theme::spacing_lg + R"(; }
+.ew-mb-xl { margin-bottom: )" + Theme::spacing_xl + R"(; }
+
+/* Responsive text sizes */
+.ew-text-xs { font-size: 0.75rem; line-height: 1rem; }
+.ew-text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.ew-text-base { font-size: 1rem; line-height: 1.5rem; }
+.ew-text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.ew-text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.ew-text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.ew-text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+
+/* Touch-friendly button sizes */
+.ew-btn-touch {
+    min-height: 44px;
+    min-width: 44px;
+    padding: )" + Theme::spacing_md + R"(;
+}
+
+/* Mobile-specific utilities */
+.ew-row-mobile-stack {
+    flex-direction: row;
+}
+
+.ew-center-mobile {
+    justify-content: flex-start;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .ew-row-mobile-stack {
+        flex-direction: column;
+        align-items: stretch;
+        gap: )" + Theme::spacing_md + R"(;
+    }
+
+    .ew-center-mobile {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+/* Responsive grid utilities */
+.ew-grid-responsive {
+    display: grid;
+    gap: )" + Theme::spacing_md + R"(;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 576px) {
+    .ew-grid-responsive {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .ew-grid-responsive {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .ew-grid-responsive {
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    }
+}
+
+/* ============================================
+   BREAKPOINT-SPECIFIC STYLES
    ============================================ */
 
 @media (max-width: 1024px) {
     .ew-sidebar {
         display: none;
     }
+
+    .ew-page {
+        padding: )" + Theme::spacing_md + R"(;
+    }
+
+    .ew-card {
+        padding: )" + Theme::spacing_md + R"(;
+        margin-bottom: )" + Theme::spacing_md + R"(;
+    }
+
+    .ew-card-title {
+        font-size: )" + Theme::font_size_base + R"(;
+    }
 }
 
 @media (max-width: 768px) {
+    .ew-page {
+        padding: )" + Theme::spacing_sm + R"(;
+        max-width: 100%;
+    }
+
     .ew-grid-2, .ew-grid-3, .ew-grid-4 {
         grid-template-columns: 1fr;
     }
 
     .ew-row {
         flex-direction: column;
+        gap: )" + Theme::spacing_md + R"(;
     }
 
     .ew-navbar {
         padding: )" + Theme::spacing_sm + " " + Theme::spacing_md + R"(;
+        flex-wrap: wrap;
     }
 
     .ew-navbar-nav {
         display: none;
+    }
+
+    .ew-navbar-brand {
+        font-size: )" + Theme::font_size_base + R"(;
+    }
+
+    .ew-card {
+        padding: )" + Theme::spacing_sm + R"(;
+        margin-bottom: )" + Theme::spacing_md + R"(;
+    }
+
+    .ew-card-title {
+        font-size: )" + Theme::font_size_base + R"(;
+        margin-bottom: )" + Theme::spacing_sm + R"(;
+    }
+
+    .ew-btn {
+        width: 100%;
+        margin-bottom: )" + Theme::spacing_sm + R"(;
+    }
+
+    .ew-input, .ew-textarea {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    .ew-chart-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .ew-table {
+        font-size: )" + Theme::font_size_sm + R"(;
+    }
+
+    .ew-stat-value {
+        font-size: )" + Theme::font_size_lg + R"(;
+    }
+
+    .ew-stat-label {
+        font-size: )" + Theme::font_size_sm + R"(;
+    }
+}
+
+@media (max-width: 576px) {
+    .ew-page {
+        padding: )" + Theme::spacing_xs + R"(;
+    }
+
+    .ew-card {
+        padding: )" + Theme::spacing_xs + R"(;
+        border-radius: 8px;
+    }
+
+    .ew-card-mobile-full {
+        margin: 0 -)" + Theme::spacing_xs + R"( )" + Theme::spacing_md + R"( -)" + Theme::spacing_xs + R"(;
+        border-radius: 0;
+    }
+
+    .ew-card-title {
+        font-size: )" + Theme::font_size_sm + R"(;
+        text-align: center;
+    }
+
+    .ew-text-h1 {
+        font-size: )" + Theme::font_size_xl + R"(;
+        text-align: center;
+    }
+
+    .ew-text-h2 {
+        font-size: )" + Theme::font_size_lg + R"(;
+        text-align: center;
+    }
+
+    .ew-text-h3 {
+        font-size: )" + Theme::font_size_base + R"(;
+        text-align: center;
+    }
+
+    .ew-spacer {
+        height: )" + Theme::spacing_md + R"(;
+    }
+
+    .ew-spacer-sm {
+        height: )" + Theme::spacing_sm + R"(;
+    }
+
+    .ew-spacer-lg {
+        height: )" + Theme::spacing_lg + R"(;
+    }
+
+    .ew-spacer-xl {
+        height: )" + Theme::spacing_xl + R"(;
+    }
+
+    /* Stack everything vertically on mobile */
+    .ew-row, .ew-row-wrap {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .ew-center-content {
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* Make buttons more touch-friendly */
+    .ew-btn {
+        min-height: 48px;
+        font-size: )" + Theme::font_size_base + R"(;
+        padding: )" + Theme::spacing_md + " " + Theme::spacing_lg + R"(;
+    }
+
+    /* Improve form elements for mobile */
+    .ew-input, .ew-textarea, .ew-select {
+        padding: )" + Theme::spacing_md + R"(;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+
+    /* Better spacing for lists and badges */
+    .ew-badge {
+        font-size: )" + Theme::font_size_xs + R"(;
+        padding: 4px 8px;
+    }
+
+    /* Make charts responsive */
+    .ew-chart-container svg {
+        max-width: 100%;
+        height: auto;
     }
 }
 )";

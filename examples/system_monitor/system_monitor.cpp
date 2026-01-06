@@ -72,60 +72,27 @@ App create_system_monitor_content() {
     app.add(Spacer());
 
     // Server Topology Visualization (Graph Layout)
-    app.add(
-    Diagram()
-        .node("A", "Parser")
-        .node("B", "Renderer")
-        .node("C", "HTML")
-        .edge("A", "B", "AST")
-        .edge("B", "C")
-    );
-    
+    Diagram topologyDiagram;
+    topologyDiagram.width(700).height(300);
+    topologyDiagram.layoutType(LayoutType::Hierarchical);
+    topologyDiagram.layoutDirection(LayoutDirection::LeftToRight);
+    topologyDiagram
+        .node("lb", "🌐\nLB-01\n100%")
+        .node("web1", "🖥️\nWeb-01\n95%")
+        .node("web2", "🖥️\nWeb-02\n97%")
+        .node("db", "🗄️\nDB-01\n87%")
+        .node("cache", "💾\nCache\n92%")
+        .edge("lb", "web1", "load")
+        .edge("lb", "web2", "load")
+        .edge("web1", "db", "data")
+        .edge("web2", "db", "data")
+        .edge("db", "cache", "cache");
+
     app.add(
         Card().title("🌐 Infrastructure Topology")
             .add(Text("Interactive system architecture with real-time status").secondary())
             .add(Spacer().sm())
-            .add(
-                Row().classes("ew-center")
-                    // Load Balancer
-                    .add(Card().compact().classes("ew-center")
-                        .add(Text("🌐"))
-                        .add(Text("LB-01").muted())
-                        .add(Badge("100%").success())
-                    )
-                    .add(Text("⟶").classes("ew-text-secondary"))
-                    
-                    // Web Servers (stacked)
-                    .add(Column().classes("ew-center")
-                        .add(Card().compact().classes("ew-center")
-                            .add(Text("🖥️"))
-                            .add(Text("Web-01").muted())
-                            .add(Badge("95%").success())
-                        )
-                        .add(Spacer().sm())
-                        .add(Card().compact().classes("ew-center")
-                            .add(Text("🖥️"))
-                            .add(Text("Web-02").muted())
-                            .add(Badge("97%").success())
-                        )
-                    )
-                    .add(Text("⟶").classes("ew-text-secondary"))
-                    
-                    // Database
-                    .add(Card().compact().classes("ew-center")
-                        .add(Text("🗄️"))
-                        .add(Text("DB-01").muted())
-                        .add(Badge("87%").warning())
-                    )
-                    .add(Text("⟶").classes("ew-text-secondary"))
-                    
-                    // Cache
-                    .add(Card().compact().classes("ew-center")
-                        .add(Text("💾"))
-                        .add(Text("Cache").muted())
-                        .add(Badge("92%").success())
-                    )
-            )
+            .add(topologyDiagram)
             .add(Spacer().sm())
             .add(Text("Load Balancer distributes traffic to Web Servers, which connect to Database and Cache layers").muted())
     );

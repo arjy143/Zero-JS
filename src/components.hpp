@@ -364,6 +364,7 @@ public:
     Card& compact() { compact_ = true; return *this; }
     Card& accent() { accent_ = true; return *this; }
     Card& border(const std::string& color) { border_color_ = color; return *this; }
+    Card& mobile_full() { classes_ += " ew-card-mobile-full"; return *this; }
     Card& id(const std::string& i) { id_ = i; return *this; }
     Card& classes(const std::string& c) { classes_ = c; return *this; }
 
@@ -403,6 +404,8 @@ public:
 
     Row& wrap() { wrap_ = true; return *this; }
     Row& gap(const std::string& g) { gap_ = g; return *this; }
+    Row& stack_mobile() { classes_ += " ew-row-mobile-stack"; return *this; }
+    Row& center_mobile() { classes_ += " ew-center-mobile"; return *this; }
     Row& id(const std::string& i) { id_ = i; return *this; }
     Row& classes(const std::string& c) { classes_ = c; return *this; }
 
@@ -456,6 +459,7 @@ class Grid : public Component {
 public:
     std::vector<ComponentPtr> children_;
     int columns_ = 2;
+    bool responsive_ = false;
 
     Grid() = default;
 
@@ -466,15 +470,18 @@ public:
     }
 
     Grid& columns(int c) { columns_ = c; return *this; }
+    Grid& responsive(bool r = true) { responsive_ = r; return *this; }
     Grid& id(const std::string& i) { id_ = i; return *this; }
     Grid& classes(const std::string& c) { classes_ = c; return *this; }
 
     std::string render() const override {
         std::ostringstream html;
-        std::string cls = "ew-grid";
-        if (columns_ == 2) cls += " ew-grid-2";
-        else if (columns_ == 3) cls += " ew-grid-3";
-        else if (columns_ == 4) cls += " ew-grid-4";
+        std::string cls = responsive_ ? "ew-grid-responsive" : "ew-grid";
+        if (!responsive_) {
+            if (columns_ == 2) cls += " ew-grid-2";
+            else if (columns_ == 3) cls += " ew-grid-3";
+            else if (columns_ == 4) cls += " ew-grid-4";
+        }
         if (!classes_.empty()) cls += " " + classes_;
         html << "<div class=\"" << cls << "\"" << render_attributes() << ">";
         html << render_children(children_);
