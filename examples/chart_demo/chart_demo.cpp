@@ -86,7 +86,7 @@ int main() {
         // Diagram Demo - Hierarchical Layout (Workflow)
         Diagram workflowDiagram;
         workflowDiagram.width(600).height(200);
-        workflowDiagram.layoutType(LayoutType::Hierarchical);
+        workflowDiagram.layoutDirection(LayoutDirection::LeftToRight);
         workflowDiagram
             .node("input", "Input\nData")
             .node("process", "Process\nData")
