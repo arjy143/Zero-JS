@@ -8,6 +8,7 @@
 #include <cmath>
 #include <iomanip>
 #include <unordered_map>
+#include <iostream>
 
 namespace zero_js
 {
@@ -227,7 +228,7 @@ public:
     double h_spacing_   = 80;
     double v_spacing_   = 40;
     LayoutType layout_type_ = LayoutType::Hierarchical;
-    LayoutDirection layout_direction_ = LayoutDirection::LeftToRight;
+    LayoutDirection layout_direction_ = LayoutDirection::TopToBottom;
 
     Diagram& node(const std::string& id, const std::string& label) {
         nodes_.push_back({id, label});
@@ -279,6 +280,23 @@ private:
     std::vector<DiagramNode> nodes_;
     std::vector<DiagramEdge> edges_;
 
+    double calculateNodeHeight(const DiagramNode& node) const {
+        // Split label into lines
+        std::istringstream iss(node.label);
+        std::string line;
+        std::vector<std::string> lines;
+        while (std::getline(iss, line)) {
+            lines.push_back(line);
+        }
+
+        double line_height = 14; // Approximate line height
+        double total_text_height = lines.size() * line_height;
+        double padding = 16; // Top and bottom padding
+        double calculated_height = total_text_height + padding;
+        // Use a reasonable minimum height, not the default node_height_
+        return std::max(calculated_height, 30.0); // Minimum 30px height
+    }
+
     void layout(std::vector<DiagramNode>& nodes) const {
         if (layout_type_ == LayoutType::Manual) {
             // Manual positioning - nodes already have their positions set
@@ -294,6 +312,12 @@ private:
     void layoutHierarchical(std::vector<DiagramNode>& nodes) const {
         if (nodes.empty()) return;
 
+        // First pass: calculate required heights for each node
+        std::unordered_map<std::string, double> node_heights;
+        for (const auto& n : nodes) {
+            node_heights[n.id] = calculateNodeHeight(n);
+        }
+
         std::unordered_map<std::string, int> depth;
         std::unordered_map<int, int> row_for_column;
 
@@ -307,25 +331,45 @@ private:
             }
         }
 
-        // Calculate layout dimensions
+        // Calculate layout dimensions using actual node heights
         int max_col = 0;
         int max_row = 0;
+        std::unordered_map<int, double> max_height_in_row;
         for (const auto& n : nodes) {
             int col = depth[n.id];
             max_col = std::max(max_col, col);
+            max_height_in_row[col] = std::max(max_height_in_row[col], node_heights[n.id]);
             max_row = std::max(max_row, row_for_column[col]++);
         }
 
         // Reset row counts for actual positioning
         row_for_column.clear();
+        std::unordered_map<int, double> current_y_offset;
         for (const auto& n : nodes) {
             int col = depth[n.id];
             row_for_column[col]++;
         }
 
-        // Calculate total layout dimensions
-        double total_width = (max_col + 1) * node_width_ + max_col * h_spacing_ + 120; // 120 for margins
-        double total_height = (max_row + 1) * node_height_ + max_row * v_spacing_ + 120;
+        // Calculate total layout dimensions based on layout direction
+        double total_width, total_height;
+        if (layout_direction_ == LayoutDirection::TopToBottom) {
+            // For TopToBottom: width based on rows (horizontal spread), height based on columns (vertical depth)
+            total_width = (max_row + 1) * node_width_ + max_row * h_spacing_ + 120;
+            total_height = 0;
+            for (int col = 0; col <= max_col; ++col) {
+                total_height += max_height_in_row[col] + v_spacing_;
+            }
+            total_height += 120;
+        } else {
+            // Default: LeftToRight layout
+            total_width = (max_col + 1) * node_width_ + max_col * h_spacing_ + 120;
+            // For LeftToRight, height is determined by the tallest column
+            double max_column_height = 0;
+            for (int col = 0; col <= max_col; ++col) {
+                max_column_height = std::max(max_column_height, max_height_in_row[col]);
+            }
+            total_height = max_column_height + 120; // Single row + margins
+        }
 
         // Calculate scaling factor to fit within available space
         double scale_x = (total_width > width_) ? width_ / total_width : 1.0;
@@ -334,12 +378,12 @@ private:
 
         // Apply scaling to node dimensions and spacing
         double scaled_node_width = node_width_ * scale;
-        double scaled_node_height = node_height_ * scale;
         double scaled_h_spacing = h_spacing_ * scale;
         double scaled_v_spacing = v_spacing_ * scale;
 
         // Position nodes with scaling and direction support
         row_for_column.clear();
+        current_y_offset.clear();
         for (auto& n : nodes) {
             int col = depth[n.id];
             int row = row_for_column[col]++;
@@ -347,22 +391,27 @@ private:
             double base_x = 60 * scale;
             double base_y = 60 * scale;
 
+            // Calculate scaled height for this node
+            double scaled_node_height = node_heights[n.id] * scale;
+
             switch (layout_direction_) {
                 case LayoutDirection::LeftToRight:
                     n.x = base_x + col * (scaled_node_width + scaled_h_spacing);
-                    n.y = base_y + row * (scaled_node_height + scaled_v_spacing);
+                    n.y = base_y + current_y_offset[col];
+                    current_y_offset[col] += scaled_node_height + scaled_v_spacing;
                     break;
                 case LayoutDirection::TopToBottom:
                     n.x = base_x + row * (scaled_node_width + scaled_h_spacing);
-                    n.y = base_y + col * (scaled_node_height + scaled_v_spacing);
+                    n.y = base_y + col * (max_height_in_row[col] * scale + scaled_v_spacing);
                     break;
                 case LayoutDirection::RightToLeft:
                     n.x = width_ - base_x - (col + 1) * (scaled_node_width + scaled_h_spacing);
-                    n.y = base_y + row * (scaled_node_height + scaled_v_spacing);
+                    n.y = base_y + current_y_offset[col];
+                    current_y_offset[col] += scaled_node_height + scaled_v_spacing;
                     break;
                 case LayoutDirection::BottomToTop:
                     n.x = base_x + row * (scaled_node_width + scaled_h_spacing);
-                    n.y = height_ - base_y - (col + 1) * (scaled_node_height + scaled_v_spacing);
+                    n.y = height_ - base_y - (col + 1) * (max_height_in_row[col] * scale + scaled_v_spacing);
                     break;
             }
 
@@ -441,19 +490,60 @@ private:
             const auto* b = find(e.to);
             if (!a || !b) continue;
 
-            double x1 = a->x + a->w;
-            double y1 = a->y + a->h / 2;
-            double x2 = b->x;
-            double y2 = b->y + b->h / 2;
+            // Calculate connection points based on layout direction
+            double x1, y1, x2, y2;
+            x1 = a->x + a->w / 2;
+            y1 = a->y + a->h;
+            x2 = b->x + b->w / 2;
+            y2 = b->y;
 
-            out << "<line x1=\"" << x1 << "\" y1=\"" << y1
-                << "\" x2=\"" << x2 << "\" y2=\"" << y2
-                << "\" stroke=\"var(--ew-text-muted)\" stroke-width=\"1.5\" "
-                << "marker-end=\"url(#ew-arrow)\"/>";
+            // For orthogonal edges in hierarchical layouts, draw path with intermediate points
+            if (layout_type_ == LayoutType::Hierarchical) {
+                std::string path_data;
+                if (layout_direction_ == LayoutDirection::TopToBottom) {
+                    // For top-to-bottom: go down from source, then horizontally to target x, then up to target
+                    double mid_y = (y1 + y2) / 2;
+                    path_data = "M " + std::to_string(x1) + "," + std::to_string(y1) +
+                               " L " + std::to_string(x1) + "," + std::to_string(mid_y) +
+                               " L " + std::to_string(x2) + "," + std::to_string(mid_y) +
+                               " L " + std::to_string(x2) + "," + std::to_string(y2);
+                } else if (layout_direction_ == LayoutDirection::LeftToRight) {
+                    // For left-to-right: go right from source, then vertically to target y, then left to target
+                    double mid_x = (x1 + x2) / 2;
+                    path_data = "M " + std::to_string(x1) + "," + std::to_string(y1) +
+                               " L " + std::to_string(mid_x) + "," + std::to_string(y1) +
+                               " L " + std::to_string(mid_x) + "," + std::to_string(y2) +
+                               " L " + std::to_string(x2) + "," + std::to_string(y2);
+                } else {
+                    // For other directions, use simple straight line for now
+                    path_data = "M " + std::to_string(x1) + "," + std::to_string(y1) +
+                               " L " + std::to_string(x2) + "," + std::to_string(y2);
+                }
+
+                out << "<path d=\"" << path_data
+                    << "\" stroke=\"var(--ew-text-muted)\" stroke-width=\"1.5\" "
+                    << "fill=\"none\" marker-end=\"url(#ew-arrow)\"/>";
+            } else {
+                // For circular layout, use straight lines
+                out << "<line x1=\"" << x1 << "\" y1=\"" << y1
+                    << "\" x2=\"" << x2 << "\" y2=\"" << y2
+                    << "\" stroke=\"var(--ew-text-muted)\" stroke-width=\"1.5\" "
+                    << "marker-end=\"url(#ew-arrow)\"/>";
+            }
 
             if (!e.label.empty()) {
-                out << "<text x=\"" << (x1 + x2) / 2
-                    << "\" y=\"" << (y1 + y2) / 2 - 4
+                // Position label at the midpoint of the path
+                double label_x, label_y;
+                if (layout_type_ == LayoutType::Hierarchical && layout_direction_ == LayoutDirection::TopToBottom) {
+                    label_x = (x1 + x2) / 2;
+                    label_y = (y1 + y2) / 2 - 4;
+                } else {
+                    label_x = (x1 + x2) / 2;
+                    label_y = (y1 + y2) / 2 - 4;
+                }
+
+                out << "<text x=\"" << label_x
+                    << "\" y=\"" << label_y
                     << "\" text-anchor=\"middle\" font-size=\"11\" "
                     << "fill=\"var(--ew-text-muted)\">"
                     << e.label << "</text>";
