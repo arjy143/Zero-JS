@@ -55,14 +55,11 @@ page.cream_mode();     // Warm paper-like
 
 ## Examples
 
-- An example dashboard using the technical document style theme
-![alt text](design/image.png)
+![alt text](design/image_new_1.png)
 
-- A diagram using the dark mode theme
-![alt text](design/image2.png)
+![alt text](design/image_new_2.png)
 
-- A system monitor page using the light mode theme
-![alt text](design/image3.png)
+![alt text](design/image_new_3.png)
 
 See the `examples/` directory for complete static websites:
 

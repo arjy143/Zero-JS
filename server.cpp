@@ -37,7 +37,7 @@ void handle_request(int client_fd, const std::string& base_dir) {
 
     std::string request(buffer);
     std::cout << "Request:\n" << request << "\n";
-    
+
     // Parse GET request
     if (request.substr(0, 3) != "GET") {
         std::cout << "get request\n";
@@ -65,9 +65,11 @@ void handle_request(int client_fd, const std::string& base_dir) {
     }
     if (url_path == "/api/click") 
     {
-        std::cout << "Button was clicked!" << std::endl;
-
-        std::string body = "OK";
+        static int counter = 0;
+        counter++;
+        std::cout << "Button was clicked! counter = " << counter << std::endl;
+        
+        std::string body = "Clicks: " + std::to_string(counter);
         std::string response =
             "HTTP/1.1 200 OK\r\n"
             "Content-Type: text/plain\r\n"
