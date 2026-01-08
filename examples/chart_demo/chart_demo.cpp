@@ -83,42 +83,7 @@ int main() {
 
         app.add(Spacer());
 
-        // Diagram Demo - Hierarchical Layout (Workflow)
-        Diagram workflowDiagram;
-        workflowDiagram.width(600).height(200);
-        workflowDiagram.layoutDirection(LayoutDirection::LeftToRight);
-        workflowDiagram
-            .node("input", "Input\nData")
-            .node("process", "Process\nData")
-            .node("validate", "Validate\nResults")
-            .node("output", "Generate\nOutput")
-            .edge("input", "process", "raw data")
-            .edge("process", "validate", "processed")
-            .edge("validate", "output", "validated");
-
-        app.add(Card().title("🔀 Diagram - Hierarchical Workflow").add(workflowDiagram));
-
-        app.add(Spacer());
-        // Diagram Demo - Top to Bottom Layout
-        Diagram verticalDiagram;
-        verticalDiagram.width(300).height(500);
-        verticalDiagram.layoutType(LayoutType::Hierarchical);
-        verticalDiagram.layoutDirection(LayoutDirection::TopToBottom);
-        verticalDiagram
-            .node("plan", "Planning\nPhase")
-            .node("design", "Design\nPhase")
-            .node("develop", "Development\nPhase")
-            .node("test", "Testing\nPhase")
-            .node("deploy", "Deploy\nPhase")
-            .edge("plan", "design")
-            .edge("design", "develop")
-            .edge("develop", "test")
-            .edge("test", "deploy");
-
-        app.add(Card().title("📈 Diagram - Top-to-Bottom Workflow").add(verticalDiagram));
-
-        app.add(Spacer());
-
+        
         // Responsive Grid Demo
         app.add(
             Card().title("🔄 Responsive Grid Layout")
@@ -136,26 +101,7 @@ int main() {
         );
 
         app.add(Spacer());
-        // Diagram Demo - Circular Layout (Network)
-        Diagram networkDiagram;
-        networkDiagram.width(400).height(400);
-        networkDiagram.layoutType(LayoutType::Circular);
-        networkDiagram
-            .node("web", "Web\nServer")
-            .node("api", "API\nGateway")
-            .node("db", "Database")
-            .node("cache", "Cache")
-            .node("auth", "Auth\nService")
-            .edge("web", "api")
-            .edge("api", "db")
-            .edge("api", "cache")
-            .edge("api", "auth")
-            .edge("auth", "db");
-
-        app.add(Card().title("🌐 Diagram - Circular Network Topology").add(networkDiagram));
-
-        app.add(Spacer());
-
+        
         // Features showcase
         app.add(
             Card().title("✨ Chart Features")

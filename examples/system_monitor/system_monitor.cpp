@@ -71,34 +71,7 @@ App create_system_monitor_content() {
 
     app.add(Spacer());
 
-    // Server Topology Visualization (Graph Layout)
-    Diagram topologyDiagram;
-    topologyDiagram.width(700).height(300);
-    topologyDiagram.layoutType(LayoutType::Hierarchical);
-    topologyDiagram.layoutDirection(LayoutDirection::LeftToRight);
-    topologyDiagram
-        .node("lb", "🌐\nLB-01\n100%")
-        .node("web1", "🖥️\nWeb-01\n95%")
-        .node("web2", "🖥️\nWeb-02\n97%")
-        .node("db", "🗄️\nDB-01\n87%")
-        .node("cache", "💾\nCache\n92%")
-        .edge("lb", "web1", "load")
-        .edge("lb", "web2", "load")
-        .edge("web1", "db", "data")
-        .edge("web2", "db", "data")
-        .edge("db", "cache", "cache");
-
-    app.add(
-        Card().title("🌐 Infrastructure Topology")
-            .add(Text("Interactive system architecture with real-time status").secondary())
-            .add(Spacer().sm())
-            .add(topologyDiagram)
-            .add(Spacer().sm())
-            .add(Text("Load Balancer distributes traffic to Web Servers, which connect to Database and Cache layers").muted())
-    );
-
-    app.add(Spacer());
-
+    
     // Advanced Monitoring Panels
     app.add(
         Grid().columns(2)
