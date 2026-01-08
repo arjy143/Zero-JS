@@ -12,7 +12,8 @@ namespace zero_js
     const std::string& title,
     const std::string& body_content,
     bool include_htmx = true,
-    ThemeMode mode = ThemeMode::Dark
+    ThemeMode mode = ThemeMode::Dark,
+    bool include_sse = false
 ) {
     Theme theme;
     theme.mode = mode;
@@ -30,9 +31,15 @@ namespace zero_js
     html << "    </style>\n";
 
     if (include_htmx) {
-        html << R"(<script src="https://unpkg.com/htmx.org@1.9.10">\n)";
+        html << "    <script>\n";
         html << get_htmx_script();
         html << "    </script>\n";
+
+        if (include_sse) {
+            html << "    <script>\n";
+            html << get_htmx_sse_extension();
+            html << "    </script>\n";
+        }
     }
 
     html << "</head>\n";

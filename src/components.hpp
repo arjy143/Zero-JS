@@ -31,6 +31,11 @@ public:
     std::string hx_target_;
     std::string hx_swap_;
     std::string hx_trigger_;
+    std::string hx_ext_;
+    std::string hx_vals_;
+    std::string sse_connect_;
+    std::string sse_swap_;
+    std::string sse_close_;
 
 protected:
     std::string render_attributes() const {
@@ -41,6 +46,11 @@ protected:
         if (!hx_target_.empty()) attrs << " hx-target=\"" << hx_target_ << "\"";
         if (!hx_swap_.empty()) attrs << " hx-swap=\"" << hx_swap_ << "\"";
         if (!hx_trigger_.empty()) attrs << " hx-trigger=\"" << hx_trigger_ << "\"";
+        if (!hx_ext_.empty()) attrs << " hx-ext=\"" << hx_ext_ << "\"";
+        if (!hx_vals_.empty()) attrs << " hx-vals='" << hx_vals_ << "'";
+        if (!sse_connect_.empty()) attrs << " sse-connect=\"" << sse_connect_ << "\"";
+        if (!sse_swap_.empty()) attrs << " sse-swap=\"" << sse_swap_ << "\"";
+        if (!sse_close_.empty()) attrs << " sse-close=\"" << sse_close_ << "\"";
         return attrs.str();
     }
 
@@ -332,6 +342,20 @@ public:
 
     Box& id(const std::string& i) { id_ = i; return *this; }
     Box& classes(const std::string& c) { classes_ = c; return *this; }
+
+    // HTMX attributes
+    Box& get(const std::string& url) { hx_get_ = url; return *this; }
+    Box& post(const std::string& url) { hx_post_ = url; return *this; }
+    Box& target(const std::string& t) { hx_target_ = t; return *this; }
+    Box& swap(const std::string& s) { hx_swap_ = s; return *this; }
+    Box& trigger(const std::string& t) { hx_trigger_ = t; return *this; }
+    Box& ext(const std::string& e) { hx_ext_ = e; return *this; }
+    Box& vals(const std::string& v) { hx_vals_ = v; return *this; }
+
+    // SSE attributes
+    Box& sse_connect(const std::string& url) { hx_ext_ = "sse"; sse_connect_ = url; return *this; }
+    Box& sse_swap(const std::string& event) { sse_swap_ = event; return *this; }
+    Box& sse_close(const std::string& event) { sse_close_ = event; return *this; }
 
     std::string render() const override {
         std::ostringstream html;
@@ -761,10 +785,203 @@ public:
     Page& dark_mode() { theme_mode_ = 0; return *this; }
     Page& light_mode() { theme_mode_ = 1; return *this; }
     Page& cream_mode() { theme_mode_ = 2; return *this; }
+    Page& with_sse() { include_sse_ = true; return *this; }
 
     std::string render() const override;
     std::string render_fragment() const { return render_children(children_); }
     void render_to_file(const std::string& path) const;
+
+    bool include_sse_ = false;
+};
+
+// ============================================================================
+// Chat/Streaming Components
+// ============================================================================
+
+class ChatMessage : public Component {
+public:
+    std::string content_;
+    bool is_user_ = false;
+    bool is_streaming_ = false;
+
+    ChatMessage() = default;
+    explicit ChatMessage(const std::string& content) : content_(content) {}
+
+    ChatMessage& content(const std::string& c) { content_ = c; return *this; }
+    ChatMessage& user() { is_user_ = true; return *this; }
+    ChatMessage& assistant() { is_user_ = false; return *this; }
+    ChatMessage& streaming() { is_streaming_ = true; return *this; }
+    ChatMessage& id(const std::string& i) { id_ = i; return *this; }
+    ChatMessage& classes(const std::string& c) { classes_ = c; return *this; }
+
+    std::string render() const override {
+        std::ostringstream html;
+        std::string cls = "ew-chat-message";
+        if (is_user_) cls += " ew-chat-message-user";
+        else cls += " ew-chat-message-assistant";
+        if (is_streaming_) cls += " ew-chat-message-streaming";
+        if (!classes_.empty()) cls += " " + classes_;
+        html << "<div class=\"" << cls << "\"" << render_attributes() << ">";
+        html << "<div class=\"ew-chat-message-content\">" << content_ << "</div>";
+        html << "</div>";
+        return html.str();
+    }
+};
+
+class ChatInput : public Component {
+public:
+    std::string placeholder_ = "Type a message...";
+    std::string endpoint_ = "/chat";
+    std::string session_id_;
+    std::string target_ = "#chat-response";
+
+    ChatInput() = default;
+
+    ChatInput& placeholder(const std::string& p) { placeholder_ = p; return *this; }
+    ChatInput& endpoint(const std::string& e) { endpoint_ = e; return *this; }
+    ChatInput& session(const std::string& s) { session_id_ = s; return *this; }
+    ChatInput& target(const std::string& t) { target_ = t; return *this; }
+    ChatInput& id(const std::string& i) { id_ = i; return *this; }
+    ChatInput& classes(const std::string& c) { classes_ = c; return *this; }
+
+    std::string render() const override {
+        std::ostringstream html;
+        std::string cls = "ew-chat-input-container";
+        if (!classes_.empty()) cls += " " + classes_;
+
+        html << "<form class=\"" << cls << "\"";
+        html << " hx-post=\"" << endpoint_ << "\"";
+        html << " hx-target=\"" << target_ << "\"";
+        html << " hx-swap=\"beforeend\"";
+        if (!session_id_.empty()) {
+            html << " hx-vals='{\"session_id\":\"" << session_id_ << "\"}'";
+        }
+        html << render_attributes() << ">";
+        html << "<input type=\"text\" name=\"message\" class=\"ew-input ew-chat-input\" placeholder=\"" << placeholder_ << "\" autocomplete=\"off\">";
+        html << "<button type=\"submit\" class=\"ew-button ew-button-primary\">Send</button>";
+        html << "</form>";
+        return html.str();
+    }
+};
+
+class ChatStream : public Component {
+public:
+    std::string session_id_;
+    std::string endpoint_ = "/chat/stream";
+    std::string event_name_ = "message";
+    std::string close_event_ = "done";
+    std::vector<ComponentPtr> children_;
+
+    ChatStream() = default;
+
+    template<typename T>
+    ChatStream& add(T&& component) {
+        children_.push_back(make_component(std::forward<T>(component)));
+        return *this;
+    }
+
+    ChatStream& session(const std::string& s) { session_id_ = s; return *this; }
+    ChatStream& endpoint(const std::string& e) { endpoint_ = e; return *this; }
+    ChatStream& event(const std::string& e) { event_name_ = e; return *this; }
+    ChatStream& close_on(const std::string& e) { close_event_ = e; return *this; }
+    ChatStream& id(const std::string& i) { id_ = i; return *this; }
+    ChatStream& classes(const std::string& c) { classes_ = c; return *this; }
+
+    std::string render() const override {
+        std::ostringstream html;
+        std::string cls = "ew-chat-stream";
+        if (!classes_.empty()) cls += " " + classes_;
+
+        // Build the SSE URL
+        std::string sse_url = endpoint_;
+        if (!session_id_.empty()) {
+            sse_url += "?session_id=" + session_id_;
+        }
+
+        html << "<div class=\"" << cls << "\"";
+        html << " hx-ext=\"sse\"";
+        html << " sse-connect=\"" << sse_url << "\"";
+        if (!close_event_.empty()) {
+            html << " sse-close=\"" << close_event_ << "\"";
+        }
+        html << render_attributes() << ">";
+
+        // Inner div that receives the streamed content
+        html << "<div class=\"ew-chat-stream-content\"";
+        html << " sse-swap=\"" << event_name_ << "\"";
+        html << " hx-swap=\"beforeend\">";
+        html << render_children(children_);
+        html << "</div>";
+
+        html << "</div>";
+        return html.str();
+    }
+};
+
+class ChatContainer : public Component {
+public:
+    std::string session_id_;
+    std::string chat_endpoint_ = "/chat";
+    std::string stream_endpoint_ = "/chat/stream";
+    std::string placeholder_ = "Type a message...";
+    std::vector<ComponentPtr> initial_messages_;
+
+    ChatContainer() = default;
+
+    template<typename T>
+    ChatContainer& add_message(T&& component) {
+        initial_messages_.push_back(make_component(std::forward<T>(component)));
+        return *this;
+    }
+
+    ChatContainer& session(const std::string& s) { session_id_ = s; return *this; }
+    ChatContainer& chat_endpoint(const std::string& e) { chat_endpoint_ = e; return *this; }
+    ChatContainer& stream_endpoint(const std::string& e) { stream_endpoint_ = e; return *this; }
+    ChatContainer& placeholder(const std::string& p) { placeholder_ = p; return *this; }
+    ChatContainer& id(const std::string& i) { id_ = i; return *this; }
+    ChatContainer& classes(const std::string& c) { classes_ = c; return *this; }
+
+    std::string render() const override {
+        std::ostringstream html;
+        std::string cls = "ew-chat-container";
+        if (!classes_.empty()) cls += " " + classes_;
+
+        html << "<div class=\"" << cls << "\"" << render_attributes() << ">";
+
+        // Messages area with SSE streaming
+        html << "<div class=\"ew-chat-messages\" id=\"chat-messages\"";
+        html << " hx-ext=\"sse\"";
+        std::string sse_url = stream_endpoint_;
+        if (!session_id_.empty()) {
+            sse_url += "?session_id=" + session_id_;
+        }
+        html << " sse-connect=\"" << sse_url << "\"";
+        html << " sse-close=\"done\">";
+
+        // Initial messages
+        html << render_children(initial_messages_);
+
+        // Response area for streamed content
+        html << "<div id=\"chat-response\" sse-swap=\"message\" hx-swap=\"beforeend\"></div>";
+
+        html << "</div>";
+
+        // Input form
+        html << "<form class=\"ew-chat-input-container\"";
+        html << " hx-post=\"" << chat_endpoint_ << "\"";
+        html << " hx-target=\"#chat-response\"";
+        html << " hx-swap=\"beforeend\"";
+        if (!session_id_.empty()) {
+            html << " hx-vals='{\"session_id\":\"" << session_id_ << "\"}'";
+        }
+        html << ">";
+        html << "<input type=\"text\" name=\"message\" class=\"ew-input ew-chat-input\" placeholder=\"" << placeholder_ << "\" autocomplete=\"off\">";
+        html << "<button type=\"submit\" class=\"ew-button ew-button-primary\">Send</button>";
+        html << "</form>";
+
+        html << "</div>";
+        return html.str();
+    }
 };
 
 }

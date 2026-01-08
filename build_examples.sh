@@ -11,6 +11,7 @@ FILES=(
   "examples/personal_portfolio/personal_portfolio.cpp"
   "examples/system_monitor/system_monitor.cpp"
   "examples/doc_website/doc_website.cpp"
+  "examples/chat_demo/chat_demo.cpp"
 )
 
 for file in "${FILES[@]}"; do

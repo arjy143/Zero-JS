@@ -10,7 +10,7 @@
 
 namespace zero_js
 {
-    inline std::string Page::render() const 
+    inline std::string Page::render() const
     {
 
     ThemeMode mode = ThemeMode::Dark;
@@ -23,7 +23,7 @@ namespace zero_js
          mode = ThemeMode::Cream;
     }
 
-    return render_page_html(title_, render_children(children_), include_htmx_, mode);
+    return render_page_html(title_, render_children(children_), include_htmx_, mode, include_sse_);
     }
 
     inline void Page::render_to_file(const std::string& path) const 

@@ -13,4 +13,120 @@ namespace zero_js
     )HTMX";
     }
 
+    // HTMX SSE Extension 2.2.1 - https://htmx.org/extensions/sse/
+    // MIT License
+    inline std::string get_htmx_sse_extension() {
+        return R"SSE(
+(function(){
+    var defined = function(value) { return typeof value !== "undefined"; };
+
+    htmx.defineExtension("sse", {
+        init: function(api) {
+            this.api = api;
+        },
+
+        onEvent: function(name, evt) {
+            var parent = evt.target || evt.detail.elt;
+            switch (name) {
+                case "htmx:beforeCleanupElement":
+                    var source = parent.htmx_sseEventSource;
+                    if (source) {
+                        source.close();
+                    }
+                    return;
+            }
+        },
+
+        transformResponse: function(text, xhr, elt) {
+            return text;
+        },
+
+        getSelectors: function() {
+            return {
+                "[sse-connect]": function(elt) {
+                    ensureEventSourceOnElement(elt);
+                },
+                "[sse-swap]": function(elt) {
+                    var sseSource = findSSESource(elt);
+                    if (sseSource) {
+                        var sseSwap = elt.getAttribute("sse-swap");
+                        var events = sseSwap.split(",");
+                        for (var i = 0; i < events.length; i++) {
+                            var eventName = events[i].trim();
+                            registerSSEListener(elt, sseSource, eventName);
+                        }
+                    }
+                }
+            };
+        }
+    });
+
+    function findSSESource(elt) {
+        var sourceElt = htmx.closest(elt, "[sse-connect]");
+        if (sourceElt) {
+            ensureEventSourceOnElement(sourceElt);
+            return sourceElt.htmx_sseEventSource;
+        }
+        return null;
+    }
+
+    function ensureEventSourceOnElement(elt) {
+        if (elt.htmx_sseEventSource) {
+            return;
+        }
+
+        var sseURL = elt.getAttribute("sse-connect");
+        if (!sseURL) {
+            return;
+        }
+
+        var source = new EventSource(sseURL, { withCredentials: true });
+        elt.htmx_sseEventSource = source;
+
+        source.onerror = function(err) {
+            htmx.trigger(elt, "htmx:sseError", { error: err, source: source });
+        };
+
+        source.onopen = function() {
+            htmx.trigger(elt, "htmx:sseOpen", { source: source });
+        };
+    }
+
+    function registerSSEListener(elt, source, eventName) {
+        var internalData = htmx._("getInternalData")(elt);
+        if (!internalData.sseEventListeners) {
+            internalData.sseEventListeners = {};
+        }
+
+        if (internalData.sseEventListeners[eventName]) {
+            return;
+        }
+
+        var listener = function(event) {
+            if (elt.getAttribute("hx-trigger") === "sse:" + eventName) {
+                htmx.trigger(elt, "htmx:trigger", { sseEvent: event });
+            }
+
+            var swapSpec = htmx._("getSwapSpecification")(elt);
+            var target = htmx._("getTarget")(elt);
+            var settleInfo = htmx._("makeSettleInfo")(elt);
+
+            var response = event.data;
+            htmx._("selectAndSwap")(target, response, swapSpec, settleInfo);
+            htmx._("settleImmediately")(settleInfo.tasks);
+
+            htmx.trigger(elt, "htmx:sseMessage", {
+                message: event.data,
+                eventName: eventName,
+                source: source
+            });
+        };
+
+        source.addEventListener(eventName, listener);
+        internalData.sseEventListeners[eventName] = listener;
+    }
+})();
+        )SSE";
+    }
+
 }
