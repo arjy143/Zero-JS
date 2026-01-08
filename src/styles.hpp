@@ -62,28 +62,29 @@ struct Theme
         return dark_colors;
     }
 
-    //boxy border
+    // almost-flat borders 
     static constexpr const char* radius_none = "0";
-    static constexpr const char* radius_sm = "2px";
-    static constexpr const char* radius_md = "3px";
-    static constexpr const char* radius_lg = "4px";
+    static constexpr const char* radius_sm   = "1px";
+    static constexpr const char* radius_md   = "2px";
+    static constexpr const char* radius_lg   = "3px";
+
 
     //tighter spacing
-    static constexpr const char* spacing_xs = "4px";
-    static constexpr const char* spacing_sm = "6px";
-    static constexpr const char* spacing_md = "12px";
-    static constexpr const char* spacing_lg = "16px";
-    static constexpr const char* spacing_xl = "24px";
-    static constexpr const char* spacing_2xl = "32px";
+    static constexpr const char* spacing_xs = "2px";
+    static constexpr const char* spacing_sm = "4px";
+    static constexpr const char* spacing_md = "8px";
+    static constexpr const char* spacing_lg = "12px";
+    static constexpr const char* spacing_xl = "16px";
+    static constexpr const char* spacing_2xl = "24px";
 
     //font sizes
-    static constexpr const char* font_size_xs = "11px";
-    static constexpr const char* font_size_sm = "13px";
-    static constexpr const char* font_size_base = "14px";
-    static constexpr const char* font_size_lg = "16px";
-    static constexpr const char* font_size_xl = "20px";
-    static constexpr const char* font_size_2xl = "28px";
-    static constexpr const char* font_size_3xl = "36px";
+    static constexpr const char* font_size_xs   = "11px"; 
+    static constexpr const char* font_size_sm   = "12px"; 
+    static constexpr const char* font_size_base = "13px"; 
+    static constexpr const char* font_size_lg   = "14px"; 
+    static constexpr const char* font_size_xl   = "16px"; 
+    static constexpr const char* font_size_2xl  = "20px"; 
+    static constexpr const char* font_size_3xl  = "24px"; 
 };
 
 const ColorScheme Theme::dark_colors = 

@@ -28,4 +28,5 @@ for file in "${FILES[@]}"; do
   dir="$(dirname "$file")"
   name="$(basename "$file" .cpp)"
   echo "  ./$dir/$name"
+  ./$dir/$name
 done
