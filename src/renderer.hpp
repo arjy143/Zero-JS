@@ -31,12 +31,12 @@ namespace zero_js
     html << "    </style>\n";
 
     if (include_htmx) {
-        html << "    <script>\n";
+        html << R"(<script src="https://unpkg.com/htmx.org@1.9.10">\n)";
         html << get_htmx_script();
         html << "    </script>\n";
 
         if (include_sse) {
-            html << "    <script>\n";
+            html << R"(<script src="https://unpkg.com/htmx.org@1.9.10">\n)";
             html << get_htmx_sse_extension();
             html << "    </script>\n";
         }
