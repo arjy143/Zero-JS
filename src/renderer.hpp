@@ -30,7 +30,7 @@ namespace zero_js
     html << "    </style>\n";
 
     if (include_htmx) {
-        html << "    <script>\n";
+        html << R"(<script src="https://unpkg.com/htmx.org@1.9.10">\n)";
         html << get_htmx_script();
         html << "    </script>\n";
     }

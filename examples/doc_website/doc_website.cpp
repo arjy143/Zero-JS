@@ -67,7 +67,7 @@ App create_doc_content() {
                 .add(Text("Build beautiful static websites with C++ and HTMX").secondary())
             )
             .add(Row().gap("sm")
-                .add(Button("Edit on GitHub").ghost())
+                .add(Button("Edit on GitHub").trigger("click").get("/api/click").swap("none"))
             )
     );
 
