@@ -281,7 +281,7 @@ int main() {
         Page page("HabitFlow - Dark Mode");
         page.dark_mode();
         page.add(create_habit_tracker_content());
-        page.render_to_file("habit_tracker-dark.html");
+        page.render_to_file("examples/habit_tracker/habit_tracker-dark.html");
         std::cout << "Generated habit_tracker-dark.html" << std::endl;
     }
 
@@ -292,7 +292,7 @@ int main() {
         Page page("HabitFlow - Light Mode");
         page.light_mode();
         page.add(create_habit_tracker_content());
-        page.render_to_file("habit_tracker-light.html");
+        page.render_to_file("examples/habit_tracker/habit_tracker-light.html");
         std::cout << "Generated habit_tracker-light.html" << std::endl;
     }
 
@@ -303,7 +303,7 @@ int main() {
         Page page("HabitFlow - Cream Mode");
         page.cream_mode();
         page.add(create_habit_tracker_content());
-        page.render_to_file("habit_tracker-cream.html");
+        page.render_to_file("examples/habit_tracker/habit_tracker-cream.html");
         std::cout << "Generated habit_tracker-cream.html" << std::endl;
     }
 

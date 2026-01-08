@@ -288,7 +288,7 @@ int main() {
         Page page("SysMonitor Pro - Dark Mode");
         page.dark_mode();
         page.add(create_system_monitor_content());
-        page.render_to_file("system_monitor-dark.html");
+        page.render_to_file("examples/system_monitor/system_monitor-dark.html");
         std::cout << "Generated system_monitor-dark.html" << std::endl;
     }
 
@@ -299,7 +299,7 @@ int main() {
         Page page("SysMonitor Pro - Light Mode");
         page.light_mode();
         page.add(create_system_monitor_content());
-        page.render_to_file("system_monitor-light.html");
+        page.render_to_file("examples/system_monitor/system_monitor-light.html");
         std::cout << "Generated system_monitor-light.html" << std::endl;
     }
 
@@ -310,7 +310,7 @@ int main() {
         Page page("SysMonitor Pro - Cream Mode");
         page.cream_mode();
         page.add(create_system_monitor_content());
-        page.render_to_file("system_monitor-cream.html");
+        page.render_to_file("examples/system_monitor/system_monitor-cream.html");
         std::cout << "Generated system_monitor-cream.html" << std::endl;
     }
 

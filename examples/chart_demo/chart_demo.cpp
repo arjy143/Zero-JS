@@ -178,7 +178,7 @@ int main() {
         );
 
         page.add(app);
-        page.render_to_file("chart_demo.html");
+        page.render_to_file("examples/chart_demo/chart_demo.html");
         std::cout << "Generated chart_demo.html" << std::endl;
     }
 

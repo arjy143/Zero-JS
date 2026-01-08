@@ -322,7 +322,7 @@ int main() {
         Page page("Arjun Parmar - Portfolio (Dark)");
         page.dark_mode();
         page.add(create_portfolio_content());
-        page.render_to_file("portfolio-dark.html");
+        page.render_to_file("examples/personal_portfolio/portfolio-dark.html");
         std::cout << "Generated portfolio-dark.html" << std::endl;
     }
 
@@ -333,7 +333,7 @@ int main() {
         Page page("Arjun Parmar - Portfolio (Light)");
         page.light_mode();
         page.add(create_portfolio_content());
-        page.render_to_file("portfolio-light.html");
+        page.render_to_file("examples/personal_portfolio/portfolio-light.html");
         std::cout << "Generated portfolio-light.html" << std::endl;
     }
 
@@ -344,7 +344,7 @@ int main() {
         Page page("Arjun Parmar - Portfolio (Cream)");
         page.cream_mode();
         page.add(create_portfolio_content());
-        page.render_to_file("portfolio-cream.html");
+        page.render_to_file("examples/personal_portfolio/portfolio-cream.html");
         std::cout << "Generated portfolio-cream.html" << std::endl;
     }
 

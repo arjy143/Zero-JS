@@ -1,4 +1,4 @@
-#include "../zero_js.hpp"
+#include "../../zero_js.hpp"
 #include <iostream>
 
 using namespace zero_js;
@@ -185,7 +185,7 @@ int main() {
         Page page("ZeroJS Dashboard - Dark Mode");
         page.dark_mode();
         page.add(create_dashboard_content());
-        page.render_to_file("dashboard-dark.html");
+        page.render_to_file("examples/dashboard/dashboard-dark.html");
         std::cout << "Generated dashboard-dark.html" << std::endl;
     }
 
@@ -196,7 +196,7 @@ int main() {
         Page page("ZeroJS Dashboard - Light Mode");
         page.light_mode();
         page.add(create_dashboard_content());
-        page.render_to_file("dashboard-light.html");
+        page.render_to_file("examples/dashboard/dashboard-light.html");
         std::cout << "Generated dashboard-light.html" << std::endl;
     }
 
@@ -207,7 +207,7 @@ int main() {
         Page page("ZeroJS Dashboard - Cream Mode");
         page.cream_mode();
         page.add(create_dashboard_content());
-        page.render_to_file("dashboard-cream.html");
+        page.render_to_file("examples/dashboard/dashboard-cream.html");
         std::cout << "Generated dashboard-cream.html" << std::endl;
     }
 
