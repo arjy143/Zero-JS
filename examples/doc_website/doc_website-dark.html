@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SysMonitor Pro - Cream Mode</title>
+    <title>ZeroJS Documentation - Dark Mode</title>
     <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 
@@ -17,43 +17,43 @@ html {
     font-family: 'IBM Plex Mono', 'Consolas', 'Monaco', monospace;
     font-size: 14px;
     line-height: 1.5;
-    color: #2c2416;
-    background-color: #fdf6e3;
+    color: #ffffff;
+    background-color: #000000;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     
     /* CSS Custom Properties for Components */
-    --ew-bg-page: #fdf6e3;
-    --ew-bg-card: #fefcf6;
-    --ew-bg-card-hover: #f5edd6;
-    --ew-bg-input: #fefcf6;
-    --ew-bg-navbar: #fdf6e3;
-    --ew-bg-sidebar: #f5edd6;
-    --ew-bg-button: #2b4c3f;
-    --ew-bg-button-hover: #3d6654;
-    --ew-bg-button-secondary: #e8dfc9;
-    --ew-bg-button-secondary-hover: #d9ccb0;
-    --ew-bg-accent: #2b4c3f;
-    --ew-text: #2c2416;
-    --ew-text-secondary: #5c5040;
-    --ew-text-muted: #8b8070;
-    --ew-text-button: #fdf6e3;
-    --ew-text-accent: #8b2500;
-    --ew-text-link: #8b2500;
-    --ew-border: #2c2416;
-    --ew-border-subtle: #d4c9a8;
-    --ew-border-focus: #2b4c3f;
-    --ew-border-accent: #8b2500;
+    --ew-bg-page: #000000;
+    --ew-bg-card: #0c0c0c;
+    --ew-bg-card-hover: #161616;
+    --ew-bg-input: #0c0c0c;
+    --ew-bg-navbar: #000000;
+    --ew-bg-sidebar: #0c0c0c;
+    --ew-bg-button: #0078d4;
+    --ew-bg-button-hover: #1e8ae6;
+    --ew-bg-button-secondary: #252525;
+    --ew-bg-button-secondary-hover: #333333;
+    --ew-bg-accent: #0078d4;
+    --ew-text: #ffffff;
+    --ew-text-secondary: #b0b0b0;
+    --ew-text-muted: #707070;
+    --ew-text-button: #ffffff;
+    --ew-text-accent: #40a9ff;
+    --ew-text-link: #40a9ff;
+    --ew-border: #40a9ff;
+    --ew-border-subtle: #303030;
+    --ew-border-focus: #0078d4;
+    --ew-border-accent: #40a9ff;
     --ew-shadow: none;
-    --ew-shadow-lg: none;
-    --ew-success: #2b4c3f;
-    --ew-warning: #b58900;
-    --ew-error: #cb4b16;
-    --ew-info: #268bd2;
+    --ew-shadow-lg: 0 0 0 1px #40a9ff;
+    --ew-success: #4ec968;
+    --ew-warning: #f0b400;
+    --ew-error: #f85149;
+    --ew-info: #40a9ff;
     
     /* Chart-specific colors */
-    --ew-primary: #2b4c3f;
-    --ew-secondary: #2b4c3f;
+    --ew-primary: #0078d4;
+    --ew-secondary: #4ec968;
 }
 
 body {
@@ -96,8 +96,8 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 3px 8px;
-    background: #fdf6e3;
-    border-bottom: 2px solid #d4c9a8;
+    background: #000000;
+    border-bottom: 2px solid #303030;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -106,7 +106,7 @@ body {
 .ew-navbar-brand {
     font-size: 16px;
     font-weight: 700;
-    color: #2c2416;
+    color: #ffffff;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -124,7 +124,7 @@ body {
 
 .ew-navbar-item {
     padding: 3px 4px;
-    color: #5c5040;
+    color: #b0b0b0;
     text-decoration: none;
     font-weight: 600;
     font-size: 13px;
@@ -135,13 +135,13 @@ body {
 }
 
 .ew-navbar-item:hover {
-    color: #2c2416;
-    background: #f5edd6;
+    color: #ffffff;
+    background: #161616;
 }
 
 .ew-navbar-item-active {
-    color: #8b2500;
-    border-bottom-color: #8b2500;
+    color: #40a9ff;
+    border-bottom-color: #40a9ff;
 }
 
 .ew-navbar-actions {
@@ -157,8 +157,8 @@ body {
 .ew-sidebar {
     width: 240px;
     min-width: 240px;
-    background: #f5edd6;
-    border-right: 2px solid #d4c9a8;
+    background: #0c0c0c;
+    border-right: 2px solid #303030;
     padding: 4px 0;
     overflow-y: auto;
     height: calc(100vh - 49px);
@@ -175,7 +175,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #8b8070;
+    color: #707070;
     padding: 3px 4px;
     margin-bottom: 1px;
     border-left: 3px solid transparent;
@@ -190,7 +190,7 @@ body {
     align-items: center;
     gap: 3px;
     padding: 3px 4px;
-    color: #5c5040;
+    color: #b0b0b0;
     text-decoration: none;
     font-weight: 500;
     font-size: 13px;
@@ -199,15 +199,15 @@ body {
 }
 
 .ew-sidebar-item:hover {
-    color: #2c2416;
-    background: #f5edd6;
-    border-left-color: #d4c9a8;
+    color: #ffffff;
+    background: #161616;
+    border-left-color: #303030;
 }
 
 .ew-sidebar-item-active {
-    color: #8b2500;
-    background: #f5edd6;
-    border-left-color: #8b2500;
+    color: #40a9ff;
+    background: #161616;
+    border-left-color: #40a9ff;
     font-weight: 600;
 }
 
@@ -216,26 +216,26 @@ body {
    ============================================ */
 
 .ew-card {
-    background: #fefcf6;
-    border: 2px solid #d4c9a8;
+    background: #0c0c0c;
+    border: 2px solid #303030;
     padding: 4px;
     margin-bottom: 3px;
     transition: all 0.1s ease;
 }
 
 .ew-card:hover {
-    border-color: #2c2416;
+    border-color: #40a9ff;
 }
 
 .ew-card-title {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 4px;
-    color: #2c2416;
+    color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding-bottom: 3px;
-    border-bottom: 2px solid #d4c9a8;
+    border-bottom: 2px solid #303030;
 }
 
 .ew-card-compact {
@@ -243,7 +243,7 @@ body {
 }
 
 .ew-card-accent {
-    border-left: 4px solid #8b2500;
+    border-left: 4px solid #40a9ff;
 }
 
 /* ============================================
@@ -255,7 +255,7 @@ body {
 }
 
 .ew-box-bordered {
-    border: 2px solid #d4c9a8;
+    border: 2px solid #303030;
 }
 
 /* ============================================
@@ -264,31 +264,31 @@ body {
 
 .ew-text {
     margin-bottom: 3px;
-    color: #2c2416;
+    color: #ffffff;
 }
 
 .ew-text-secondary {
-    color: #5c5040;
+    color: #b0b0b0;
 }
 
 .ew-text-muted {
-    color: #8b8070;
+    color: #707070;
 }
 
 .ew-text-accent {
-    color: #8b2500;
+    color: #40a9ff;
 }
 
 .ew-text-success {
-    color: #2b4c3f;
+    color: #4ec968;
 }
 
 .ew-text-warning {
-    color: #b58900;
+    color: #f0b400;
 }
 
 .ew-text-error {
-    color: #cb4b16;
+    color: #f85149;
 }
 
 .ew-heading-1 {
@@ -342,48 +342,48 @@ body {
 }
 
 .ew-button-primary {
-    background-color: #2b4c3f;
-    color: #fdf6e3;
-    border-color: #2b4c3f;
+    background-color: #0078d4;
+    color: #ffffff;
+    border-color: #0078d4;
 }
 
 .ew-button-primary:hover {
-    background-color: #3d6654;
-    border-color: #3d6654;
+    background-color: #1e8ae6;
+    border-color: #1e8ae6;
 }
 
 .ew-button-secondary {
-    background-color: #e8dfc9;
-    color: #2c2416;
-    border-color: #d4c9a8;
+    background-color: #252525;
+    color: #ffffff;
+    border-color: #303030;
 }
 
 .ew-button-secondary:hover {
-    background-color: #d9ccb0;
-    border-color: #2c2416;
+    background-color: #333333;
+    border-color: #40a9ff;
 }
 
 .ew-button-outline {
     background-color: transparent;
-    color: #8b2500;
-    border-color: #8b2500;
+    color: #40a9ff;
+    border-color: #40a9ff;
 }
 
 .ew-button-outline:hover {
-    background-color: #8b2500;
-    color: #fdf6e3;
+    background-color: #40a9ff;
+    color: #000000;
 }
 
 .ew-button-ghost {
     background-color: transparent;
-    color: #5c5040;
+    color: #b0b0b0;
     border-color: transparent;
 }
 
 .ew-button-ghost:hover {
-    background-color: #f5edd6;
-    color: #2c2416;
-    border-color: #d4c9a8;
+    background-color: #161616;
+    color: #ffffff;
+    border-color: #303030;
 }
 
 .ew-button-sm {
@@ -484,19 +484,19 @@ body {
     padding: 10px 12px;
     font-size: 13px;
     font-family: inherit;
-    border: 2px solid #d4c9a8;
-    background: #fefcf6;
-    color: #2c2416;
+    border: 2px solid #303030;
+    background: #0c0c0c;
+    color: #ffffff;
     transition: all 0.1s ease;
 }
 
 .ew-input:focus {
     outline: none;
-    border-color: #2b4c3f;
+    border-color: #0078d4;
 }
 
 .ew-input::placeholder {
-    color: #8b8070;
+    color: #707070;
 }
 
 .ew-label {
@@ -506,7 +506,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 1px;
-    color: #5c5040;
+    color: #b0b0b0;
 }
 
 .ew-form-group {
@@ -519,7 +519,7 @@ body {
 
 .ew-divider {
     border: none;
-    border-top: 2px solid #d4c9a8;
+    border-top: 2px solid #303030;
     margin: 8px 0;
 }
 
@@ -529,14 +529,14 @@ body {
 .ew-spacer-xl { height: 10px; }
 
 .ew-link {
-    color: #8b2500;
+    color: #40a9ff;
     text-decoration: none;
     font-weight: 600;
     border-bottom: 1px solid transparent;
 }
 
 .ew-link:hover {
-    border-bottom-color: #8b2500;
+    border-bottom-color: #40a9ff;
 }
 
 .ew-image {
@@ -567,24 +567,24 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border: 2px solid #8b2500;
+    border: 2px solid #40a9ff;
     background: transparent;
-    color: #8b2500;
+    color: #40a9ff;
 }
 
 .ew-badge-success {
-    border-color: #2b4c3f;
-    color: #2b4c3f;
+    border-color: #4ec968;
+    color: #4ec968;
 }
 
 .ew-badge-warning {
-    border-color: #b58900;
-    color: #b58900;
+    border-color: #f0b400;
+    color: #f0b400;
 }
 
 .ew-badge-error {
-    border-color: #cb4b16;
-    color: #cb4b16;
+    border-color: #f85149;
+    color: #f85149;
 }
 
 /* ============================================
@@ -601,14 +601,14 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #8b8070;
+    color: #707070;
     margin-bottom: 1px;
 }
 
 .ew-stat-value {
     font-size: 28px;
     font-weight: 700;
-    color: #2c2416;
+    color: #ffffff;
     line-height: 1;
     font-variant-numeric: tabular-nums;
 }
@@ -620,11 +620,11 @@ body {
 }
 
 .ew-stat-change-up {
-    color: #2b4c3f;
+    color: #4ec968;
 }
 
 .ew-stat-change-down {
-    color: #cb4b16;
+    color: #f85149;
 }
 
 /* ============================================
@@ -633,17 +633,17 @@ body {
 
 .ew-code {
     font-family: 'IBM Plex Mono', monospace;
-    background: #f5edd6;
+    background: #161616;
     padding: 2px 6px;
-    border: 1px solid #d4c9a8;
+    border: 1px solid #303030;
     font-size: 13px;
 }
 
 .ew-code-block {
     font-family: 'IBM Plex Mono', monospace;
-    background: #f5edd6;
+    background: #161616;
     padding: 4px;
-    border: 2px solid #d4c9a8;
+    border: 2px solid #303030;
     font-size: 13px;
     overflow-x: auto;
     white-space: pre;
@@ -935,5 +935,41 @@ body {
         </script>
 </head>
 <body>
-<div class="ew-app"><div class="ew-app-body"><main class="ew-main"><div class="ew-row ew-center-content"><div class="ew-column ew-center"><div class="ew-spacer-lg"></div><h1 class="ew-heading-1">🖥️ SysMonitor Pro</h1><p class="ew-text ew-text-secondary">Advanced Infrastructure Monitoring & Management Platform</p><div class="ew-spacer"></div><div class="ew-row ew-gap-sm"><span class="ew-badge ew-badge-success">24 Systems Online</span><span class="ew-badge ew-badge-warning">3 Alerts Active</span><span class="ew-badge ew-badge-success">99.97% Uptime</span></div><div class="ew-spacer-xl"></div></div></div><div class="ew-card ew-card-accent"><div class="ew-row"><p class="ew-text ew-text-secondary">System Status:</p><div class="ew-spacer"></div><span class="ew-badge ew-badge-success">All Systems Operational</span><div class="ew-spacer"></div><p class="ew-text ew-text-muted">Last Updated: 14:32:15 UTC</p><div class="ew-spacer"></div><button class="ew-button ew-button-outline ew-button-sm">🔄 Refresh</button></div></div><div class="ew-spacer"></div><div class="ew-grid ew-grid-3"><div class="ew-card"><div class="ew-card-title">🚀 Quick Actions</div><div class="ew-column ew-gap-sm"><button class="ew-button ew-button-primary ew-button-lg">Deploy Update</button><button class="ew-button ew-button-outline">Run Health Check</button><button class="ew-button ew-button-ghost">Backup Systems</button><button class="ew-button ew-button-ghost">Scale Resources</button></div></div><div class="ew-card"><div class="ew-card-title">📊 Key Metrics</div><div class="ew-grid ew-grid-2"><div class="ew-stat"><span class="ew-stat-label">CPU Load</span><span class="ew-stat-value">42%</span><span class="ew-stat-change ew-stat-change-up">+-5%</span></div><div class="ew-stat"><span class="ew-stat-label">Memory</span><span class="ew-stat-value">6.8GB</span><span class="ew-stat-change ew-stat-change-down">+200MB</span></div><div class="ew-stat"><span class="ew-stat-label">Network</span><span class="ew-stat-value">1.2Gbps</span><span class="ew-stat-change ew-stat-change-up">++0.1Gbps</span></div><div class="ew-stat"><span class="ew-stat-label">Storage</span><span class="ew-stat-value">78%</span><span class="ew-stat-change ew-stat-change-up">+-2%</span></div></div></div><div class="ew-card"><div class="ew-card-title">⚙️ Active Configuration</div><div class="ew-column ew-gap-sm"><div class="ew-row"><p class="ew-text ew-flex-grow">Auto-scaling:</p><span class="ew-badge ew-badge-success">Enabled</span></div><div class="ew-row"><p class="ew-text ew-flex-grow">Load Balancing:</p><span class="ew-badge ew-badge-success">Active</span></div><div class="ew-row"><p class="ew-text ew-flex-grow">Monitoring:</p><span class="ew-badge ew-badge-success">Prometheus</span></div><div class="ew-row"><p class="ew-text ew-flex-grow">Logging:</p><span class="ew-badge ew-badge-success">ELK Stack</span></div></div></div></div><div class="ew-spacer"></div><div class="ew-grid ew-grid-2"><div class="ew-card"><div class="ew-card-title">📈 Performance Graphs (Last Hour)</div><div class="ew-chart-container"><div class="ew-chart-title">System Metrics</div><svg width="350" height="200" viewBox="0 0 350 200" class="ew-chart"><rect width="100%" height="100%" fill="transparent" stroke="var(--ew-border)" stroke-width="1" rx="4"/><text x='50%' y='50%' text-anchor='middle' fill='var(--ew-text-muted)'>Chart implementation required</text></svg><div class="ew-chart-legend"><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-primary)"></div><span>CPU Usage</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-secondary)"></div><span>Memory</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #40a9ff"></div><span>Network</span></div></div></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">View Details</button><button class="ew-button ew-button-ghost ew-button-sm">Export Data</button></div></div><div class="ew-card"><div class="ew-card-title">🔍 System Search & Filter</div><form method="post" hx-post="/api/search" hx-target="#search-results"><div class="ew-row ew-gap-sm"><input type="text" name="query" id="query" class="ew-input ew-flex-grow" placeholder="Search servers, services, logs..."><button class="ew-button ew-button-outline">🔍 Search</button></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><div class="ew-form-group"><label class="ew-label" for="filter-status">Status</label><input type="text" name="filter-status" id="filter-status" class="ew-input ew-flex-grow" placeholder="All"></div><div class="ew-form-group"><label class="ew-label" for="filter-type">Type</label><input type="text" name="filter-type" id="filter-type" class="ew-input ew-flex-grow" placeholder="All"></div><div class="ew-form-group"><label class="ew-label" for="time-range">Time Range</label><input type="text" name="time-range" id="time-range" class="ew-input ew-flex-grow" placeholder="Last Hour"></div></div></form><div class="ew-box" id="search-results"></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">📋 Live System Logs</div><div class="ew-column ew-gap-sm"><p class="ew-text ew-code">[14:32:15] INFO: User authentication successful - user_id: 12345</p><p class="ew-text ew-code">[14:32:12] WARN: High memory usage detected on web-02 (87%)</p><p class="ew-text ew-code">[14:32:10] INFO: Database backup completed successfully</p><p class="ew-text ew-code">[14:32:08] ERROR: Connection timeout to payment-service</p><p class="ew-text ew-code">[14:32:05] INFO: Auto-scaling triggered - adding 2 web instances</p><p class="ew-text ew-code">[14:32:03] INFO: SSL certificate renewed for api.domain.com</p><p class="ew-text ew-code">[14:32:01] WARN: Disk space low on db-01 (15% remaining)</p><p class="ew-text ew-code">[14:31:58] INFO: Security scan completed - 0 vulnerabilities found</p></div><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Pause Stream</button><button class="ew-button ew-button-ghost ew-button-sm">Clear Logs</button><button class="ew-button ew-button-ghost ew-button-sm">Export Logs</button></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">🚨 Alert Management Console</div><div class="ew-grid ew-grid-3"><div class="ew-card" style="border-color: #f85149;"><span class="ew-badge ew-badge-error">CRITICAL</span><h3 class="ew-heading-3">Database Connection Failed</h3><p class="ew-text ew-text-secondary">DB-01 is unresponsive. Automatic failover initiated.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Acknowledge</button><button class="ew-button ew-button-primary ew-button-sm">Resolve</button></div></div><div class="ew-card" style="border-color: #f0b400;"><span class="ew-badge ew-badge-warning">WARNING</span><h3 class="ew-heading-3">High CPU Usage</h3><p class="ew-text ew-text-secondary">Web-02 CPU at 89% for 15 minutes.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">Investigate</button><button class="ew-button ew-button-ghost ew-button-sm">Silence</button></div></div><div class="ew-card" style="border-color: #40a9ff;"><span class="ew-badge">INFO</span><h3 class="ew-heading-3">Backup Completed</h3><p class="ew-text ew-text-secondary">Daily backup finished successfully.</p><div class="ew-spacer-sm"></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-outline ew-button-sm">View Report</button><button class="ew-button ew-button-ghost ew-button-sm">Dismiss</button></div></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">⚙️ Service Configuration</div><div class="ew-grid ew-grid-2"><div class="ew-card"><div class="ew-card-title">Database Settings</div><form method="post" hx-post="/api/config/db"><div class="ew-form-group"><label class="ew-label" for="db-host">Database Host</label><input type="text" name="db-host" id="db-host" class="ew-input" placeholder="db-01.internal"></div><div class="ew-form-group"><label class="ew-label" for="db-port">Port</label><input type="text" name="db-port" id="db-port" class="ew-input" placeholder="5432"></div><div class="ew-form-group"><label class="ew-label" for="db-pool-size">Connection Pool</label><input type="text" name="db-pool-size" id="db-pool-size" class="ew-input" placeholder="20"></div><div class="ew-spacer-sm"></div><button class="ew-button ew-button-outline">Update Configuration</button></form></div><div class="ew-card"><div class="ew-card-title">Monitoring Settings</div><form method="post" hx-post="/api/config/monitoring"><div class="ew-form-group"><label class="ew-label" for="alert-threshold">CPU Alert Threshold</label><input type="text" name="alert-threshold" id="alert-threshold" class="ew-input" placeholder="85%"></div><div class="ew-form-group"><label class="ew-label" for="retention-days">Log Retention</label><input type="text" name="retention-days" id="retention-days" class="ew-input" placeholder="30"></div><div class="ew-form-group"><label class="ew-label" for="notification-email">Alert Email</label><input type="text" name="notification-email" id="notification-email" class="ew-input" placeholder="admin@company.com"></div><div class="ew-spacer-sm"></div><button class="ew-button ew-button-outline">Save Settings</button></form></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">🏥 System Health Overview</div><div class="ew-chart-container"><div class="ew-chart-title">Service Health by Category</div><svg width="600" height="250" viewBox="0 0 600 250" class="ew-chart"><rect width="100%" height="100%" fill="transparent" stroke="var(--ew-border)" stroke-width="1" rx="4"/><line x1="60" y1="60" x2="540" y2="60" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="86" x2="540" y2="86" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="112" x2="540" y2="112" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="138" x2="540" y2="138" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="164" x2="540" y2="164" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="190" x2="540" y2="190" stroke="var(--ew-border)" stroke-width="0.5" opacity="0.3"/><line x1="60" y1="190" x2="540" y2="190" stroke="var(--ew-text)" stroke-width="1"/><line x1="60" y1="60" x2="60" y2="190" stroke="var(--ew-text)" stroke-width="1"/><line x1="55" y1="190" x2="60" y2="190" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="194" text-anchor="end" fill="var(--ew-text)" font-size="11">72.5</text><line x1="55" y1="164" x2="60" y2="164" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="168" text-anchor="end" fill="var(--ew-text)" font-size="11">78.5</text><line x1="55" y1="138" x2="60" y2="138" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="142" text-anchor="end" fill="var(--ew-text)" font-size="11">84.5</text><line x1="55" y1="112" x2="60" y2="112" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="116" text-anchor="end" fill="var(--ew-text)" font-size="11">90.5</text><line x1="55" y1="86" x2="60" y2="86" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="90" text-anchor="end" fill="var(--ew-text)" font-size="11">96.5</text><line x1="55" y1="60" x2="60" y2="60" stroke="var(--ew-text)" stroke-width="1"/><text x="50" y="64" text-anchor="end" fill="var(--ew-text)" font-size="11">102.5</text><rect x="205" y="92.5" width="40" height="97.5" fill="var(--ew-primary)" rx="2"/><text x="225" y="87.5" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">95.0</text><rect x="255" y="179.167" width="40" height="10.8333" fill="var(--ew-primary)" rx="2"/><text x="275" y="174.167" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">75.0</text><rect x="305" y="70.8333" width="40" height="119.167" fill="var(--ew-primary)" rx="2"/><text x="325" y="65.8333" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">100.0</text><rect x="355" y="114.167" width="40" height="75.8333" fill="var(--ew-primary)" rx="2"/><text x="375" y="109.167" text-anchor="middle" fill="var(--ew-text)" font-size="11" font-weight="bold">90.0</text></svg><div class="ew-chart-legend"><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-primary)"></div><span>Health Score</span></div></div></div></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">💰 Resource Allocation</div><div class="ew-chart-container"><div class="ew-chart-title">CPU Distribution</div><svg width="300" height="300" viewBox="0 0 300 300" class="ew-chart"><rect width="100%" height="100%" fill="transparent" stroke="var(--ew-border)" stroke-width="1" rx="4"/><path d="M 150,150 L 150,40 A 110,110 0 0,1 150,260 Z" fill="var(--ew-primary)" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="227" y="150" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">50.0%</text><path d="M 150.0,150.0 L 150.0,260.0 A 110.0,110.0 0 0,1 40.0,150.0 Z" fill="var(--ew-secondary)" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="95.6" y="204.4" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">25.0%</text><path d="M 150.0,150.0 L 40.0,150.0 A 110.0,110.0 0 0,1 72.2,72.2 Z" fill="#40a9ff" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="78.9" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">12.5%</text><path d="M 150.0,150.0 L 72.2,72.2 A 110.0,110.0 0 0,1 150.0,40.0 Z" fill="#f0b400" stroke="var(--ew-bg-card)" stroke-width="1"/><text x="120.5" y="78.9" text-anchor="middle" dominant-baseline="middle" fill="var(--ew-text)" font-size="12" font-weight="bold">12.5%</text></svg><div class="ew-chart-legend"><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-primary)"></div><span>Web Servers</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: var(--ew-secondary)"></div><span>Databases</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #40a9ff"></div><span>APIs</span></div><div class="ew-chart-legend-item"><div class="ew-chart-legend-color" style="background-color: #f0b400"></div><span>Background</span></div></div></div></div></main></div></div></body>
+<div class="ew-app"><nav class="ew-navbar"><a href="#" class="ew-navbar-brand">ZeroJS Docs</a><div class="ew-navbar-nav"><a href="#guide" class="ew-navbar-item ew-navbar-item-active">Guide</a><a href="#api" class="ew-navbar-item">API Reference</a><a href="#examples" class="ew-navbar-item">Examples</a><a href="#github" class="ew-navbar-item">GitHub</a></div><div class="ew-navbar-actions"><button class="ew-button ew-button-ghost ew-button-sm">v1.0.0</button></div></nav><div class="ew-app-body"><aside class="ew-sidebar"><div class="ew-sidebar-section"><div class="ew-sidebar-title">Getting Started</div><nav class="ew-sidebar-nav"><a href="#" class="ew-sidebar-item ew-sidebar-item-active">Introduction</a><a href="#" class="ew-sidebar-item">Installation</a><a href="#" class="ew-sidebar-item">Quick Start</a><a href="#" class="ew-sidebar-item">Project Structure</a></nav></div><div class="ew-sidebar-section"><div class="ew-sidebar-title">Core Concepts</div><nav class="ew-sidebar-nav"><a href="#" class="ew-sidebar-item">Components</a><a href="#" class="ew-sidebar-item">Layout System</a><a href="#" class="ew-sidebar-item">Styling</a><a href="#" class="ew-sidebar-item">Themes</a></nav></div><div class="ew-sidebar-section"><div class="ew-sidebar-title">Components</div><nav class="ew-sidebar-nav"><a href="#" class="ew-sidebar-item">Text</a><a href="#" class="ew-sidebar-item">Button</a><a href="#" class="ew-sidebar-item">Card</a><a href="#" class="ew-sidebar-item">Form</a><a href="#" class="ew-sidebar-item">Grid</a><a href="#" class="ew-sidebar-item">Navbar</a><a href="#" class="ew-sidebar-item">Sidebar</a></nav></div><div class="ew-sidebar-section"><div class="ew-sidebar-title">Advanced</div><nav class="ew-sidebar-nav"><a href="#" class="ew-sidebar-item">HTMX Integration</a><a href="#" class="ew-sidebar-item">Custom Styling</a><a href="#" class="ew-sidebar-item">Server-Side Rendering</a></nav></div></aside><main class="ew-main"><div class="ew-row"><div class="ew-column ew-flex-grow"><h1 class="ew-heading-1">Introduction</h1><p class="ew-text ew-text-secondary">Build beautiful static websites with C++ and HTMX</p></div><div class="ew-row ew-gap-sm"><button class="ew-button ew-button-ghost">Edit on GitHub</button></div></div><div class="ew-spacer-sm"></div><div class="ew-row ew-row-wrap ew-gap-sm"><span class="ew-badge">C++17</span><span class="ew-badge">Header-Only</span><span class="ew-badge ew-badge-success">No JavaScript</span><span class="ew-badge">HTMX Powered</span></div><div class="ew-spacer"></div><div class="ew-card ew-card-accent"><div class="ew-card-title">Overview</div><p class="ew-text">ZeroJS is a header-only C++ library for generating elegant, responsive static websites without writing any JavaScript. It leverages HTMX for interactivity while keeping your codebase purely C++.</p><div class="ew-spacer-sm"></div><h3 class="ew-heading-3">Key Features:</h3><div class="ew-column ew-gap-sm"><div class="ew-row"><p class="ew-text ew-text-accent">•</p><p class="ew-text">Modern, responsive design out of the box</p></div><div class="ew-row"><p class="ew-text ew-text-accent">•</p><p class="ew-text">Three built-in themes: Dark, Light, and Cream</p></div><div class="ew-row"><p class="ew-text ew-text-accent">•</p><p class="ew-text">Chainable component API for clean, readable code</p></div><div class="ew-row"><p class="ew-text ew-text-accent">•</p><p class="ew-text">HTMX integration for dynamic content without JavaScript</p></div></div></div><div class="ew-spacer"></div><h2 class="ew-heading-2">Installation</h2><p class="ew-text ew-text-secondary">Getting started with ZeroJS is simple - just include the header file.</p><div class="ew-spacer-sm"></div><div class="ew-card ew-card-compact ew-code-block"><div class="ew-row"><p class="ew-text ew-text-muted ew-flex-grow">cpp</p><button class="ew-button ew-button-ghost ew-button-xs">Copy</button></div><p class="ew-text ew-code">// Include the single header file
+#include "zero_js.hpp"
+
+// Use the namespace
+using namespace zero_js;</p></div><div class="ew-spacer"></div><h2 class="ew-heading-2">Quick Start</h2><p class="ew-text ew-text-secondary">Create your first page in just a few lines of code.</p><div class="ew-spacer-sm"></div><div class="ew-card ew-card-compact ew-code-block"><div class="ew-row"><p class="ew-text ew-text-muted ew-flex-grow">cpp</p><button class="ew-button ew-button-ghost ew-button-xs">Copy</button></div><p class="ew-text ew-code">#include "zero_js.hpp"
+using namespace zero_js;
+
+int main() {
+    Page page("My Website");
+    page.dark_mode();
+    
+    page.add(
+        Card().title("Hello World")
+            .add(Text("Welcome to ZeroJS!"))
+            .add(Button("Get Started"))
+    );
+    
+    page.render_to_file("index.html");
+    return 0;
+}</p></div><div class="ew-spacer"></div><h2 class="ew-heading-2">Component Examples</h2><p class="ew-text ew-text-secondary">Here are some of the components you can use to build your website.</p><div class="ew-spacer-sm"></div><div class="ew-grid ew-grid-2"><div class="ew-card"><div class="ew-card-title">Buttons</div><div class="ew-column ew-gap-sm"><button class="ew-button ew-button-primary">Primary</button><button class="ew-button ew-button-secondary">Secondary</button><button class="ew-button ew-button-outline">Outline</button><button class="ew-button ew-button-ghost">Ghost</button></div></div><div class="ew-card"><div class="ew-card-title">Badges</div><div class="ew-row ew-row-wrap ew-gap-sm"><span class="ew-badge">Default</span><span class="ew-badge ew-badge-success">Success</span><span class="ew-badge ew-badge-warning">Warning</span><span class="ew-badge ew-badge-error">Error</span></div></div><div class="ew-card"><div class="ew-card-title">Statistics</div><div class="ew-stat"><span class="ew-stat-label">Total Downloads</span><span class="ew-stat-value">12,847</span><span class="ew-stat-change ew-stat-change-up">+23%</span></div></div><div class="ew-card"><div class="ew-card-title">Forms</div><div class="ew-form-group"><label class="ew-label" for="email">Email</label><input type="text" name="email" id="email" class="ew-input" placeholder="you@example.com"></div><div class="ew-spacer-sm"></div><button class="ew-button ew-button-primary">Subscribe</button></div></div><div class="ew-spacer"></div><h2 class="ew-heading-2">Layout System</h2><p class="ew-text ew-text-secondary">Use Grid, Row, and Column components for flexible layouts.</p><div class="ew-spacer-sm"></div><div class="ew-card ew-card-compact ew-code-block"><div class="ew-row"><p class="ew-text ew-text-muted ew-flex-grow">cpp</p><button class="ew-button ew-button-ghost ew-button-xs">Copy</button></div><p class="ew-text ew-code">// Create a 3-column grid
+app.add(
+    Grid().columns(3)
+        .add(Card().title("Column 1"))
+        .add(Card().title("Column 2"))
+        .add(Card().title("Column 3"))
+);</p></div><div class="ew-spacer"></div><h2 class="ew-heading-2">Themes</h2><p class="ew-text ew-text-secondary">Choose from three built-in themes to match your style.</p><div class="ew-spacer-sm"></div><div class="ew-grid ew-grid-3"><div class="ew-card ew-card-compact" style="border-color: #4ec968;"><h3 class="ew-heading-3">Dark Mode</h3><p class="ew-text ew-text-muted">High contrast, modern aesthetic perfect for developer tools and dashboards.</p></div><div class="ew-card ew-card-compact" style="border-color: #40a9ff;"><h3 class="ew-heading-3">Light Mode</h3><p class="ew-text ew-text-muted">Clean, professional look ideal for documentation and marketing sites.</p></div><div class="ew-card ew-card-compact" style="border-color: #f0b400;"><h3 class="ew-heading-3">Cream Mode</h3><p class="ew-text ew-text-muted">Warm, paper-like feel great for long-form content and reading.</p></div></div><div class="ew-spacer"></div><h2 class="ew-heading-2">HTMX Integration</h2><p class="ew-text ew-text-secondary">Add dynamic behavior without writing JavaScript.</p><div class="ew-spacer-sm"></div><div class="ew-card ew-card-compact ew-code-block"><div class="ew-row"><p class="ew-text ew-text-muted ew-flex-grow">cpp</p><button class="ew-button ew-button-ghost ew-button-xs">Copy</button></div><p class="ew-text ew-code">// Button with HTMX action
+Button("Load More")
+    .get("/api/items")
+    .target("#content")
+    .swap("innerHTML")
+
+// Form with HTMX submission
+Form()
+    .post("/api/submit")
+    .target("#result")
+    .add(Input("name").label("Name"))
+    .add(Button("Submit"))</p></div><div class="ew-spacer"></div><div class="ew-card"><div class="ew-card-title">API Reference</div><p class="ew-text ew-text-secondary">Explore the complete component API documentation.</p><div class="ew-spacer-sm"></div><div class="ew-grid ew-grid-4"><div class="ew-column"><h3 class="ew-heading-3">Layout</h3><p class="ew-text ew-text-muted">App</p><p class="ew-text ew-text-muted">Page</p><p class="ew-text ew-text-muted">Grid</p><p class="ew-text ew-text-muted">Row</p><p class="ew-text ew-text-muted">Column</p></div><div class="ew-column"><h3 class="ew-heading-3">Display</h3><p class="ew-text ew-text-muted">Text</p><p class="ew-text ew-text-muted">Card</p><p class="ew-text ew-text-muted">Badge</p><p class="ew-text ew-text-muted">Stat</p><p class="ew-text ew-text-muted">Image</p></div><div class="ew-column"><h3 class="ew-heading-3">Navigation</h3><p class="ew-text ew-text-muted">Navbar</p><p class="ew-text ew-text-muted">Sidebar</p><p class="ew-text ew-text-muted">NavItem</p><p class="ew-text ew-text-muted">Link</p></div><div class="ew-column"><h3 class="ew-heading-3">Interactive</h3><p class="ew-text ew-text-muted">Button</p><p class="ew-text ew-text-muted">Input</p><p class="ew-text ew-text-muted">Form</p><p class="ew-text ew-text-muted">Box</p></div></div></div><div class="ew-spacer"></div><hr class="ew-divider"><div class="ew-row"><p class="ew-text ew-text-muted ew-flex-grow">ZeroJS Documentation</p><div class="ew-row ew-gap-sm"><a href="#" class="ew-link">GitHub</a><a href="#" class="ew-link">License</a><a href="#" class="ew-link">Contributing</a></div></div></main></div></div></body>
 </html>
