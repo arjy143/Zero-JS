@@ -97,7 +97,7 @@ body {
     justify-content: space-between;
     padding: 3px 8px;
     background: #fdf6e3;
-    border-bottom: 2px solid #d4c9a8;
+    border-bottom: 1px solid #d4c9a8;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -105,11 +105,10 @@ body {
 
 .ew-navbar-brand {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
     color: #2c2416;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: -0.01em;
     display: flex;
     align-items: center;
     gap: 3px;
@@ -126,12 +125,10 @@ body {
     padding: 3px 4px;
     color: #5c5040;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 2px solid transparent;
-    transition: all 0.1s ease;
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s ease;
 }
 
 .ew-navbar-item:hover {
@@ -158,12 +155,12 @@ body {
     width: 240px;
     min-width: 240px;
     background: #f5edd6;
-    border-right: 2px solid #d4c9a8;
+    border-right: 1px solid #d4c9a8;
     padding: 4px 0;
     overflow-y: auto;
-    height: calc(100vh - 49px);
+    height: calc(100vh - 41px);
     position: sticky;
-    top: 49px;
+    top: 41px;
 }
 
 .ew-sidebar-section {
@@ -172,13 +169,13 @@ body {
 
 .ew-sidebar-title {
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     color: #8b8070;
     padding: 3px 4px;
     margin-bottom: 1px;
-    border-left: 3px solid transparent;
+    border-left: 2px solid transparent;
 }
 
 .ew-sidebar-nav {
@@ -192,35 +189,33 @@ body {
     padding: 3px 4px;
     color: #5c5040;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 13px;
-    border-left: 3px solid transparent;
-    transition: all 0.1s ease;
+    border-left: 2px solid transparent;
+    transition: all 0.15s ease;
 }
 
 .ew-sidebar-item:hover {
     color: #2c2416;
-    background: #f5edd6;
     border-left-color: #d4c9a8;
 }
 
 .ew-sidebar-item-active {
     color: #8b2500;
-    background: #f5edd6;
     border-left-color: #8b2500;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 /* ============================================
-   CARDS - Angular, Boxy
+   CARDS - Clean, Minimal
    ============================================ */
 
 .ew-card {
     background: #fefcf6;
-    border: 2px solid #d4c9a8;
-    padding: 4px;
+    border: 1px solid #d4c9a8;
+    padding: 8px;
     margin-bottom: 3px;
-    transition: all 0.1s ease;
+    transition: border-color 0.15s ease;
 }
 
 .ew-card:hover {
@@ -228,14 +223,12 @@ body {
 }
 
 .ew-card-title {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
     margin-bottom: 4px;
     color: #2c2416;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     padding-bottom: 3px;
-    border-bottom: 2px solid #d4c9a8;
+    border-bottom: 1px solid #d4c9a8;
 }
 
 .ew-card-compact {
@@ -243,7 +236,7 @@ body {
 }
 
 .ew-card-accent {
-    border-left: 4px solid #8b2500;
+    border-left: 2px solid #8b2500;
 }
 
 /* ============================================
@@ -255,16 +248,17 @@ body {
 }
 
 .ew-box-bordered {
-    border: 2px solid #d4c9a8;
+    border: 1px solid #d4c9a8;
 }
 
 /* ============================================
-   TYPOGRAPHY - Angular
+   TYPOGRAPHY - Clean
    ============================================ */
 
 .ew-text {
     margin-bottom: 3px;
     color: #2c2416;
+    line-height: 1.6;
 }
 
 .ew-text-secondary {
@@ -292,32 +286,30 @@ body {
 }
 
 .ew-heading-1 {
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 28px;
+    font-weight: 600;
     margin-bottom: 4px;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .ew-heading-2 {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 4px;
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
 }
 
 .ew-heading-3 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     margin-bottom: 3px;
-    line-height: 1.3;
+    line-height: 1.4;
 }
 
 /* ============================================
-   BUTTONS - Angular, Sharp
+   BUTTONS - Clean, Minimal
    ============================================ */
 
 .ew-button {
@@ -325,15 +317,13 @@ body {
     align-items: center;
     justify-content: center;
     gap: 3px;
-    padding: 10px 20px;
+    padding: 8px 16px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 500;
     font-family: inherit;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     cursor: pointer;
-    transition: all 0.1s ease;
+    transition: all 0.15s ease;
     text-decoration: none;
 }
 
@@ -381,18 +371,21 @@ body {
 }
 
 .ew-button-ghost:hover {
-    background-color: #f5edd6;
     color: #2c2416;
-    border-color: #d4c9a8;
 }
 
 .ew-button-sm {
-    padding: 6px 12px;
+    padding: 4px 10px;
+    font-size: 11px;
+}
+
+.ew-button-xs {
+    padding: 2px 8px;
     font-size: 11px;
 }
 
 .ew-button-lg {
-    padding: 14px 28px;
+    padding: 12px 24px;
     font-size: 14px;
 }
 
@@ -481,13 +474,13 @@ body {
 
 .ew-input {
     width: 100%;
-    padding: 10px 12px;
+    padding: 8px 12px;
     font-size: 13px;
     font-family: inherit;
-    border: 2px solid #d4c9a8;
+    border: 1px solid #d4c9a8;
     background: #fefcf6;
     color: #2c2416;
-    transition: all 0.1s ease;
+    transition: border-color 0.15s ease;
 }
 
 .ew-input:focus {
@@ -502,9 +495,7 @@ body {
 .ew-label {
     display: block;
     font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 500;
     margin-bottom: 1px;
     color: #5c5040;
 }
@@ -519,7 +510,7 @@ body {
 
 .ew-divider {
     border: none;
-    border-top: 2px solid #d4c9a8;
+    border-top: 1px solid #d4c9a8;
     margin: 8px 0;
 }
 
@@ -556,7 +547,7 @@ body {
 .ew-gap-xl { gap: 10px; }
 
 /* ============================================
-   BADGE - Angular
+   BADGE - Clean
    ============================================ */
 
 .ew-badge {
@@ -564,10 +555,8 @@ body {
     align-items: center;
     padding: 2px 8px;
     font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 2px solid #8b2500;
+    font-weight: 500;
+    border: 1px solid #8b2500;
     background: transparent;
     color: #8b2500;
 }
@@ -588,7 +577,7 @@ body {
 }
 
 /* ============================================
-   STAT CARD - Angular
+   STAT CARD - Clean
    ============================================ */
 
 .ew-stat {
@@ -598,9 +587,7 @@ body {
 
 .ew-stat-label {
     font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-weight: 500;
     color: #8b8070;
     margin-bottom: 1px;
 }
@@ -628,25 +615,41 @@ body {
 }
 
 /* ============================================
-   CODE BLOCK (for cream/technical theme)
+   CODE BLOCK - Terminal Style
    ============================================ */
 
 .ew-code {
     font-family: 'IBM Plex Mono', monospace;
     background: #f5edd6;
-    padding: 2px 6px;
-    border: 1px solid #d4c9a8;
+    padding: 1px 4px;
     font-size: 13px;
+    color: #8b2500;
 }
 
 .ew-code-block {
-    font-family: 'IBM Plex Mono', monospace;
+    background: #fefcf6;
+    border: 1px solid #d4c9a8;
+    padding: 0;
+    overflow: hidden;
+}
+
+.ew-code-block .ew-card-title,
+.ew-code-block > .ew-row:first-child {
     background: #f5edd6;
+    border-bottom: 1px solid #d4c9a8;
+    padding: 3px 4px;
+    margin: 0;
+}
+
+.ew-code-block .ew-code {
+    display: block;
     padding: 4px;
-    border: 2px solid #d4c9a8;
-    font-size: 13px;
-    overflow-x: auto;
+    margin: 0;
+    background: transparent;
     white-space: pre;
+    overflow-x: auto;
+    line-height: 1.5;
+    color: #2c2416;
 }
 
 /* ============================================

@@ -87,66 +87,66 @@ struct Theme
      static constexpr const char* font_size_3xl = "36px";
 };
 
-const ColorScheme Theme::dark_colors = 
+const ColorScheme Theme::dark_colors =
 {
-    "#000000", // bg_page
-    "#0c0c0c", // bg_card
-    "#161616", // bg_card_hover
-    "#0c0c0c", // bg_input
-    "#000000", // bg_navbar
-    "#0c0c0c", // bg_sidebar
-    "#0078d4", // bg_button
-    "#1e8ae6", // bg_button_hover
-    "#252525", // bg_button_secondary
-    "#333333", // bg_button_secondary_hover
-    "#0078d4", // bg_accent
-    "#ffffff", // text_primary
-    "#b0b0b0", // text_secondary
-    "#707070", // text_muted
-    "#ffffff", // text_button
-    "#40a9ff", // text_accent
-    "#40a9ff", // text_link
-    "#40a9ff", // border
-    "#303030", // border_subtle
-    "#0078d4", // border_focus
-    "#40a9ff", // border_accent
+    "#0a0a0a", // bg_page - near black
+    "#111111", // bg_card - slightly lighter
+    "#1a1a1a", // bg_card_hover
+    "#0a0a0a", // bg_input
+    "#0a0a0a", // bg_navbar
+    "#0a0a0a", // bg_sidebar
+    "#22c55e", // bg_button - vibrant green
+    "#16a34a", // bg_button_hover
+    "#1a1a1a", // bg_button_secondary
+    "#262626", // bg_button_secondary_hover
+    "#22c55e", // bg_accent
+    "#fafafa", // text_primary - bright white
+    "#a1a1aa", // text_secondary
+    "#52525b", // text_muted
+    "#0a0a0a", // text_button - dark on green
+    "#22c55e", // text_accent - terminal green
+    "#22c55e", // text_link
+    "#22c55e", // border - green accent
+    "#262626", // border_subtle - dark grey
+    "#22c55e", // border_focus
+    "#22c55e", // border_accent
     "none",    // shadow
-    "0 0 0 1px #40a9ff", // shadow_lg
-    "#4ec968", // success
-    "#f0b400", // warning
-    "#f85149", // error
-    "#40a9ff"  // info
+    "0 0 0 1px #22c55e", // shadow_lg
+    "#22c55e", // success - same green
+    "#eab308", // warning - yellow
+    "#ef4444", // error - red
+    "#3b82f6"  // info - blue
 };
 
-const ColorScheme Theme::light_colors = 
+const ColorScheme Theme::light_colors =
 {
-    "#ffffff", // bg_page
+    "#fafafa", // bg_page - off white
     "#ffffff", // bg_card
-    "#f5f5f5", // bg_card_hover
+    "#f4f4f5", // bg_card_hover
     "#ffffff", // bg_input
-    "#ffffff", // bg_navbar
+    "#fafafa", // bg_navbar
     "#fafafa", // bg_sidebar
-    "#0052cc", // bg_button
-    "#0065ff", // bg_button_hover
-    "#f0f0f0", // bg_button_secondary
-    "#e0e0e0", // bg_button_secondary_hover
-    "#0052cc", // bg_accent
-    "#000000", // text_primary
-    "#404040", // text_secondary
-    "#606060", // text_muted
-    "#ffffff", // text_button
-    "#0052cc", // text_accent
-    "#0052cc", // text_link
-    "#000000", // border
-    "#d0d0d0", // border_subtle
-    "#0052cc", // border_focus
-    "#0052cc", // border_accent
+    "#18181b", // bg_button - near black
+    "#27272a", // bg_button_hover
+    "#f4f4f5", // bg_button_secondary
+    "#e4e4e7", // bg_button_secondary_hover
+    "#18181b", // bg_accent
+    "#09090b", // text_primary - almost black
+    "#52525b", // text_secondary
+    "#a1a1aa", // text_muted
+    "#fafafa", // text_button
+    "#18181b", // text_accent
+    "#18181b", // text_link
+    "#18181b", // border - dark
+    "#e4e4e7", // border_subtle - light grey
+    "#18181b", // border_focus
+    "#18181b", // border_accent
     "none",    // shadow
-    "0 0 0 2px #000000", // shadow_lg
-    "#1a7f37", // success
-    "#9a6700", // warning
-    "#cf222e", // error
-    "#0052cc"  // info
+    "0 0 0 1px #18181b", // shadow_lg
+    "#16a34a", // success
+    "#ca8a04", // warning
+    "#dc2626", // error
+    "#2563eb"  // info
 };
 
 const ColorScheme Theme::cream_colors = 
@@ -312,7 +312,7 @@ body {
     justify-content: space-between;
     padding: )" + Theme::spacing_sm + " " + Theme::spacing_lg + R"(;
     background: )" + bg_navbar + R"(;
-    border-bottom: 2px solid )" + border_subtle + R"(;
+    border-bottom: 1px solid )" + border_subtle + R"(;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -320,11 +320,10 @@ body {
 
 .ew-navbar-brand {
     font-size: )" + Theme::font_size_lg + R"(;
-    font-weight: 700;
+    font-weight: 600;
     color: )" + text_primary + R"(;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: -0.01em;
     display: flex;
     align-items: center;
     gap: )" + Theme::spacing_sm + R"(;
@@ -341,12 +340,10 @@ body {
     padding: )" + Theme::spacing_sm + " " + Theme::spacing_md + R"(;
     color: )" + text_secondary + R"(;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: )" + Theme::font_size_sm + R"(;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 2px solid transparent;
-    transition: all 0.1s ease;
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s ease;
 }
 
 .ew-navbar-item:hover {
@@ -373,12 +370,12 @@ body {
     width: 240px;
     min-width: 240px;
     background: )" + bg_sidebar + R"(;
-    border-right: 2px solid )" + border_subtle + R"(;
+    border-right: 1px solid )" + border_subtle + R"(;
     padding: )" + Theme::spacing_md + R"( 0;
     overflow-y: auto;
-    height: calc(100vh - 49px);
+    height: calc(100vh - 41px);
     position: sticky;
-    top: 49px;
+    top: 41px;
 }
 
 .ew-sidebar-section {
@@ -387,13 +384,13 @@ body {
 
 .ew-sidebar-title {
     font-size: )" + Theme::font_size_xs + R"(;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     color: )" + text_muted + R"(;
     padding: )" + Theme::spacing_sm + " " + Theme::spacing_md + R"(;
     margin-bottom: )" + Theme::spacing_xs + R"(;
-    border-left: 3px solid transparent;
+    border-left: 2px solid transparent;
 }
 
 .ew-sidebar-nav {
@@ -407,35 +404,33 @@ body {
     padding: )" + Theme::spacing_sm + " " + Theme::spacing_md + R"(;
     color: )" + text_secondary + R"(;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
     font-size: )" + Theme::font_size_sm + R"(;
-    border-left: 3px solid transparent;
-    transition: all 0.1s ease;
+    border-left: 2px solid transparent;
+    transition: all 0.15s ease;
 }
 
 .ew-sidebar-item:hover {
     color: )" + text_primary + R"(;
-    background: )" + bg_card_hover + R"(;
     border-left-color: )" + border_subtle + R"(;
 }
 
 .ew-sidebar-item-active {
     color: )" + text_accent + R"(;
-    background: )" + bg_card_hover + R"(;
     border-left-color: )" + border_accent + R"(;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 /* ============================================
-   CARDS - Angular, Boxy
+   CARDS - Clean, Minimal
    ============================================ */
 
 .ew-card {
     background: )" + bg_card + R"(;
-    border: 2px solid )" + border_subtle + R"(;
-    padding: )" + Theme::spacing_md + R"(;
+    border: 1px solid )" + border_subtle + R"(;
+    padding: )" + Theme::spacing_lg + R"(;
     margin-bottom: )" + Theme::spacing_sm + R"(;
-    transition: all 0.1s ease;
+    transition: border-color 0.15s ease;
 }
 
 .ew-card:hover {
@@ -443,14 +438,12 @@ body {
 }
 
 .ew-card-title {
-    font-size: )" + Theme::font_size_lg + R"(;
-    font-weight: 700;
+    font-size: )" + Theme::font_size_base + R"(;
+    font-weight: 600;
     margin-bottom: )" + Theme::spacing_md + R"(;
     color: )" + text_primary + R"(;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     padding-bottom: )" + Theme::spacing_sm + R"(;
-    border-bottom: 2px solid )" + border_subtle + R"(;
+    border-bottom: 1px solid )" + border_subtle + R"(;
 }
 
 .ew-card-compact {
@@ -458,7 +451,7 @@ body {
 }
 
 .ew-card-accent {
-    border-left: 4px solid )" + border_accent + R"(;
+    border-left: 2px solid )" + border_accent + R"(;
 }
 
 /* ============================================
@@ -470,16 +463,17 @@ body {
 }
 
 .ew-box-bordered {
-    border: 2px solid )" + border_subtle + R"(;
+    border: 1px solid )" + border_subtle + R"(;
 }
 
 /* ============================================
-   TYPOGRAPHY - Angular
+   TYPOGRAPHY - Clean
    ============================================ */
 
 .ew-text {
     margin-bottom: )" + Theme::spacing_sm + R"(;
     color: )" + text_primary + R"(;
+    line-height: 1.6;
 }
 
 .ew-text-secondary {
@@ -507,32 +501,30 @@ body {
 }
 
 .ew-heading-1 {
-    font-size: )" + Theme::font_size_3xl + R"(;
-    font-weight: 700;
+    font-size: )" + Theme::font_size_2xl + R"(;
+    font-weight: 600;
     margin-bottom: )" + Theme::spacing_md + R"(;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .ew-heading-2 {
-    font-size: )" + Theme::font_size_2xl + R"(;
-    font-weight: 700;
+    font-size: )" + Theme::font_size_xl + R"(;
+    font-weight: 600;
     margin-bottom: )" + Theme::spacing_md + R"(;
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
 }
 
 .ew-heading-3 {
-    font-size: )" + Theme::font_size_xl + R"(;
+    font-size: )" + Theme::font_size_lg + R"(;
     font-weight: 600;
     margin-bottom: )" + Theme::spacing_sm + R"(;
-    line-height: 1.3;
+    line-height: 1.4;
 }
 
 /* ============================================
-   BUTTONS - Angular, Sharp
+   BUTTONS - Clean, Minimal
    ============================================ */
 
 .ew-button {
@@ -540,15 +532,13 @@ body {
     align-items: center;
     justify-content: center;
     gap: )" + Theme::spacing_sm + R"(;
-    padding: 10px 20px;
+    padding: 8px 16px;
     font-size: )" + Theme::font_size_sm + R"(;
-    font-weight: 700;
+    font-weight: 500;
     font-family: inherit;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     cursor: pointer;
-    transition: all 0.1s ease;
+    transition: all 0.15s ease;
     text-decoration: none;
 }
 
@@ -596,18 +586,21 @@ body {
 }
 
 .ew-button-ghost:hover {
-    background-color: )" + bg_card_hover + R"(;
     color: )" + text_primary + R"(;
-    border-color: )" + border_subtle + R"(;
 }
 
 .ew-button-sm {
-    padding: 6px 12px;
+    padding: 4px 10px;
+    font-size: )" + Theme::font_size_xs + R"(;
+}
+
+.ew-button-xs {
+    padding: 2px 8px;
     font-size: )" + Theme::font_size_xs + R"(;
 }
 
 .ew-button-lg {
-    padding: 14px 28px;
+    padding: 12px 24px;
     font-size: )" + Theme::font_size_base + R"(;
 }
 
@@ -696,13 +689,13 @@ body {
 
 .ew-input {
     width: 100%;
-    padding: 10px 12px;
+    padding: 8px 12px;
     font-size: )" + Theme::font_size_sm + R"(;
     font-family: inherit;
-    border: 2px solid )" + border_subtle + R"(;
+    border: 1px solid )" + border_subtle + R"(;
     background: )" + bg_input + R"(;
     color: )" + text_primary + R"(;
-    transition: all 0.1s ease;
+    transition: border-color 0.15s ease;
 }
 
 .ew-input:focus {
@@ -717,9 +710,7 @@ body {
 .ew-label {
     display: block;
     font-size: )" + Theme::font_size_xs + R"(;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 500;
     margin-bottom: )" + Theme::spacing_xs + R"(;
     color: )" + text_secondary + R"(;
 }
@@ -734,7 +725,7 @@ body {
 
 .ew-divider {
     border: none;
-    border-top: 2px solid )" + border_subtle + R"(;
+    border-top: 1px solid )" + border_subtle + R"(;
     margin: )" + Theme::spacing_lg + R"( 0;
 }
 
@@ -771,7 +762,7 @@ body {
 .ew-gap-xl { gap: )" + Theme::spacing_xl + R"(; }
 
 /* ============================================
-   BADGE - Angular
+   BADGE - Clean
    ============================================ */
 
 .ew-badge {
@@ -779,10 +770,8 @@ body {
     align-items: center;
     padding: 2px 8px;
     font-size: )" + Theme::font_size_xs + R"(;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 2px solid )" + border_accent + R"(;
+    font-weight: 500;
+    border: 1px solid )" + border_accent + R"(;
     background: transparent;
     color: )" + text_accent + R"(;
 }
@@ -803,7 +792,7 @@ body {
 }
 
 /* ============================================
-   STAT CARD - Angular
+   STAT CARD - Clean
    ============================================ */
 
 .ew-stat {
@@ -813,9 +802,7 @@ body {
 
 .ew-stat-label {
     font-size: )" + Theme::font_size_xs + R"(;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-weight: 500;
     color: )" + text_muted + R"(;
     margin-bottom: )" + Theme::spacing_xs + R"(;
 }
@@ -843,25 +830,41 @@ body {
 }
 
 /* ============================================
-   CODE BLOCK (for cream/technical theme)
+   CODE BLOCK - Terminal Style
    ============================================ */
 
 .ew-code {
     font-family: 'IBM Plex Mono', monospace;
     background: )" + bg_card_hover + R"(;
-    padding: 2px 6px;
-    border: 1px solid )" + border_subtle + R"(;
+    padding: 1px 4px;
     font-size: )" + Theme::font_size_sm + R"(;
+    color: )" + text_accent + R"(;
 }
 
 .ew-code-block {
-    font-family: 'IBM Plex Mono', monospace;
+    background: )" + bg_card + R"(;
+    border: 1px solid )" + border_subtle + R"(;
+    padding: 0;
+    overflow: hidden;
+}
+
+.ew-code-block .ew-card-title,
+.ew-code-block > .ew-row:first-child {
     background: )" + bg_card_hover + R"(;
+    border-bottom: 1px solid )" + border_subtle + R"(;
+    padding: )" + Theme::spacing_sm + " " + Theme::spacing_md + R"(;
+    margin: 0;
+}
+
+.ew-code-block .ew-code {
+    display: block;
     padding: )" + Theme::spacing_md + R"(;
-    border: 2px solid )" + border_subtle + R"(;
-    font-size: )" + Theme::font_size_sm + R"(;
-    overflow-x: auto;
+    margin: 0;
+    background: transparent;
     white-space: pre;
+    overflow-x: auto;
+    line-height: 1.5;
+    color: )" + text_primary + R"(;
 }
 
 /* ============================================

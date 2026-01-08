@@ -17,43 +17,43 @@ html {
     font-family: 'IBM Plex Mono', 'Consolas', 'Monaco', monospace;
     font-size: 14px;
     line-height: 1.5;
-    color: #000000;
-    background-color: #ffffff;
+    color: #09090b;
+    background-color: #fafafa;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     
     /* CSS Custom Properties for Components */
-    --ew-bg-page: #ffffff;
+    --ew-bg-page: #fafafa;
     --ew-bg-card: #ffffff;
-    --ew-bg-card-hover: #f5f5f5;
+    --ew-bg-card-hover: #f4f4f5;
     --ew-bg-input: #ffffff;
-    --ew-bg-navbar: #ffffff;
+    --ew-bg-navbar: #fafafa;
     --ew-bg-sidebar: #fafafa;
-    --ew-bg-button: #0052cc;
-    --ew-bg-button-hover: #0065ff;
-    --ew-bg-button-secondary: #f0f0f0;
-    --ew-bg-button-secondary-hover: #e0e0e0;
-    --ew-bg-accent: #0052cc;
-    --ew-text: #000000;
-    --ew-text-secondary: #404040;
-    --ew-text-muted: #606060;
-    --ew-text-button: #ffffff;
-    --ew-text-accent: #0052cc;
-    --ew-text-link: #0052cc;
-    --ew-border: #000000;
-    --ew-border-subtle: #d0d0d0;
-    --ew-border-focus: #0052cc;
-    --ew-border-accent: #0052cc;
+    --ew-bg-button: #18181b;
+    --ew-bg-button-hover: #27272a;
+    --ew-bg-button-secondary: #f4f4f5;
+    --ew-bg-button-secondary-hover: #e4e4e7;
+    --ew-bg-accent: #18181b;
+    --ew-text: #09090b;
+    --ew-text-secondary: #52525b;
+    --ew-text-muted: #a1a1aa;
+    --ew-text-button: #fafafa;
+    --ew-text-accent: #18181b;
+    --ew-text-link: #18181b;
+    --ew-border: #18181b;
+    --ew-border-subtle: #e4e4e7;
+    --ew-border-focus: #18181b;
+    --ew-border-accent: #18181b;
     --ew-shadow: none;
-    --ew-shadow-lg: 0 0 0 2px #000000;
-    --ew-success: #1a7f37;
-    --ew-warning: #9a6700;
-    --ew-error: #cf222e;
-    --ew-info: #0052cc;
+    --ew-shadow-lg: 0 0 0 1px #18181b;
+    --ew-success: #16a34a;
+    --ew-warning: #ca8a04;
+    --ew-error: #dc2626;
+    --ew-info: #2563eb;
     
     /* Chart-specific colors */
-    --ew-primary: #0052cc;
-    --ew-secondary: #1a7f37;
+    --ew-primary: #18181b;
+    --ew-secondary: #16a34a;
 }
 
 body {
@@ -96,8 +96,8 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 3px 8px;
-    background: #ffffff;
-    border-bottom: 2px solid #d0d0d0;
+    background: #fafafa;
+    border-bottom: 1px solid #e4e4e7;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -105,11 +105,10 @@ body {
 
 .ew-navbar-brand {
     font-size: 16px;
-    font-weight: 700;
-    color: #000000;
+    font-weight: 600;
+    color: #09090b;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: -0.01em;
     display: flex;
     align-items: center;
     gap: 3px;
@@ -124,24 +123,22 @@ body {
 
 .ew-navbar-item {
     padding: 3px 4px;
-    color: #404040;
+    color: #52525b;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 2px solid transparent;
-    transition: all 0.1s ease;
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s ease;
 }
 
 .ew-navbar-item:hover {
-    color: #000000;
-    background: #f5f5f5;
+    color: #09090b;
+    background: #f4f4f5;
 }
 
 .ew-navbar-item-active {
-    color: #0052cc;
-    border-bottom-color: #0052cc;
+    color: #18181b;
+    border-bottom-color: #18181b;
 }
 
 .ew-navbar-actions {
@@ -158,12 +155,12 @@ body {
     width: 240px;
     min-width: 240px;
     background: #fafafa;
-    border-right: 2px solid #d0d0d0;
+    border-right: 1px solid #e4e4e7;
     padding: 4px 0;
     overflow-y: auto;
-    height: calc(100vh - 49px);
+    height: calc(100vh - 41px);
     position: sticky;
-    top: 49px;
+    top: 41px;
 }
 
 .ew-sidebar-section {
@@ -172,13 +169,13 @@ body {
 
 .ew-sidebar-title {
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #606060;
+    letter-spacing: 0.05em;
+    color: #a1a1aa;
     padding: 3px 4px;
     margin-bottom: 1px;
-    border-left: 3px solid transparent;
+    border-left: 2px solid transparent;
 }
 
 .ew-sidebar-nav {
@@ -190,52 +187,48 @@ body {
     align-items: center;
     gap: 3px;
     padding: 3px 4px;
-    color: #404040;
+    color: #52525b;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 13px;
-    border-left: 3px solid transparent;
-    transition: all 0.1s ease;
+    border-left: 2px solid transparent;
+    transition: all 0.15s ease;
 }
 
 .ew-sidebar-item:hover {
-    color: #000000;
-    background: #f5f5f5;
-    border-left-color: #d0d0d0;
+    color: #09090b;
+    border-left-color: #e4e4e7;
 }
 
 .ew-sidebar-item-active {
-    color: #0052cc;
-    background: #f5f5f5;
-    border-left-color: #0052cc;
-    font-weight: 600;
+    color: #18181b;
+    border-left-color: #18181b;
+    font-weight: 500;
 }
 
 /* ============================================
-   CARDS - Angular, Boxy
+   CARDS - Clean, Minimal
    ============================================ */
 
 .ew-card {
     background: #ffffff;
-    border: 2px solid #d0d0d0;
-    padding: 4px;
+    border: 1px solid #e4e4e7;
+    padding: 8px;
     margin-bottom: 3px;
-    transition: all 0.1s ease;
+    transition: border-color 0.15s ease;
 }
 
 .ew-card:hover {
-    border-color: #000000;
+    border-color: #18181b;
 }
 
 .ew-card-title {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
     margin-bottom: 4px;
-    color: #000000;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    color: #09090b;
     padding-bottom: 3px;
-    border-bottom: 2px solid #d0d0d0;
+    border-bottom: 1px solid #e4e4e7;
 }
 
 .ew-card-compact {
@@ -243,7 +236,7 @@ body {
 }
 
 .ew-card-accent {
-    border-left: 4px solid #0052cc;
+    border-left: 2px solid #18181b;
 }
 
 /* ============================================
@@ -255,69 +248,68 @@ body {
 }
 
 .ew-box-bordered {
-    border: 2px solid #d0d0d0;
+    border: 1px solid #e4e4e7;
 }
 
 /* ============================================
-   TYPOGRAPHY - Angular
+   TYPOGRAPHY - Clean
    ============================================ */
 
 .ew-text {
     margin-bottom: 3px;
-    color: #000000;
+    color: #09090b;
+    line-height: 1.6;
 }
 
 .ew-text-secondary {
-    color: #404040;
+    color: #52525b;
 }
 
 .ew-text-muted {
-    color: #606060;
+    color: #a1a1aa;
 }
 
 .ew-text-accent {
-    color: #0052cc;
+    color: #18181b;
 }
 
 .ew-text-success {
-    color: #1a7f37;
+    color: #16a34a;
 }
 
 .ew-text-warning {
-    color: #9a6700;
+    color: #ca8a04;
 }
 
 .ew-text-error {
-    color: #cf222e;
+    color: #dc2626;
 }
 
 .ew-heading-1 {
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 28px;
+    font-weight: 600;
     margin-bottom: 4px;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .ew-heading-2 {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 4px;
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
 }
 
 .ew-heading-3 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     margin-bottom: 3px;
-    line-height: 1.3;
+    line-height: 1.4;
 }
 
 /* ============================================
-   BUTTONS - Angular, Sharp
+   BUTTONS - Clean, Minimal
    ============================================ */
 
 .ew-button {
@@ -325,15 +317,13 @@ body {
     align-items: center;
     justify-content: center;
     gap: 3px;
-    padding: 10px 20px;
+    padding: 8px 16px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 500;
     font-family: inherit;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     cursor: pointer;
-    transition: all 0.1s ease;
+    transition: all 0.15s ease;
     text-decoration: none;
 }
 
@@ -342,57 +332,60 @@ body {
 }
 
 .ew-button-primary {
-    background-color: #0052cc;
-    color: #ffffff;
-    border-color: #0052cc;
+    background-color: #18181b;
+    color: #fafafa;
+    border-color: #18181b;
 }
 
 .ew-button-primary:hover {
-    background-color: #0065ff;
-    border-color: #0065ff;
+    background-color: #27272a;
+    border-color: #27272a;
 }
 
 .ew-button-secondary {
-    background-color: #f0f0f0;
-    color: #000000;
-    border-color: #d0d0d0;
+    background-color: #f4f4f5;
+    color: #09090b;
+    border-color: #e4e4e7;
 }
 
 .ew-button-secondary:hover {
-    background-color: #e0e0e0;
-    border-color: #000000;
+    background-color: #e4e4e7;
+    border-color: #18181b;
 }
 
 .ew-button-outline {
     background-color: transparent;
-    color: #0052cc;
-    border-color: #0052cc;
+    color: #18181b;
+    border-color: #18181b;
 }
 
 .ew-button-outline:hover {
-    background-color: #0052cc;
-    color: #ffffff;
+    background-color: #18181b;
+    color: #fafafa;
 }
 
 .ew-button-ghost {
     background-color: transparent;
-    color: #404040;
+    color: #52525b;
     border-color: transparent;
 }
 
 .ew-button-ghost:hover {
-    background-color: #f5f5f5;
-    color: #000000;
-    border-color: #d0d0d0;
+    color: #09090b;
 }
 
 .ew-button-sm {
-    padding: 6px 12px;
+    padding: 4px 10px;
+    font-size: 11px;
+}
+
+.ew-button-xs {
+    padding: 2px 8px;
     font-size: 11px;
 }
 
 .ew-button-lg {
-    padding: 14px 28px;
+    padding: 12px 24px;
     font-size: 14px;
 }
 
@@ -481,32 +474,30 @@ body {
 
 .ew-input {
     width: 100%;
-    padding: 10px 12px;
+    padding: 8px 12px;
     font-size: 13px;
     font-family: inherit;
-    border: 2px solid #d0d0d0;
+    border: 1px solid #e4e4e7;
     background: #ffffff;
-    color: #000000;
-    transition: all 0.1s ease;
+    color: #09090b;
+    transition: border-color 0.15s ease;
 }
 
 .ew-input:focus {
     outline: none;
-    border-color: #0052cc;
+    border-color: #18181b;
 }
 
 .ew-input::placeholder {
-    color: #606060;
+    color: #a1a1aa;
 }
 
 .ew-label {
     display: block;
     font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 500;
     margin-bottom: 1px;
-    color: #404040;
+    color: #52525b;
 }
 
 .ew-form-group {
@@ -519,7 +510,7 @@ body {
 
 .ew-divider {
     border: none;
-    border-top: 2px solid #d0d0d0;
+    border-top: 1px solid #e4e4e7;
     margin: 8px 0;
 }
 
@@ -529,14 +520,14 @@ body {
 .ew-spacer-xl { height: 10px; }
 
 .ew-link {
-    color: #0052cc;
+    color: #18181b;
     text-decoration: none;
     font-weight: 600;
     border-bottom: 1px solid transparent;
 }
 
 .ew-link:hover {
-    border-bottom-color: #0052cc;
+    border-bottom-color: #18181b;
 }
 
 .ew-image {
@@ -556,7 +547,7 @@ body {
 .ew-gap-xl { gap: 10px; }
 
 /* ============================================
-   BADGE - Angular
+   BADGE - Clean
    ============================================ */
 
 .ew-badge {
@@ -564,31 +555,29 @@ body {
     align-items: center;
     padding: 2px 8px;
     font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 2px solid #0052cc;
+    font-weight: 500;
+    border: 1px solid #18181b;
     background: transparent;
-    color: #0052cc;
+    color: #18181b;
 }
 
 .ew-badge-success {
-    border-color: #1a7f37;
-    color: #1a7f37;
+    border-color: #16a34a;
+    color: #16a34a;
 }
 
 .ew-badge-warning {
-    border-color: #9a6700;
-    color: #9a6700;
+    border-color: #ca8a04;
+    color: #ca8a04;
 }
 
 .ew-badge-error {
-    border-color: #cf222e;
-    color: #cf222e;
+    border-color: #dc2626;
+    color: #dc2626;
 }
 
 /* ============================================
-   STAT CARD - Angular
+   STAT CARD - Clean
    ============================================ */
 
 .ew-stat {
@@ -598,17 +587,15 @@ body {
 
 .ew-stat-label {
     font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #606060;
+    font-weight: 500;
+    color: #a1a1aa;
     margin-bottom: 1px;
 }
 
 .ew-stat-value {
     font-size: 28px;
     font-weight: 700;
-    color: #000000;
+    color: #09090b;
     line-height: 1;
     font-variant-numeric: tabular-nums;
 }
@@ -620,33 +607,49 @@ body {
 }
 
 .ew-stat-change-up {
-    color: #1a7f37;
+    color: #16a34a;
 }
 
 .ew-stat-change-down {
-    color: #cf222e;
+    color: #dc2626;
 }
 
 /* ============================================
-   CODE BLOCK (for cream/technical theme)
+   CODE BLOCK - Terminal Style
    ============================================ */
 
 .ew-code {
     font-family: 'IBM Plex Mono', monospace;
-    background: #f5f5f5;
-    padding: 2px 6px;
-    border: 1px solid #d0d0d0;
+    background: #f4f4f5;
+    padding: 1px 4px;
     font-size: 13px;
+    color: #18181b;
 }
 
 .ew-code-block {
-    font-family: 'IBM Plex Mono', monospace;
-    background: #f5f5f5;
+    background: #ffffff;
+    border: 1px solid #e4e4e7;
+    padding: 0;
+    overflow: hidden;
+}
+
+.ew-code-block .ew-card-title,
+.ew-code-block > .ew-row:first-child {
+    background: #f4f4f5;
+    border-bottom: 1px solid #e4e4e7;
+    padding: 3px 4px;
+    margin: 0;
+}
+
+.ew-code-block .ew-code {
+    display: block;
     padding: 4px;
-    border: 2px solid #d0d0d0;
-    font-size: 13px;
-    overflow-x: auto;
+    margin: 0;
+    background: transparent;
     white-space: pre;
+    overflow-x: auto;
+    line-height: 1.5;
+    color: #09090b;
 }
 
 /* ============================================
@@ -960,7 +963,7 @@ app.add(
         .add(Card().title("Column 1"))
         .add(Card().title("Column 2"))
         .add(Card().title("Column 3"))
-);</p></div><div class="ew-spacer"></div><h2 class="ew-heading-2">Themes</h2><p class="ew-text ew-text-secondary">Choose from three built-in themes to match your style.</p><div class="ew-spacer-sm"></div><div class="ew-grid ew-grid-3"><div class="ew-card ew-card-compact" style="border-color: #4ec968;"><h3 class="ew-heading-3">Dark Mode</h3><p class="ew-text ew-text-muted">High contrast, modern aesthetic perfect for developer tools and dashboards.</p></div><div class="ew-card ew-card-compact" style="border-color: #40a9ff;"><h3 class="ew-heading-3">Light Mode</h3><p class="ew-text ew-text-muted">Clean, professional look ideal for documentation and marketing sites.</p></div><div class="ew-card ew-card-compact" style="border-color: #f0b400;"><h3 class="ew-heading-3">Cream Mode</h3><p class="ew-text ew-text-muted">Warm, paper-like feel great for long-form content and reading.</p></div></div><div class="ew-spacer"></div><h2 class="ew-heading-2">HTMX Integration</h2><p class="ew-text ew-text-secondary">Add dynamic behavior without writing JavaScript.</p><div class="ew-spacer-sm"></div><div class="ew-card ew-card-compact ew-code-block"><div class="ew-row"><p class="ew-text ew-text-muted ew-flex-grow">cpp</p><button class="ew-button ew-button-ghost ew-button-xs">Copy</button></div><p class="ew-text ew-code">// Button with HTMX action
+);</p></div><div class="ew-spacer"></div><h2 class="ew-heading-2">Themes</h2><p class="ew-text ew-text-secondary">Choose from three built-in themes to match your style.</p><div class="ew-spacer-sm"></div><div class="ew-grid ew-grid-3"><div class="ew-card ew-card-compact" style="border-color: #22c55e;"><h3 class="ew-heading-3">Dark Mode</h3><p class="ew-text ew-text-muted">Terminal-inspired dark theme with green accents, perfect for developer tools.</p></div><div class="ew-card ew-card-compact" style="border-color: #18181b;"><h3 class="ew-heading-3">Light Mode</h3><p class="ew-text ew-text-muted">Clean, minimal design with dark accents for professional documentation.</p></div><div class="ew-card ew-card-compact" style="border-color: #8b2500;"><h3 class="ew-heading-3">Cream Mode</h3><p class="ew-text ew-text-muted">Warm, paper-like feel great for long-form content and reading.</p></div></div><div class="ew-spacer"></div><h2 class="ew-heading-2">HTMX Integration</h2><p class="ew-text ew-text-secondary">Add dynamic behavior without writing JavaScript.</p><div class="ew-spacer-sm"></div><div class="ew-card ew-card-compact ew-code-block"><div class="ew-row"><p class="ew-text ew-text-muted ew-flex-grow">cpp</p><button class="ew-button ew-button-ghost ew-button-xs">Copy</button></div><p class="ew-text ew-code">// Button with HTMX action
 Button("Load More")
     .get("/api/items")
     .target("#content")
